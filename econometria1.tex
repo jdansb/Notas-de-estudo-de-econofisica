@@ -1,0 +1,354 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[brazil]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{luainputenc}
+\usepackage{amsmath}
+\usepackage{babel}
+\begin{document}
+
+\section{Modelos de regressão com equação única}
+
+A teoria econômica faz declarações ou hipóteses principalmente de natureza qualitativa. Já a principal preocupação da economia matemática é expressar a teoria econômica de forma matemática (equações) sem levar em conta se a teoria pode ser medida ou verificada empiricamente. Já a econometria, como está principalmente interessada na verificação da teoria econômica. Entre as áreas relevantes, ainda podemos citar a estatística econômica que busca principalmente a coleta, processamento e apresentação dos dados econômicos. As informações coletadas constituem os dados brutos do trabalho econométrico.
+
+Ainda podemos distinguir entre econometria teórica e econometria aplicada. O primeiro caso trata do desenvolvimento de métodos adequados para medir as relações econômicas especificadas nos modelos econométricos, já no segundo caso utilizamos estas ferramentas para estudar um ou mais campos da economia.
+
+Em termos gerais, a metodologia econométrica tradicional segue os seguintes passos:
+\begin{enumerate}
+\item Exposição da teoria ou hipótese.
+\item Especificação do modelo matemático da teoria.
+\item Especificação do modelo estatístico ou econométrico.
+\item Obtenção dos dados.
+\item Estimação dos parâmetros do modelo econométrico.
+\item Teste de hipóteses.
+\item Projeção ou previsão.
+\item Uso do modelo para fins de controle ou de política.
+\end{enumerate}
+Para ilustrarmos esses passos, vejamos a conhecida teoria do consumo keynesiana.
+
+\subsubsection*{1. Exposição da teoria hipótese}
+\begin{quote}
+A lei psicológica fundamental {[}...{]} é que os homens {[}as mulheres{]} estão dispostos, como regra e em média, a aumentar seu consumo conforme sua renda aumenta, mas não na mesma proporção que o aumento na renda. (Keynes)
+\end{quote}
+Keynes postulava que a propensão marginal a consumir (PMC), a taxa de variação do consumo por variação de uma unidade de renda, é maior que zero, mas menor que 1.
+
+\subsubsection*{2. Especificação do modelo matemático da teoria}
+
+Função de consumo (relaciona renda e consumo):
+
+\[
+y=\beta_{1}+\beta_{2}x\qquad 0<\beta_{2}<1
+\]
+
+\begin{itemize}
+\item $\beta_{1}$ e $\beta_{2}$ são parâmetros (intercepto e coeficiente angular)
+\item $y$ ($x$) é a variável dependente (independente ou explanatória)
+\end{itemize}
+
+\subsubsection*{3. Especificação do modelo estatístico ou econométrico{*}{*}}
+
+O modelo determinista deve ser modificado:
+
+\[
+y=\beta_{1}+\beta_{2}x+u
+\]
+
+\begin{itemize}
+\item $u$: chamado de distúrbio (ou termo de erro) é uma variável aleatória (ou estocástica)
+\end{itemize}
+
+\subsubsection*{4. Obtenção dos dados}
+
+Para estimar o modelo é preciso de dados.
+
+\subsubsection*{5. Estimação dos parâmetros do modelo econométrico}
+
+É preciso estimar o valor dos parâmetros a partir dos dados. A análise de regressão é a principal ferramenta.
+
+\subsubsection*{6. Teste de hipóteses}
+
+É preciso reaizar um teste de hipóteses (ou infererência estatística) para verificar se o resultado é estatisticamente significante em comprovar ou descartar a teoria hipótese levantada no passo 1.
+
+\subsubsection*{7. Projeção ou previsão}
+
+Se o modelo não refutar a hipótese considerada, podemos utilizar para prever valores futuros.
+
+\subsubsection*{8. Uso do modelo para fins de controle ou de política}
+
+Um modelo estimado pode ser usado para fins de controle ou de formulação de políticas.
+
+Algumas questões importantes:
+\begin{itemize}
+\item A ideia principal por trás da análise de regressão é a dependência estatística de uma variável (dependente) a uma ou mais variáveis (explanatórias).
+\item O objetivo dessa análise é estimar e/ou prever o valor médio da variável dependente com base no valor conhecido ou fixado das variáveis explanatórias.
+\item Na prática, o sucesso da análise de regressão depende da disponibilidade de dados adequados.
+\end{itemize}
+Além disso, em questões de notação, denotamos $E(y|x)$ como o valor esperado $y$ dado o valor de $x$, isto é, uma média condicional, em comparação com $E(y)$ que é uma média incondicional. Além disso podemos escrever que:
+
+\[
+E(y|x)=f(x)
+\]
+
+Isto é, $f(x)$ representa uma função da variável explanatória $x$. Esta função pode receber o nome: função de esperança condicional (FEC), função de regressão populacional (FRP) ou regressão populacional (RP).
+
+Evidentemente se temos $N$ pares de medidas \$(y\_i,x\_i)\$, podemos escrever:
+
+\[
+y_{i}=E(y|x_{i})+u_{i}
+\]
+
+Onde o distúrbio estocástico dá a diferença entre o valor particular $y_{i}$ e o valor esperado $E(y|x_{i})$ para o correspondente $x_{i}$. Por definição também temos que o valor esperado,isto é, a média de $u$ é $0$.
+
+É importante notar que até aqui a discussão se concentrou com os dados de uma população. Frequentemente temos apenas uma amostra desta população, neste caso temos a função de regressão amostral (FRA) e colocamos um " chapéu"{} na variável dependente e parâmetros:
+
+\[
+\widehat{y}_{i}=\widehat{\beta}_{1}+\widehat{\beta}_{2}x_{i}
+\]
+
+Com isso quremos dizer que $\widehat{A}$ é um estimador de $A$.Podemos dizer que o $y_{i}$ observado pode ser expresso como:
+
+\[
+y_{i}=\widehat{y}_{i}+\widehat{u}_{i}
+\]
+
+Dizemos que esta equação é a versão estocástica da FRA e $\widehat{u}_{i}$ agora ganha o nome de termo residual (na amostra).
+
+Mais algumas questões pertinentes:
+\begin{itemize}
+\item O conceito-chave subjacente à análise de regressão é o de função de esperança condicional (FEC) ou função de regressão populacional (FRP). Nosso objetivo na análise de regressão é verificar como o valor médio da variável dependente (ou regressando) varia com o valor da variável explanatória (regressor).
+\item Este livro trata principalmente de FRPs lineares, isto é, regressões que são lineares nos parâmetros. Elas podem ou não ser lineares no regressando ou nos regressores.
+\item Para fins empíricos, o que importa é a FRP estocástica. O termo de erro estocástico, $u_{i}$ desempenha um papel fundamental na estimação da FRP.
+\item A FRP é um conceito idealizado, já que na prática muito raramente temos acesso a toda a população que nos interessa. Em geral, temos uma amostra de observações da população. Portanto, utilizamos as funções estocásticas de regressão amostral (FRA) para estimar a FRP.
+\end{itemize}
+
+\subsection{Método dos Mínimos Quadrados}
+
+Temos a FRP de duas variáveis:
+
+\[
+y_{i}=\beta_{1}+\beta_{2}x_{i}+u_{i}
+\]
+
+Mas temos de estimá-lo por meio da FRA:
+
+\[
+y_{i}=\widehat{\beta}_{1}+\widehat{\beta}_{2}x_{i}+\widehat{u}_{i}=\widehat{y}_{i}+\widehat{u}_{i}
+\]
+
+Podemos escrever os resídios então como:
+
+\[
+\widehat{u}_{i}=y_{i}-\widehat{y}_{i}
+\]
+
+Queremos então minizar os resíduos:
+
+\[
+\sum\widehat{u}^{2}_{i}=\sum(y_{i}-\widehat{y}_{i})^{2}
+\]
+
+O quadrado nos permite ignorar os sinais, isto é, se $y_{i}-\widehat{y}_{i}<0$ temos o mesmo resultado se $y_{i}-\widehat{y}_{i}>0$, e também maximiza a importância de resíduos maiores em quantidade absoluta. Como os dados $(y_{i},x_{i})$ são obtidos pela amostra, queremos estimar os valores $(\widehat{\beta}_{1},\widehat{\beta}_{2})$, sendo assim a função da soma do quadrado dos resíduos é uma função dos estimadores.
+
+\[
+\sum\widehat{u}^{2}_{i}=f(\widehat{\beta}_{1},\widehat{\beta}_{2})
+\]
+
+Resolvendo por processo de diferenciação, obtemos:
+
+\[
+\widehat{\beta}_{2}=\frac{\sum(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sum(x_{i}-\overline{x})^{2}},\qquad\widehat{\beta}_{1}=\overline{y}-\widehat{\beta}_{2}\overline{x}
+\]
+
+
+\subsubsection*{Calculo}
+
+Podemos aplicar o método da regressão linear sobre um grande conjunto de dados para obter a reta que melhor descreve esse conjunto de dados. Evidentemente, para que esse método seja útil, precisamos que exista uma reta que descreva os dados de forma satisfatória. Se tivermos uma única variável independente $y$ que esperamos que seja descrita por uma única variável dependente $x$ de forma linear (uma linha reta), então, para um conjunto de pontos de entrada $\left\{ x_{i}\right\} $, queremos encontrar um conjunto de pontos de saída $\left\{ y_{i}\right\} $ que pode ser escrito da seguinte forma:
+
+\[
+y_{i}=b_{0}+b_{1}x_{i}+e_{i}
+\]
+onde:
+\begin{itemize}
+\item $b_{0}$ é a constante de regressão; 
+\item $b_{1}$ é o coeficiente de regressão; 
+\item $e_{i}$ é o erro que obtemos quando tentamos predizer $y_{i}$ a partir de $x_{i}$. 
+\end{itemize}
+Quando aplicamos o modelo de regressão linear, queremos minimizar o erro. Para fazer isso, precisamos de uma medida do erro. Usaremos a soma dos quadrados dos erros:
+
+\[
+E=\sum^{N}_{i=0}e^{2}_{i}
+\]
+Considerando que temos $N$ pontos. Então, queremos encontrar $b_{0}$ e $b_{1}$ que minimizem essa quantidade. Podemos reescrever isso como:
+
+\[
+E=\sum^{N}_{i=0}\left(y_{i}-b_{0}-b_{1}x_{i}\right)^{2}
+\]
+
+Podemos usar o gradiente para encontrar o mínimo de uma função. O mínimo deve satisfazer $\nabla f=0$. Como queremos encontrar o mínimo para ambos os termos $b_{j}$, temos:
+
+\[
+\nabla E=\left(\frac{\partial E}{\partial b_{0}},\frac{\partial E}{\partial b_{1}}\right)
+\]
+
+Calculando a derivada para $b_{0}$: 
+\[
+\begin{split}\frac{\partial E}{\partial b_{0}} & =\frac{\partial}{\partial b_{0}}\sum^{N}_{i=0}\left(y_{i}-b_{0}-b_{1}x_{i}\right)^{2}\\
+ & =\sum^{N}_{i=0}\frac{\partial}{\partial b_{0}}\left(y_{i}-b_{0}-b_{1}x_{i}\right)^{2}\\
+ & =\sum^{N}_{i=0}2\left(y_{i}-b_{0}-b_{1}x_{i}\right)\frac{\partial}{\partial b_{0}}\left(y_{i}-b_{0}-b_{1}x_{i}\right)\\
+ & =\sum^{N}_{i=0}2\left(y_{i}-b_{0}-b_{1}x_{i}\right)\left(-1\right)\\
+ & =-2\sum^{N}_{i=0}\left(y_{i}-b_{0}-b_{1}x_{i}\right)
+\end{split}
+\]
+
+Procedendo de modo similar para $b_{1}$:
+
+\[
+\frac{\partial E}{\partial b_{1}}=-2\sum^{N}_{i=0}x_{i}\left(y_{i}-b_{0}-b_{1}x_{i}\right)
+\]
+
+Para minimizar, precisamos que a seguinte condição seja satisfeita:
+
+\[
+\nabla E=\left(\frac{\partial E}{\partial b_{0}},\frac{\partial E}{\partial b_{1}}\right)=\left(0,0\right)
+\]
+
+Então:
+
+\begin{equation}
+\begin{split}0 & =-2\sum^{N}_{i=0}\left(y_{i}-b_{0}-b_{1}x_{i}\right)\\
+0 & =-2\sum^{N}_{i=0}x_{i}\left(y_{i}-b_{0}-b_{1}x_{i}\right)
+\end{split}
+\label{linear 1}
+\end{equation}
+
+Para ter certeza de que se trata de um mínimo e não de um máximo, precisamos verificar se a segunda derivada é positiva:
+
+\[
+\begin{split}\frac{\partial^{2}E}{\partial b^{2}_{0}} & =2\sum^{N}_{i=0}1=2N\\
+\frac{\partial^{2}E}{\partial b^{2}_{1}} & =2\sum^{N}_{i=0}x_{i}x_{i}=2\sum^{N}_{i=0}x^{2}_{i}
+\end{split}
+\]
+
+Como $N>0$ e $x^{2}\geq0$, temos então a certeza de que é um mínimo. Manipulando a primeira equação em \ref{linear 1}, obtemos:
+
+\[
+\begin{split}0 & =-2\sum^{N}_{i=0}\left(y_{i}-b_{0}-b_{1}x_{i}\right)\\
+0 & =\sum^{N}_{i=0}y_{i}-\sum^{N}_{i=0}b_{0}-\sum^{N}_{i=0}b_{1}x_{i}\\
+b_{0}\sum^{N}_{i=0}1 & =\sum^{N}_{i=0}y_{i}-\sum^{N}_{i=0}b_{1}x_{i}\\
+Nb_{0} & =\sum^{N}_{i=0}y_{i}-\sum^{N}_{i=0}b_{1}x_{i}\\
+b_{0} & =\sum^{N}_{i=0}\frac{y_{i}}{N}-b_{1}\sum^{N}_{i=0}\frac{x_{i}}{N}\\
+b_{0} & =\overline{y}-b_{1}\overline{x}
+\end{split}
+\]
+
+E para a segunda equação em \ref{linear 1} temos: 
+\[
+\begin{split}0 & =-2\sum^{N}_{i=0}x_{i}\left(y_{i}-b_{0}-b_{1}x_{i}\right)\\
+0 & =\sum^{N}_{i=0}x_{i}y_{i}-b_{0}\sum^{N}_{i=0}x_{i}-\sum^{N}_{i=0}b_{1}x^{2}_{i}\\
+b_{1}\sum^{N}_{i=0}x^{2}_{i} & =\sum^{N}_{i=0}x_{i}y_{i}-b_{0}\sum^{N}_{i=0}x_{i}
+\end{split}
+\]
+
+Combinando os resultados, ficamos com:
+
+\[
+\begin{split}b_{1}\sum^{N}_{i=0}x^{2}_{i} & =\sum^{N}_{i=0}x_{i}y_{i}-b_{0}\sum^{N}_{i=0}x_{i}\\
+b_{1}\sum^{N}_{i=0}x^{2}_{i} & =\sum^{N}_{i=0}x_{i}y_{i}-\left(\sum^{N}_{i=0}\frac{y_{i}}{N}-b_{1}\sum^{N}_{i=0}\frac{x_{i}}{N}\right)\sum^{N}_{i=0}x_{i}\\
+b_{1}\sum^{N}_{i=0}x^{2}_{i} & =\sum^{N}_{i=0}x_{i}y_{i}-\frac{1}{N}\left(\sum^{N}_{i=0}y_{i}\right)\left(\sum^{N}_{i=0}x_{i}\right)+\frac{b_{1}}{N}\left(\sum^{N}_{i=0}x_{i}\right)^{2}\\
+b_{1}\left(\sum^{N}_{i=0}x^{2}_{i}-\frac{1}{N}\left(\sum^{N}_{i=0}x_{i}\right)^{2}\right) & =\sum^{N}_{i=0}x_{i}y_{i}-\frac{1}{N}\left(\sum^{N}_{i=0}y_{i}\right)\left(\sum^{N}_{i=0}x_{i}\right)
+\end{split}
+\]
+Então $b_{1}$ é:
+
+\[
+b_{1}=\frac{\sum^{N}_{i=0}x_{i}y_{i}-\frac{1}{N}\left(\sum^{N}_{i=0}y_{i}\right)\left(\sum^{N}_{i=0}x_{i}\right)}{\left(\sum^{N}_{i=0}x^{2}_{i}-\frac{1}{N}\left(\sum^{N}_{i=0}x_{i}\right)^{2}\right)}
+\]
+
+Ou seja:
+
+\[
+b_{1}=\frac{\sum^{N}_{i=0}x_{i}y_{i}-N\overline{y}\overline{x}}{\sum^{N}_{i=0}x^{2}_{i}-N\overline{x}^{2}},\qquad b_{0}=\overline{y}-b_{1}\overline{x}
+\]
+A partir dessas constantes, montamos a seguinte equação da reta: $x_{i}\rightarrow wx_{i}$
+\[
+y=b_{0}+b_{1}x
+\]
+Comparando com a lei de Pareto linearizada visto anteriormente, temos que a constante de regressão $b_{0}$ é $b_{0}=b$, e o coeficiente de regressão $b_{1}$ é o próprio índice Pareto $\alpha=b_{1}$ que estávamos buscando. Devemos lembrar que obtemos a forma linearizada da lei de Pareto apenas após aplicarmos $\log_{10}$. Dessa forma, para verificar se um conjunto de dados segue uma distribuição de Pareto, devemos aplicar a regressão linear somente depois de calcular a CCDF dos dados e, em seguida, aplicar $\log_{10}$ em ambos os eixos. Em outras palavras, a verificação é feita no gráfico $\log_{10}(w)\times\log_{10}(\overline{F}_{x}(w))$.
+
+E podemos demonstrar que $b_{1}=\widehat{\beta}_{2}$:
+
+\begin{align*}
+\widehat{\beta}_{2}= & \frac{\sum(x_{i}-\overline{x})(y_{i}-\overline{y})}{\sum(x_{i}-\overline{x})^{2}}\\
+ & =\frac{\sum(x_{i}y_{i}-y_{i}\overline{x}-\overline{y}x_{i}-\overline{y}\overline{x})}{\sum(x^{2}_{i}-2x_{i}\overline{x}+\overline{x}^{2})}\\
+ & =\frac{\sum\left(x_{i}y_{i}-\overline{y}\overline{x}\right)-N\left(\sum\frac{y_{i}}{N}\right)\overline{x}-N\left(\sum\frac{x_{i}}{N}\right)\overline{y}))}{\sum(x^{2}_{i}-2N\left(\sum\frac{x_{i}}{N}\right)\overline{x}+\overline{x}^{2})}\\
+ & =\frac{\sum x_{i}y_{i}-\overline{y}\overline{x}\sum1-N\overline{y}\overline{x}-N\overline{x}\overline{y}}{\sum(x^{2}_{i}-2\overline{x}^{2}+\overline{x}^{2})}\\
+ & =\frac{\sum x_{i}y_{i}-N\overline{y}\overline{x}}{\sum x^{2}_{i}-\overline{x}^{2}\sum1}=\frac{\sum x_{i}y_{i}-N\overline{y}\overline{x}}{\sum x^{2}_{i}-N\overline{x}^{2}}=b_{1}
+\end{align*}
+
+
+\subsubsection{FE}
+
+\textbf{Efeitos Fixos (Fixed Effects):} Se temos dados temporais de mais de um país, pode ser que estejamos interessados apenas na variação de cada série ao longo do tempo, desconsiderando diferenças médias de nível entre os países. Um método tipicamente empregado neste caso é subtrair de cada observação a média temporal da respectiva série, de forma que todas fiquem centradas em torno de zero. Em seguida, aplica-se OLS aos dados transformados. Nesse caso, o coeficiente estimado depende apenas das variações internas de cada série ao longo do tempo, com isso estamos interessados apenas no coeficiente angular $b_{1}$ e não no intercepto $b_{0}$ obtido através do OLS.
+
+\subsubsection{Weighted}
+
+\textbf{Weighted: }Agora que estamos lidando com diferentes países, pode ser também que, ao aplicar a estimação linear final, queiramos atribuir diferentes pesos para diferentes observações. Para isso, podemos retomar a função erro minimizada pelo OLS, $E=\sum^{N}_{i=0}e^{2}_{i}$, e atribuir diferentes pesos\textbf{ $w_{i}$ }para cada erro $E=\sum^{N}_{i=0}w_{i}e^{2}_{i}=$. Recuperamos o caso do OLS usual quando $w_{i}$ para todas as observações. O resto de toda dedução de $b_{1}$ é análogo considerando agora o termo $w_{i}$. 
+
+A derivada de $b_{0}$ e $b_{1}$ tornam-se respcectivamente:
+
+\begin{align*}
+\frac{\partial E}{\partial b_{0}} & =-2\sum^{N}_{i=0}w_{i}\left(y_{i}-b_{0}-b_{1}x_{i}\right)\\
+\frac{\partial E}{\partial b_{1}} & =-2\sum^{N}_{i=0}w_{i}x_{i}\left(y_{i}-b_{0}-b_{1}x_{i}\right)
+\end{align*}
+
+Somar os pesos de todos os dados $N$( $\sum^{N}_{i}w_{i}$) equivale a somar os pesos de todos os $M$ dados de cada uma das $K$ séries ($\sum^{K}_{n}\sum^{M}_{t}w_{n,t}$). Como podemos alterar a ordem da soma, então\footnote{Estamos considerando que todas as séries tem o mesmo tamanho $K\cdot M=N$.}:
+
+\[
+\sum^{N}_{i}w_{i}=\sum^{K}_{n}\sum^{M}_{t}w_{j,n}=\sum^{M}_{t}\left(\sum^{K}_{n}w_{n,t}\right)=\sum^{M}_{n}1=M
+\]
+
+Pois nosso pesos estão distribuídos de forma que se somarmos todos os pesos de todas as séries referente à qualquer tempo $t$, devemos ter necessariamente $1$, isto é $\sum_{t}w_{n,t}=1$. Fazendo ainda uma consideração adicional de que os pesos de cada série se mantém constante no tempo $w_{n}=w_{n,t}$ podemos retirar $w_{n}$ do somatório no tepmo. Lembrando que minimizar o erro devemos ter $\left(\frac{\partial E}{\partial b_{0}},\frac{\partial E}{\partial b_{1}}\right)=\left(0,0\right)$, podemos chegar na primeira equação: 
+
+\[
+\begin{split}b_{0}\sum^{N}_{i=0}w_{i} & =\sum^{N}_{i=0}w_{i}y_{i}-\sum^{N}_{i=0}w_{i}b_{1}x_{i}\\
+b_{0}\sum^{K}_{n}\sum^{M}_{t}w_{n,t} & =\sum^{K}_{n}\sum^{M}_{t}w_{n,t}y_{n,t}-\sum^{K}_{n}\sum^{M}_{t}w_{n,t}b_{1}x_{n,t}\\
+b_{0}M & =\sum^{K}_{n}w_{n}\sum^{M}_{t}y_{n,t}-\sum^{K}_{n}w_{n}b_{1}\sum^{M}_{t}x_{n,t}\\
+b_{0} & =\sum^{K}_{n}w_{n}\frac{\sum^{M}_{t}y_{n,t}}{M}-\sum^{K}_{n}w_{n}b_{1}\frac{\sum^{M}_{t}x_{n,t}}{M}\\
+b_{0} & =\sum^{K}_{n}w_{n}\overline{y}_{n}-b_{1}\sum^{K}_{n}w_{n}\overline{x}_{n}\\
+b_{0} & =\widehat{y}-b_{1}\widehat{x}
+\end{split}
+\]
+
+Ou seja, temos algo bastante similar ao caso do OLS normal. Com a diferença que agora ao invés de termos apenas uma média sobre todos os dados, temos um somatório da média de cada série multiplicada pelo peso que atribuídos a esta série. Essencialmente substituidmos $\overline{z}\rightarrow\sum^{K}_{n}w_{n}\overline{z}_{n}=\widehat{z}$. Agora quanto a segunda equação temos:
+\[
+\begin{split}b_{1}\sum^{K}_{n}w_{n}\sum^{M}_{t}x^{2}_{n,t} & =\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}y_{n,t}-b_{0}\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}\\
+b_{1}\sum^{K}_{n}w_{n}\sum^{M}_{t}x^{2}_{n,t} & =\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}y_{n,t}-b_{0}M\sum^{K}_{n}w_{n}\overline{x}_{n}\\
+b_{1}\sum^{K}_{n}w_{n}\sum^{M}_{t}x^{2}_{n,t} & =\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}y_{n,t}-b_{0}M\widehat{x}
+\end{split}
+\]
+
+Combinando os resultados, ficamos com:
+
+\[
+\begin{split}b_{1}\sum^{K}_{n}w_{n}\sum^{M}_{t}x^{2}_{n,t} & =\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}y_{n,t}-\left(\widehat{y}-b_{1}\widehat{x}\right)M\widehat{x}\\
+b_{1}\left(\sum^{K}_{n}w_{n}\sum^{M}_{t}x^{2}_{n,t}-M\widehat{x}^{2}\right) & =\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}y_{n,t}-M\widehat{y}\widehat{x}
+\end{split}
+\]
+Então $b_{1}$ é:
+
+\[
+b_{1}=\frac{\sum^{K}_{n}w_{n}\sum^{M}_{t}x_{n,t}y_{n,t}-M\widehat{y}\widehat{x}}{\left(\sum^{K}_{n}w_{n}\sum^{M}_{t}x^{2}_{n,t}-M\widehat{x}^{2}\right)}
+\]
+
+Ou ainda se quisermos retomar a notação sobre todo o conjunto de dados, associando um peso $w_{i}$ a cada dado $i$, de forma mais geral:
+
+\[
+b_{1}=\frac{\sum^{N}_{i}w_{i}x_{i}y_{i}-\frac{1}{M}\left(\sum^{N}_{i}w_{i}y_{i}\right)\left(\sum^{N}_{i}w_{i}x_{i}\right)}{\left(\sum^{N}_{i}w_{i}x^{2}_{i}-\frac{1}{M}\left(\sum^{N}_{i}w_{i}x_{i}\right)^{2}\right)}
+\]
+
+Mas lembrando que só obtemos isso considerando que todas as séries tem o mesmo tamanho e que o somatório dos pesos sobre todas as séries para qualquer $t$ deve ser 1. Comparando ao $b_{1}$anterior , Trocamos o tamanho total da população pelo tamanho de cada série e inserimos um peso em cada umdos somatórios.
+
+\bibliographystyle{plain}
+\bibliography{tese,Artigo1/references,Artigo2/referencias}
+
+\end{document}
