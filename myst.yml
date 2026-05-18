@@ -28,6 +28,20 @@ project:
       children:
         - file: moeda
           title: Moeda
+        - file: valor
+          title: Lei do valor
+        - file: trabalho
+          title: Trabalho contido
+        - title: Inequality in a model of capitalist economy
+          url: https://arxiv.org/html/2410.22369v2
+        - title: Can rising consumption deepen inequality? 
+          url: https://arxiv.org/html/2601.15537v1
+    - title: Apêndice
+      children:
+        - file: apendice
+          title: Questões Matemáticas
+
+
     
 site:
   template: book-theme

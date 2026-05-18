@@ -1,0 +1,1188 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[brazil]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{luainputenc}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+
+
+\makeatother
+
+\begin{document}
+
+\section{Abordagem probabilistica do trabalho contido}
+
+\subsection{Medida de Trabalho Contido}
+
+O texto deste capítulo foi extraído do apêndice B.1 (``Medida possível do trabalho contido'') do livro ``Como o Trabalho Impulsiona a Economia Global''\cite{farjoun2022labor}, onde buscamos desenvolver ferramentas matemáticas para analisar o trabalho incorporado nas mercadorias. Portanto, não apresentamos aqui um modelo ou lei, apenas um formalismo matemático para a realização de análises. 
+
+Para começar, precisamos definir algumas propriedades do conteúdo de trabalho:
+\begin{itemize}
+\item O conteúdo de trabalho de um conjunto de produtos é igual ao número total de horas de trabalho diretamente investidas em sua produção, mais a fração proporcional de trabalho contida nos produtos envolvidos em seu processo produtivo.
+\item O conteúdo de trabalho da produção líquida de toda a economia, em um determinado período, é igual ao número total de horas trabalhadas durante esse período.
+\end{itemize}
+Evidentemente, a segunda propriedade é uma consequência da primeira, visto que, ao considerarmos toda a produção líquida da sociedade, necessariamente consideramos também toda a produção utilizada no processo produtivo. Dessa forma, levamos em conta a produção da sociedade como um todo.
+
+Consideremos uma economia com $m$ unidades produtivas que são capazes, em um determinado período (um ano, por exemplo), de produzir um conjunto de produtos $B$. Uma parte $B_{I}$ desses produtos será consumida durante o próprio processo produtivo, resultando, assim, em um produto líquido $B_{L}=B-B_{I}$. Do produto líquido, uma porção $B_{T}$ é alocada aos trabalhadores --- assumindo que a outra parte do produto líquido $B_{C}$ seja alocada aos capitalistas, de modo que $B_{L}=B_{T}+B_{C}$. O trabalho $L_{T}$ contido em $B_{T}$ será, da mesma forma, parte do trabalho total $L$ contido no produto líquido. Analogamente, podemos supor que o restante $L_{C}$ do trabalho contido no produto líquido seja o trabalho incorporado nos produtos alocados aos capitalistas, de modo que $L=L_{T}+L_{C}$. Chamaremos isso de partição do trabalho, que será denotada como:
+
+\[
+\lambda=\frac{L_{T}}{L}
+\]
+
+Em outras palavras, apenas a fração $\lambda$ do conteúdo de trabalho no produto líquido está incorporada no produto alocado aos trabalhadores; o restante é apropriado por outros setores da sociedade. Vamos agora classificar todos os produtos em $d$ tipos distintos. Podemos então construir um vetor $\boldsymbol{b}=\left(b_{1},\dots,b_{d}\right)$ que registra a quantidade de cada tipo de produto que compõe o produto líquido. Se definirmos um vetor $\boldsymbol{c}=\left(c_{1},\dots,c_{d}\right)$ que descreve o conteúdo de trabalho por unidade de cada tipo de produto, podemos então calcular o conteúdo total de trabalho no produto líquido da seguinte forma:
+
+\[
+L=\boldsymbol{c}\cdot\boldsymbol{b}
+\]
+
+Se construirmos um vetor $\boldsymbol{w}$ que represente a quantidade de produto líquido distribuída à força de trabalho dividida pelo total de mão de obra empregada pela sociedade, teremos $\frac{\boldsymbol{b}_{T}}{L}=\boldsymbol{w}$, onde $\boldsymbol{b}_{T}$ é o vetor que representa a parcela do produto líquido alocada aos trabalhadores. Evidentemente, o conteúdo de trabalho no produto líquido alocado aos trabalhadores será:
+
+\[
+L_{T}=\boldsymbol{c}\cdot\boldsymbol{b}_{T}=\boldsymbol{c}\cdot\boldsymbol{w}L
+\]
+
+Lembre-se de que $\boldsymbol{c}$ não depende da quantidade de bens em uma determinada coleção de bens, portanto:
+
+\[
+\lambda=\frac{L_{T}}{L}=\frac{\boldsymbol{c}\cdot\boldsymbol{w}L}{L}=\boldsymbol{c}\boldsymbol{w}
+\]
+
+Agora, vamos conectar os produtos distribuídos à força de trabalho com os produtos fabricados nas $m$ unidades de produção distintas. Consideremos que a empresa $i$ emprega $x_{i}$ horas de trabalho diretamente em um determinado ano, e seja $\boldsymbol{a}_{i}$ um vetor que especifica a quantidade de cada tipo de produto utilizado por hora de trabalho diretamente empregada pela empresa. Então, os produtos consumidos por uma empresa ao longo do ano são $\boldsymbol{a}_{i}x_{i}$. Por exemplo, se tivermos apenas dois produtos, teríamos para a empresa $i$:
+
+\[
+\boldsymbol{a}_{i}=\left(a_{1i},a_{2i}\right),\quad\boldsymbol{b}_{I_{i}}=x_{i}\boldsymbol{a}_{i}=\left(x_{i}a_{i1},x_{i}a_{i2}\right)
+\]
+
+Podemos então construir uma matriz $A$ onde cada coluna $j$ é um vetor coluna $\boldsymbol{a}_{i}$ indicando o consumo de produtos pela empresa $i$ por hora de trabalho empregada. Ou seja, a linha $i$ indica o consumo do produto $i$ por cada empresa, e a coluna $j$ indica o consumo de cada produto pela empresa $j$. Por exemplo, se tivermos duas empresas com dois tipos de produtos, então:
+
+\[
+\boldsymbol{A}=\left[\begin{array}{cc}
+\boldsymbol{a}_{1} & \boldsymbol{a}_{2}\end{array}\right]=\left[\begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{array}\right]
+\]
+
+Assim, podemos obter o vetor $\boldsymbol{b}_{I}$ que representa a cesta de produtos consumidos durante o processo de produção ao longo de um ano, utilizando uma matriz com componentes $a_{ij}$:
+
+\begin{align*}
+\boldsymbol{A}\boldsymbol{x} & =\left[\begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{array}\right]\left[\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right]\\
+ & =\left[a_{11}x_{1}+a_{12}x_{2},a_{21}x_{1}+a_{22}x_{2}\right]\\
+ & =\left[a_{11}x_{1},a_{21}x_{1}\right]+\left[a_{12}x_{2},a_{22}x_{2}\right]\\
+ & =\left[a_{11},a_{21}\right]x_{1}+\left[a_{12},a_{22}\right]x_{2}\\
+ & =\boldsymbol{a}_{1}x_{1}+\boldsymbol{a}_{2}x_{2}\\
+ & =\boldsymbol{b}_{I}
+\end{align*}
+
+Este cálculo pode ser facilmente generalizado para qualquer número $d$ de tipos de produtos e $m$ empresas, onde $\boldsymbol{x}$ é um vetor coluna de dimensão $m$ e $A$ é uma matriz de dimensão $d\times m$:
+
+\[
+\boldsymbol{A}\boldsymbol{x}=\left[\begin{array}{ccc}
+a_{11} & \dots & a_{1m}\\
+\vdots & \ddots & \vdots\\
+a_{d1} & \dots & a_{dm}
+\end{array}\right]\left[\begin{array}{c}
+x_{1}\\
+\vdots\\
+x_{m}
+\end{array}\right]
+\]
+
+Se $\boldsymbol{q}$ é o vetor que denota a produção bruta em um ano, então é fácil ver que:
+
+\[
+\boldsymbol{b}=\boldsymbol{q}-\boldsymbol{b}_{I}\rightarrow\boldsymbol{q}=\boldsymbol{b}-\boldsymbol{A}\boldsymbol{x}
+\]
+
+Denotando o vetor de produtos produzidos pela empresa $i$ ao longo do ano como $\boldsymbol{q}_{i}=\left[q_{i1},\dots,q_{id}\right]$, definimos que a empresa $i$ produz $p_{ij}q_{j}$ unidades do tipo $j$, ou seja, $q_{ij}=p_{ij}q_{j}$, onde $p_{ij}$ é a proporção na qual a empresa $i$ contribui para a produção total do produto $j$ em toda a economia, dada pelo componente $q_{j}$ do vetor $\boldsymbol{q}$. Por exemplo, se a empresa $i$ produz 100\% do produto $j$, então simplesmente $p_{ij}=1$ e $q_{ji}=q_{j}$, e para qualquer outra empresa diferente de $i$ temos $q_{ji}=p_{ij}=0$.
+
+Uma empresa $i$ emprega diretamente $x_{i}$ unidades de trabalho para produzir $d_{i}$ diferentes tipos de produtos. Então, a quantidade $l_{ij}=x_{i}/q_{ij}$ representa o número de horas de trabalho que devem ser empregadas diretamente pela empresa $i$ para produzir uma unidade do produto do tipo $j$. Podemos também reescrever $l_{ij}=x_{i}/\left(p_{ij}q_{j}\right)$. Podemos reescrever isso como:
+
+\[
+x_{i}=l_{ij}p_{ij}q_{j}.
+\]
+
+Então, se somarmos todos os produtos $j$ que a empresa $i$ produz, teremos $\sum_{j}l_{ij}p_{ij}q_{j}=d_{i}x_{i}$, já que a empresa $i$ produz $d_{i}$ produtos. Também podemos escrever:
+
+\[
+x_{i}=\frac{1}{d_{i}}\sum_{j}l_{ij}p_{ij}q_{j}
+\]
+
+Vamos usar tudo que vimos até agora para construir a matriz $\boldsymbol{L}$ com elementos $\frac{l_{ij}p_{ij}}{d_{i}}$:
+
+\[
+\boldsymbol{x}=\left[\begin{array}{c}
+x_{1}\\
+\vdots\\
+x_{m}
+\end{array}\right]=\left[\begin{array}{c}
+\sum_{j}\frac{l_{1j}p_{1j}q_{j}}{d_{1}}\\
+\vdots\\
+\frac{\sum_{j}l_{mj}p_{mj}q_{j}}{d_{m}}
+\end{array}\right]=\left[\begin{array}{ccc}
+\frac{l_{11}p_{11}}{d_{1}} & \dots & \frac{l_{1d}p_{1d}}{d_{1}}\\
+\vdots & \ddots & \vdots\\
+\frac{l_{m1}p_{m1}}{d_{m}} & \dots & \frac{l_{md}p_{md}}{d_{m}}
+\end{array}\right]\left[\begin{array}{c}
+q_{1}\\
+\vdots\\
+q_{d}
+\end{array}\right]=\boldsymbol{L}\boldsymbol{q}
+\]
+
+Então o par de matrizes $\left(\boldsymbol{A},\boldsymbol{L}\right)$ descreve as condições técnicas de produção. Podemos combinar os resultados:
+
+\begin{align*}
+\boldsymbol{b} & =\boldsymbol{q}-\boldsymbol{A}\boldsymbol{x}\\
+ & =\boldsymbol{q}-\boldsymbol{A}\boldsymbol{L}\boldsymbol{q}\\
+ & =\left(\boldsymbol{I}-\boldsymbol{A}\boldsymbol{L}\right)\boldsymbol{q}
+\end{align*}
+
+Então, para ter uma produção líquoda maior que zero, dependemos de $\boldsymbol{AL}$\footnote{Conforme consta no rodapé do trabalho original, dessa relação, podemos deduzir que o maior autovalor de $\boldsymbol{A}\boldsymbol{L}$ deve ser menor que 1 para que a reprodução econômica exista. Esta é uma afirmação interessante de verificar.}. Podemos reescrever tudo em uma única expressão:
+
+\[
+\left[\begin{array}{c}
+\boldsymbol{b}\\
+\boldsymbol{0}
+\end{array}\right]=\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & -\boldsymbol{A}\\
+-\boldsymbol{L} & \boldsymbol{I}_{m}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{q}\\
+\boldsymbol{x}
+\end{array}\right]
+\]
+
+Aqui, estamos indicando, por exemplo, que se $\boldsymbol{u}=\left(u_{1},u_{2}\right)$ e $\boldsymbol{v}=\left(v_{1},v_{2}\right)$, então, em notação concisa, escrevemos $\left(\boldsymbol{u},\boldsymbol{v}\right)=\left(u_{1},u_{2},v_{1},v_{2}\right)$. Além disso, $\boldsymbol{0}$ é um vetor de valores nulos e $\boldsymbol{I}_{n}$ é uma matriz identidade de tamanho $n\times n$. Isso é necessário porque, para a multiplicação de matrizes $n\times m$ e $j\times k$, precisamos de $m=j$, ou seja, o número de colunas da primeira matriz deve ser igual ao número de linhas da segunda. Então, $\boldsymbol{I}_{d}$ é uma matriz $d\times d$ para multiplicar o vetor $\boldsymbol{q}$ de tamanho $d$. Como $\boldsymbol{A}$ é uma matriz $d\times m$, o número de colunas em toda a matriz é $d+m=n$. $\boldsymbol{L}$ é uma matriz $m\times d$, portanto o número de linhas também é $n=m+d$, o que complementa perfeitamente a última matriz identidade $\boldsymbol{I}_{m}$ que multiplica o vetor $\boldsymbol{x}$ de dimensão $m$. Assim, o vetor coluna também tem dimensão $n=m+d$.
+
+Se aplicarmos a matriz inversa:
+
+\[
+\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & -\boldsymbol{A}\\
+-\boldsymbol{L} & \boldsymbol{I}_{m}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+\boldsymbol{b}\\
+\boldsymbol{0}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{q}\\
+\boldsymbol{x}
+\end{array}\right]
+\]
+
+Agora podemos relacionar a quantidade de produtos alocada à força de trabalho com os produtos que ela produz. Se $L=\sum_{i}x_{i}$ for o número total de horas de trabalho diretamente empregadas pelas empresas ao longo do ano, então, se escrevermos um vetor de tamanho $m$ onde todos os elementos são $1$ como $\boldsymbol{1}$, teremos $\boldsymbol{1}\cdot\boldsymbol{x}=\sum_{i}x_{i}=L$. Portanto:
+
+\begin{align*}
+\boldsymbol{b}_{T} & =\boldsymbol{w}L\\
+ & =\boldsymbol{w}\left(\boldsymbol{1}\boldsymbol{x}\right)\\
+ & =\boldsymbol{w}\left[\begin{array}{cc}
+\boldsymbol{0} & \boldsymbol{1}\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{q}\\
+\boldsymbol{x}
+\end{array}\right]\\
+ & =\boldsymbol{w}\left[\begin{array}{cc}
+\boldsymbol{0} & \boldsymbol{1}\end{array}\right]\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & -\boldsymbol{A}\\
+-\boldsymbol{L} & \boldsymbol{I}_{m}
+\end{array}\right]^{-1}\left[\begin{array}{c}
+\boldsymbol{b}\\
+\boldsymbol{0}
+\end{array}\right]
+\end{align*}
+
+Uma matriz inversa $\boldsymbol{H}^{-1}$ é uma no qual $\boldsymbol{H}^{-1}\boldsymbol{H}=\boldsymbol{I}$. Escrevendo:
+
+\begin{align*}
+\boldsymbol{H}=\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & -\boldsymbol{A}\\
+-\boldsymbol{L} & \boldsymbol{I}_{m}
+\end{array}\right],\quad\boldsymbol{H}^{-1}= & \left[\begin{array}{cc}
+\alpha_{11} & \alpha_{12}\\
+\alpha_{21} & \alpha_{22}
+\end{array}\right]
+\end{align*}
+
+Queremos determinar os componentes $\alpha_{ij}$. Por agora, vamos manter esta notação.
+
+\begin{align*}
+\boldsymbol{b}_{T} & =\boldsymbol{w}\left[\begin{array}{cc}
+\boldsymbol{0} & \boldsymbol{1}\end{array}\right]\left[\begin{array}{cc}
+\alpha_{11} & \alpha_{12}\\
+\alpha_{21} & \alpha_{22}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{b}\\
+\boldsymbol{0}
+\end{array}\right]\\
+ & =\boldsymbol{w}\left[\begin{array}{cc}
+\boldsymbol{1}\alpha_{21} & \boldsymbol{1}\alpha_{22}\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{b}\\
+\boldsymbol{0}
+\end{array}\right]\\
+ & =\boldsymbol{w}\boldsymbol{1}\alpha_{21}\boldsymbol{b}
+\end{align*}
+
+Definindo $W=\boldsymbol{w}\boldsymbol{1}\alpha_{21}$, temos então uma relação entre a produção líquida total e a produção líquida alocada para os trabalhadores.
+
+\[
+\boldsymbol{b}_{T}=W\boldsymbol{b}
+\]
+
+Agora queremos o componente $\alpha_{21}$ da matriz inversa. Vamos calcular a inversa explicitamente --- lembrando que, nesta notação, cada elemento da matriz $\boldsymbol{H}$ é ele próprio uma matriz. Portanto, os elementos do lado direito da igualdade também são matrizes (zero e identidade). A matriz identidade à direita deve ser $n\times n$ no total, mas temos alguma flexibilidade na escolha das dimensões das submatrizes identidade. Definindo-as com ordens $n_{1}\times n_{1}$ e $n_{2}\times n_{2}$, desde que $n=n_{1}+n_{2}$, e as matrizes nulas tenham o tamanho necessário para manter a matriz quadrada completa.
+
+Escolhemos então $n_{1}=d$ e $n_{2}=m$. Dessa forma, as matrizes nulas precisam ter as dimensões de $\boldsymbol{A}$ e $\boldsymbol{L}$:
+
+\begin{align*}
+\left[\begin{array}{cc}
+\alpha_{11} & \alpha_{12}\\
+\alpha_{21} & \alpha_{22}
+\end{array}\right]\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & -\boldsymbol{A}\\
+-\boldsymbol{L} & \boldsymbol{I}_{m}
+\end{array}\right] & =\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & \boldsymbol{0}_{A}\\
+\boldsymbol{0}_{L} & \boldsymbol{I}_{m}
+\end{array}\right]\\
+\left[\begin{array}{cc}
+\alpha_{11}\boldsymbol{I}_{d}-\alpha_{12}\boldsymbol{L} & -\alpha_{11}\boldsymbol{A}+\alpha_{12}\boldsymbol{I}_{m}\\
+\alpha_{21}\boldsymbol{I}_{d}-\alpha_{22}\boldsymbol{L} & -\alpha_{21}\boldsymbol{A}+\alpha_{22}\boldsymbol{I}_{m}
+\end{array}\right] & =\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & \boldsymbol{0}_{A}\\
+\boldsymbol{0}_{L} & \boldsymbol{I}_{m}
+\end{array}\right]
+\end{align*}
+
+Podems notar que por definição os elementos $\alpha_{i1}$ precisam possuir $d$ colunas para multiplicar $\boldsymbol{I}_{d}$ e $\boldsymbol{A}$, de forma análoga $\alpha_{i2}$ precisa possuir $m$ colunas para multiplicar $\boldsymbol{L}$e $\boldsymbol{I}_{m}$. Então:
+
+\[
+\left[\begin{array}{cc}
+\alpha_{11}-\alpha_{12}\boldsymbol{L} & -\alpha_{11}\boldsymbol{A}+\alpha_{12}\\
+\alpha_{21}-\alpha_{22}\boldsymbol{L} & -\alpha_{21}\boldsymbol{A}+\alpha_{22}
+\end{array}\right]=\left[\begin{array}{cc}
+\boldsymbol{I}_{d} & \boldsymbol{0}_{A}\\
+\boldsymbol{0}_{L} & \boldsymbol{I}_{m}
+\end{array}\right]
+\]
+
+Ficamos então com dois sistemas:
+
+\begin{align*}
+\alpha_{11}-\alpha_{12}\boldsymbol{L} & =\boldsymbol{I}_{d} & \alpha_{21}-\alpha_{22}\boldsymbol{L} & =\boldsymbol{0}_{L}\\
+\alpha_{11}\boldsymbol{A}+\alpha_{12} & =\boldsymbol{0}_{A} & -\alpha_{21}\boldsymbol{A}+\alpha_{22} & =\boldsymbol{I}_{m}
+\end{align*}
+
+Para o segundo sistema, e da segunda linha, temos:
+
+\begin{align*}
+\alpha_{22} & =\boldsymbol{I}_{m}+\alpha_{21}\boldsymbol{A}
+\end{align*}
+
+Substituindo na primeira linha:
+
+\begin{align*}
+\alpha_{21}-\alpha_{22}\boldsymbol{L} & =\boldsymbol{0}_{L}\\
+\alpha_{21}-\left(\boldsymbol{I}_{m}+\alpha_{21}\boldsymbol{A}\right)\boldsymbol{L} & =\boldsymbol{0}_{L}\\
+\alpha_{21}-\boldsymbol{I}_{m}\boldsymbol{L}-\alpha_{21}\boldsymbol{A}\boldsymbol{L} & =\boldsymbol{0}_{L}\\
+\alpha_{21}-\alpha_{21}\boldsymbol{A}\boldsymbol{L} & =\boldsymbol{0}_{L}+\boldsymbol{L}\\
+\alpha_{21}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right) & =\boldsymbol{L}
+\end{align*}
+
+Vale ressaltar que $\boldsymbol{AL}$ é uma matriz de ordem $d\times m$ que multiplica uma matriz de ordem $m\times d$, resultando em uma matriz de ordem $d\times d$. Ou seja, multiplicando toda a igualdade por sua inversa à direita, temos:
+
+\[
+\alpha_{21}=\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}
+\]
+
+E então:
+
+\begin{align*}
+\boldsymbol{W} & =\boldsymbol{w}\boldsymbol{1}\alpha_{12}\\
+ & =\boldsymbol{w}\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}
+\end{align*}
+
+O livro chama $\boldsymbol{W}$ de matriz de alocação de trabalhadores. Lembrando da equação $\boldsymbol{b}_{T}=\boldsymbol{W}\boldsymbol{b}$, ela não especifica exatamente como os trabalhadores são alocados, mas a partir da produção líquida $\boldsymbol{b}$, ela nos diz qual parte da produção é alocada aos trabalhadores $\boldsymbol{b}_{T}$. Se pudermos escrever $\boldsymbol{b}_{T}=\boldsymbol{W}\boldsymbol{b}$, então:
+
+\begin{align*}
+\lambda & =\frac{L_{T}}{L}\\
+ & =\frac{\boldsymbol{c\cdot Wb}}{\boldsymbol{c}\cdot\boldsymbol{b}}\\
+\lambda\boldsymbol{c}\cdot\boldsymbol{b} & =\boldsymbol{c\cdot Wb}\\
+\lambda\boldsymbol{c}\cdot\boldsymbol{b}-\boldsymbol{c\cdot Wb} & =0
+\end{align*}
+
+Se lembrarmos que $\lambda=\boldsymbol{c}\cdot\boldsymbol{w}$, isso nos leva a considerar que $\lambda$ é independente de $\boldsymbol{b}$; ou seja, a partição do trabalho depende de certos aspectos técnicos do modo de produção dado por $\boldsymbol{c}$, e não da produção líquida $\boldsymbol{b}$. Assim:
+
+\begin{align*}
+\lambda\boldsymbol{c}\cdot\boldsymbol{b}-\boldsymbol{c\cdot Wb} & =0\\
+\left(\lambda\boldsymbol{c}-\boldsymbol{cW}\right) & =0\\
+\lambda\boldsymbol{c} & =\boldsymbol{cW}\\
+\left(\lambda\boldsymbol{c}\right)^{T} & =\left(\boldsymbol{cW}\right)^{T}\\
+\boldsymbol{c}^{T}\lambda & =\boldsymbol{W}^{T}\boldsymbol{c}^{T}\\
+0 & =\left(\boldsymbol{W}^{T}-\lambda\boldsymbol{I}\right)\boldsymbol{c}^{T}
+\end{align*}
+
+Lembrando que por associatividade temos $\boldsymbol{c}\cdot(\boldsymbol{Wb})=(\boldsymbol{cW})\cdot\boldsymbol{b}$, então $\lambda$ é o autovalor dado por $\det\left(\boldsymbol{W}^{T}-\lambda\boldsymbol{I}\right)=0$. Desde que $\det\left(\boldsymbol{W}^{T}-\lambda\boldsymbol{I}\right)=\det\left(\boldsymbol{W}-\lambda\boldsymbol{I}\right)$, estamos simplesmente procurando os autovalores de $\boldsymbol{W}$. Com $\boldsymbol{W}=\boldsymbol{w}\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}$, então
+
+\[
+\det\left(\boldsymbol{w}\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}-\lambda\boldsymbol{I}\right)=0
+\]
+
+Usando o \href{https://en.wikipedia.org/wiki/Matrix_determinant_lemma}{lema do determinante de matriz}:
+
+\begin{align*}
+\det\left(A+uv^{T}\right) & =\left(1+v^{T}A^{-1}u\right)\det\left(A\right)
+\end{align*}
+
+Sendo então $A=-\lambda\boldsymbol{I}$, $u=\boldsymbol{w}$, e $v^{T}=\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}$, ficamos com:
+
+\begin{align*}
+\det\left(\boldsymbol{W}^{T}-\lambda\boldsymbol{I}\right) & =\left(1+\left[\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\right]\left(-\lambda\boldsymbol{I}\right)^{-1}\boldsymbol{w}\right)\det\left(-\lambda\boldsymbol{I}\right)\\
+ & =\left(1-\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{I}\boldsymbol{w}\lambda^{-1}\right)\det\left(-\lambda\boldsymbol{I}\right)\\
+ & =\left(1-\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{w}\lambda^{-1}\right)\left(-\lambda\right)^{d}\det\left(\boldsymbol{I}\right)\\
+ & =\left(1-\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{w}\lambda^{-1}\right)\left(-\lambda\right)^{d}\\
+ & =\left(1-\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{w}\lambda^{-1}\right)\lambda^{d}\left(-1\right)^{d}
+\end{align*}
+
+Então:
+
+\begin{align*}
+0= & \det\left(\boldsymbol{W}^{T}-\lambda\boldsymbol{I}\right)\\
+0= & \left(1-\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{w}\lambda^{-1}\right)\lambda^{d}\left(-1\right)^{d}\\
+1= & \frac{\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{w}}{\lambda}\\
+\lambda= & \boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{w}
+\end{align*}
+
+Retornando então:
+
+\begin{align*}
+\lambda\boldsymbol{c} & =\boldsymbol{cW}\\
+\boldsymbol{c} & =\frac{1}{\lambda}\boldsymbol{cW}\\
+ & =\frac{\boldsymbol{c}\boldsymbol{w}}{\lambda}\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}
+\end{align*}
+
+E como vimos, $\lambda=\boldsymbol{c}\boldsymbol{w}$:
+
+\begin{align*}
+\boldsymbol{c} & =\frac{\boldsymbol{c}\boldsymbol{w}}{\boldsymbol{c}\boldsymbol{w}}\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\\
+ & =\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}
+\end{align*}
+
+O conteúdo de trabalho em qualquer coleção de produtos $\boldsymbol{b}$ pode então ser escrito como:
+
+\[
+L\equiv\boldsymbol{c}\boldsymbol{b}=\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{b}
+\]
+
+Pode-se observar que a medida de conteúdo de trabalho $L$ calcula a média do trabalho despendido em todas as unidades de produção e soma todo o trabalho intermediário necessário em cada etapa da produção. Se utilizarmos a expansão em série de uma matriz em $L=\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\boldsymbol{b}$, obtemos:
+
+\[
+L=\left(\boldsymbol{c}_{0}+\boldsymbol{c}_{1}+\dots\right)\boldsymbol{b}
+\]
+
+Onde $\boldsymbol{c}_{n}=\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{A}\boldsymbol{L}\right)^{n}$ determina o trabalho necessário na $n$-ésima etapa de produção (contando de trás para frente a partir do final). Desta forma, $L$ contabiliza todo o trabalho necessário para produzir uma coleção de produtos.
+
+\subsubsection{Exemplo}
+
+Grande parte dos cálculos deste exemplo foram implementadas de forma automatizada conforme pode ser verificado no \href{https://github.com/jdansb/Econophysics/blob/main/files/medida_do_trabalho_contido.ipynb}{meu GitHub}. Mas vamos imaginar uma sociedade com duas unidades de produção (Um e Dois) que, durante um ano, produzem aço e bananas. A produção total no ano é de 30 unidades de aço e 40 unidades de bananas, ou seja, $q=(30,40)$, das quais metade é produção líquida $b=(15,20)$ e aproximadamente metade da produção líquida é alocada aos trabalhadores $b_{T}=(5,10).$
+
+As duas empresas juntas empregam $L=250$ horas de trabalho por ano. Vamos considerar que a Empresa Um emprega 150 horas e a Empresa Dois 100 horas, ou seja,$x=(150,100)$. A produção que é consumida internamente, conforme definimos, é metade da produção total, ou seja, $\boldsymbol{b}_{I}=\boldsymbol{b}=\left(15,20\right)$. Considerando que a Empresa Um consome 15 unidades de aço e 10 unidades de bananas, então $\boldsymbol{b}_{I_{1}}=\left(15,10\right)$. A Empresa Dois consome o restante: 0 unidades de aço e 10 unidades de bananas, ou seja, $\boldsymbol{b}_{I_{2}}=\left(0,10\right)$.
+
+Temos então:
+\begin{itemize}
+\item Cesta de bens de produção bruta: $q=[30,40]$ 
+\item Cesta de bens de produção líquida: $b=[15,20]$ 
+\item Cesta de bens para os trabalhadores: $b_{T}=[5,10]$
+\begin{itemize}
+\item Cesta de bens para os capitalistas: $b_{C}=[10,10]$ 
+\end{itemize}
+\item Total de horas trabalhadas na sociedade: $L=250$
+\item Horas trabalhadas por cada empresa: $x=[150,100]$
+\item Cesta de bens utilizados na produção: $b_{I}=[15,20]$ 
+\item Bens consumidas pela Empresa Um: $b_{I_{1}}=[15,10]$
+\item Bens consumidas pela Empresa Dois: $b_{I_{2}}=[0,10]$
+\end{itemize}
+Também podemos calcular o vetor:
+
+\[
+\boldsymbol{w}=\frac{\boldsymbol{b}_{T}}{L}=\left(\frac{5}{250},\frac{10}{250}\right)=\left(0.02,0.04\right)
+\]
+
+Desde que $\boldsymbol{b}_{I_{i}}=\left(x_{i}a_{1i},\dots,x_{i}a_{di}\right)$, then $\frac{b_{I_{ji}}}{x_{i}}=a_{ji}$, por exemplo, para o consumo de aço da Firma Um temos:
+
+\[
+a_{11}=\frac{15}{150}=0.1
+\]
+
+De forma similar:
+
+\[
+a_{21}=\frac{10}{150}=\frac{1}{15},\quad a_{12}=\frac{0}{100}=0,\quad a_{22}=\frac{10}{100}=0.1
+\]
+
+Temos então:
+
+\[
+\boldsymbol{a}_{1}=\left(0.1,1/15\right),\quad\boldsymbol{a}_{2}=\left(0,0.1\right)
+\]
+
+Construindo e verificando a matriz $\boldsymbol{A}$:
+
+\[
+\boldsymbol{A}=\left[\begin{array}{cc}
+0.1 & 0\\
+1/15 & 0.1
+\end{array}\right]\rightarrow\boldsymbol{b}_{I}=\boldsymbol{A}\boldsymbol{x}=\left[\begin{array}{cc}
+0.1 & 0\\
+1/15 & 0.1
+\end{array}\right]\left[\begin{array}{c}
+150\\
+100
+\end{array}\right]=\left[\begin{array}{c}
+15\\
+20
+\end{array}\right]
+\]
+
+Considerando que a Empresa Um produz todo o aço e metade das bananas, temos $\boldsymbol{q}_{1}=\left(30,20\right)$, portanto a Empresa Dois deve produzir o restante $\boldsymbol{q}_{2}=\left(0,20\right)$, cuja soma resulta na produção bruta total $\boldsymbol{q}=\boldsymbol{q}_{1}+\boldsymbol{q}_{2}$, conforme definido inicialmente.
+
+Outra forma de expressar isso é dizer que a Empresa Um é responsável pela produção de 100\% do aço ($p_{11}=1$ e $p_{21}=0$), e que cada empresa produz metade das bananas ($p_{12}=p_{22}=0,5$). Como a Empresa Um produz dois produtos $d_{1}=2$ e a Empresa Dois apenas um $d_{2}=1$, podemos calcular os termos $l_{ij}$ por meio de ambos os caminhos, por exemplo $l_{12}$ (relacionado à produção de bananas da Empresa Um):
+
+\begin{align*}
+l_{12} & =\frac{x_{1}}{q_{12}}=\frac{150}{20}=7.50\\
+l_{12} & =\frac{x_{1}}{p_{12}q_{2}}=\frac{150}{0.5\cdot40}=\frac{150}{20}=7.50
+\end{align*}
+
+Em outras palavras, a Empresa Um requer $7.50$ horas para produzir uma unidade de banana. Para outros produtos:
+
+\begin{align*}
+l_{11} & =\frac{x_{1}}{q_{11}}=\frac{150}{30}=5.00\\
+l_{21} & =\frac{x_{2}}{q_{21}}=\frac{100}{0}\approx\lim_{x\rightarrow0}\frac{100}{0}=\infty\\
+l_{22} & =\frac{x_{2}}{q_{22}}=\frac{100}{20}=5.00
+\end{align*}
+
+É interessante notar aqui que, para $l_{21}$, utilizei uma aproximação que indica que a Empresa Dois necessitaria de infinitas horas para produzir aço, visto que não o produz. Vale ressaltar que não estamos definindo diretamente como a produção bruta futura de cada empresa se divide entre consumo interno para produção e produção líquida, nem como os produtos consumidos pela empresa se distribuem entre seus produtos líquidos. Agora podemos construir a matriz $\boldsymbol{L}$:
+
+\[
+\boldsymbol{L}=\left[\begin{array}{cc}
+\frac{l_{11}p_{11}}{d_{1}} & \frac{l_{12}p_{12}}{d_{1}}\\
+\frac{l_{21}p_{21}}{d_{2}} & \frac{l_{22}p_{22}}{d_{2}}
+\end{array}\right]=\left[\begin{array}{cc}
+\frac{5}{2} & \frac{7.5\cdot0.5}{2}\\
+0 & 5\cdot0.5
+\end{array}\right]=\left[\begin{array}{cc}
+2.5 & 1.875\\
+0 & 2.5
+\end{array}\right]
+\]
+
+ Para manter a notação adotada no livro, sempre que encontrarmos a indeterminação $l_{ij}p_{ij}=\infty\cdot0$, atribuímos a ela o valor $0$. Também podemos recuperar $\boldsymbol{x}$:
+
+\[
+\boldsymbol{x}=\boldsymbol{L}\boldsymbol{q}=\left[\begin{array}{cc}
+2.5 & 1.875\\
+0 & 2.5
+\end{array}\right]\left[\begin{array}{c}
+30\\
+40
+\end{array}\right]=\left[\begin{array}{c}
+150\\
+100
+\end{array}\right]
+\]
+
+Em outras palavras, nós podemos obter a produção líquida calculando:
+
+\begin{align*}
+\boldsymbol{b} & =\left(\boldsymbol{I}-\boldsymbol{A}\boldsymbol{L}\right)\boldsymbol{q}\\
+ & =\left(\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]-\left[\begin{array}{cc}
+0.1 & 0\\
+1/15 & 0.1
+\end{array}\right]\left[\begin{array}{cc}
+2.5 & 1.875\\
+0 & 2.5
+\end{array}\right]\right)\left[\begin{array}{c}
+30\\
+40
+\end{array}\right]\\
+ & =\left(\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]-\left[\begin{array}{cc}
+0.25 & 0.1875\\
+2.5/15 & 0.375
+\end{array}\right]\right)\left[\begin{array}{c}
+30\\
+40
+\end{array}\right]\\
+ & =\left[\begin{array}{cc}
+0.75 & -0.1875\\
+-2.5/15 & 0.625
+\end{array}\right]\left[\begin{array}{c}
+30\\
+40
+\end{array}\right]\\
+ & =\left[\begin{array}{c}
+15\\
+20
+\end{array}\right]
+\end{align*}
+
+Temos até aqui:
+\begin{itemize}
+\item Produto bruto da Empresa Um: $q_{1}=[30,20]$
+\item Produto bruto da Empresa Dois: $q_{2}=[0,20]$
+\item Vetor $\boldsymbol{w}=\left(0.02,0.04\right)$
+\item Matriz$\boldsymbol{A}=\left[\begin{array}{cc}
+0.1 & 0\\
+1/15 & 0.1
+\end{array}\right]$
+\item Matriz $\boldsymbol{L}=\left[\begin{array}{cc}
+2.5 & 1.875\\
+0 & 2.5
+\end{array}\right]$
+\end{itemize}
+Para calcular a matriz de alocação dos trabalhadores precisamos:
+
+\[
+\boldsymbol{W}=\boldsymbol{w}\boldsymbol{1}\boldsymbol{L}\left(\boldsymbol{I}_{d}-\boldsymbol{A}\boldsymbol{L}\right)^{-1}=\boldsymbol{w}\boldsymbol{1}\boldsymbol{L}\boldsymbol{M}^{-1}
+\]
+
+Como podemos ver, $\boldsymbol{M}$ é a matriz que acabamos de calcular em $\boldsymbol{b}=\boldsymbol{M}\boldsymbol{q}$. Portanto, podemos calcular sua inversa fazendo:
+
+\begin{align*}
+\boldsymbol{M}^{-1}\boldsymbol{M} & =\boldsymbol{I}\\
+\left[\begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{array}\right]\left[\begin{array}{cc}
+0.75 & -0.1875\\
+-2.5/15 & 0.625
+\end{array}\right] & =\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]\\
+\left[\begin{array}{cc}
+0.75a_{11}-a_{12}2.5/15 & -0.1875a_{11}+a_{12}0.625\\
+0.75a_{21}-a_{22}2.5/15 & -0.1875a_{21}+a_{22}0.625
+\end{array}\right] & =\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]
+\end{align*}
+
+Nós temos então:
+
+\begin{align*}
+0.75a_{11}-a_{12}2.5/15 & =1 & 0.75a_{21}-a_{22}2.5/15 & =0\\
+-0.1875a_{11}+a_{12}0.625 & =0 & -0.1875a_{21}+a_{22}0.625 & =1
+\end{align*}
+
+Desta vez, precisamos resolver ambos os sistemas. Trabalhando com a linha inferior do sistema da esquerda e a linha superior do sistema da direita:
+
+\begin{align*}
+-a_{11}+a_{12}\frac{0.625}{0.1875} & =0 & a_{21}-a_{22}\frac{2.5}{15\cdot0.75} & =0\\
+a_{11} & =a_{12}\frac{0.625}{0.1875} & a_{21} & =a_{22}\frac{2.5}{11.25}
+\end{align*}
+
+Substituindo:
+
+\begin{align*}
+0.75a_{11}-a_{12}\frac{2.5}{15} & =1 & -0.1875a_{21}+a_{22}0.625 & =1\\
+0.75\left(a_{12}\frac{0.625}{0.1875}\right)-a_{12}\frac{2.5}{15} & =1 & -0.1875\left(a_{22}\frac{2.5}{11.25}\right)+a_{22}0.625 & =1\\
+a_{12}\left(\frac{0.46875}{0.1875}-\frac{2.5}{15}\right) & =1 & a_{22}\left(-\frac{0.46875}{11.25}+0.625\right) & =1\\
+2.3333a_{12} & =1 & 0.58333a_{22} & =1\\
+a_{12} & =2.3333 & a_{22} & =\frac{1}{0.58333}\\
+a_{12} & =0.42857 & a_{22} & =1.71429
+\end{align*}
+
+Podemos então calcular os elementos restantes:
+
+\begin{align*}
+a_{11} & =a_{12}\frac{0.625}{0.1875} & a_{21} & =a_{22}\frac{2.5}{11.25}\\
+a_{11} & =0.42857\cdot\frac{0.625}{0.1875} & a_{21} & =1.71429\cdot\frac{2.5}{11.25}\\
+a_{11} & =1.42856 & a_{21} & =0.38095
+\end{align*}
+
+Então:
+
+\[
+\boldsymbol{M}^{-1}=\left[\begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{array}\right]=\left[\begin{array}{cc}
+1.42857 & 0.42857\\
+0.38095 & 1.71429
+\end{array}\right]
+\]
+
+Calculndo então a matriz de alocação dos trabalhadores:
+
+\begin{align*}
+\boldsymbol{W} & =\boldsymbol{w}\boldsymbol{1}\boldsymbol{L}\boldsymbol{M}^{-1}\\
+ & =\left[\begin{array}{c}
+0.02\\
+0.04
+\end{array}\right]\left[\begin{array}{cc}
+1 & 1\end{array}\right]\left[\begin{array}{cc}
+2.5 & 1.875\\
+0 & 2.5
+\end{array}\right]\left[\begin{array}{cc}
+1.42857 & 0.42857\\
+0.38095 & 1.71429
+\end{array}\right]\\
+ & =\left[\begin{array}{c}
+0.02\\
+0.04
+\end{array}\right]\left[\begin{array}{cc}
+1 & 1\end{array}\right]\left[\begin{array}{cc}
+4.28571 & 4.28572\\
+0.95237 & 4.28573
+\end{array}\right]\\
+ & =\left[\begin{array}{c}
+0.02\\
+0.04
+\end{array}\right]\left[\begin{array}{cc}
+5.2308 & 8.57144\end{array}\right]
+\end{align*}
+
+Ou seja:
+
+\[
+\boldsymbol{W}=\left[\begin{array}{cc}
+0.10476 & 0.17143\\
+0.20952 & 0.34286
+\end{array}\right]
+\]
+
+Lembrando que $L=\boldsymbol{1}\boldsymbol{x}=\left[\begin{array}{cc}
+1 & 1\end{array}\right]\left[\begin{array}{c}
+150\\
+100
+\end{array}\right]=150+100=250$ Podemos conferir fazendo:
+
+\[
+\boldsymbol{b}_{T}=W\boldsymbol{b}=\left[\begin{array}{cc}
+0.10476 & 0.17143\\
+0.20952 & 0.34286
+\end{array}\right]\left[\begin{array}{c}
+15\\
+20
+\end{array}\right]=\left[\begin{array}{c}
+5\\
+10
+\end{array}\right]
+\]
+
+Podemos interpretar cada termo $W_{ij}$ como a fração do produto líquido $i$ que é alocada aos trabalhadores para cada unidade do produto líquido $j$. Por exemplo, $W_{11}\approx0,1$ indica que para cada 10 unidades de aço do produto líquido produzido, 1 unidade de aço é alocada aos trabalhadores ($0,1\cdot15=1,5$), e $W_{12}\approx0,17$ indica, de forma semelhante, que para cada unidade de banana do produto líquido, 0,17 unidade de aço é alocada aos trabalhadores ($0,17\cdot20\approx3,5$), resultando em um total de 5 unidades de aço produzidas para os trabalhadores para essa produção líquida $\boldsymbol{b}$. Os elemebtos $W_{2i}$vão discutir caso semelhante quanto a produção líquida de banana.
+
+Agora podemos calcular o vetor$\boldsymbol{c}$:
+
+\[
+\boldsymbol{c}=\boldsymbol{1}\boldsymbol{L}\boldsymbol{M}^{-1}=\left[\begin{array}{cc}
+1 & 1\end{array}\right]\left[\begin{array}{cc}
+2.50 & 1.86\\
+0.00 & 2.50
+\end{array}\right]\left[\begin{array}{cc}
+1.43 & 0.43\\
+0.38 & 1.70
+\end{array}\right]=\left[\begin{array}{cc}
+5.23 & 8.57\end{array}\right]
+\]
+
+Com ele podemos recuperar o total de horas trabalhada:
+
+\[
+L=\left[\boldsymbol{1}\boldsymbol{L}\left(I-\boldsymbol{A}\boldsymbol{L}\right)^{-1}\right]\boldsymbol{b}=\left[\begin{array}{cc}
+5.23 & 8.57\end{array}\right]\left[\begin{array}{c}
+15\\
+20
+\end{array}\right]=250
+\]
+
+E principalmente calcular a alocação de trabalho:
+
+\[
+\lambda=\boldsymbol{1}\boldsymbol{L}\boldsymbol{M}^{-1}\boldsymbol{w}=\boldsymbol{c}\boldsymbol{w}=\left[\begin{array}{cc}
+5.23 & 8.57\end{array}\right]\left[\begin{array}{c}
+0.02\\
+0.04
+\end{array}\right]=0.4476
+\]
+
+Vamos interpretar esses resultados. Cada unidade de aço requer, em média, 5,23 horas de trabalho para ser produzida, e cada unidade de banana requer 8,57 horas, isto é o que $\boldsymbol{c}=\left(5,23,8,57\right)$ nos diz. Então, o trabalho contido na produção líquida é $L=\boldsymbol{c}\cdot\boldsymbol{b}=5,23\cdot15+8,57\cdot20\approx250$ conforme definimos no começo do exemplo. O trabalho contido na produção alocada aos trabalhadores é $L_{T}=\boldsymbol{c}\cdot\boldsymbol{b_{T}}=5,23\cdot5+8,57\cdot10\approx112$, portanto, a alocação do trabalho é dada por $\lambda=112/250\approx0,45$.
+
+Isso significa que 45\% das horas empregadas pelos trabalhadores diretamente no sistema produtivo desta sociedade estão contidas nos produtos alocados à própria classe trabalhadora, enquanto os 55\% restantes são apropriados por outra classe que não está diretamente envolvida no sistema de produção. É importante lembrar que, tipicamente, a classe trabalhadora é muito maior que a classe capitalista. Considerando uma proporção de 10 trabalhadores para cada capitalista, isso significa que os 45\% do trabalho contido e alocado aos trabalhadores são distribuídos entre 10 vezes mais pessoas do que os 55\% apropriados pelos capitalistas.
+
+Podemos agora calcular o trabalho per capita, ou seja, se houver N capitalistas e 55\% da produção for apropriada por eles, em média, cada capitalista se apropria de $55/N$\% do total da produção. Fazendo o mesmo para os trabalhadores, mas considerando que haja $10N$ trabalhadores, cada trabalhador se apropria de $45/10N$\% da produção total. Calculando agora a proporção, ou seja, quantas vezes mais um capitalista se apropria da produção em comparação com um trabalhador, temos:
+
+\[
+\frac{\frac{55}{N}\%}{\frac{45}{10N}\%}=\frac{55}{N}\frac{10N}{45}=\frac{550}{45}\approx12
+\]
+
+Neste caso, um capitalista apropria-se de 12 vezes mais da produção do que um trabalhador. Se considerarmos que existem 100 trabalhadores para cada capitalista, então este capitalista apropria-se de mais de 122 vezes a produção em comparação com um trabalhador. 
+
+\subsection{Lei probabilistica do decréscimo do trabalho contido}
+
+Vamos trabalhar com o conteúdo do apêndice do livro ``Como a força de trabalho impulsiona a economia global''\cite{farjoun2022labor},o apêndices B.4 (Lei probabilística do decrescimento do conteúdo do trabalho). Para isso vamos começar lembrando algumas definições:
+\begin{itemize}
+\item \textbf{Utilizável}: Qualquer objeto ou serviço útil aos seres humanos pode ser chamado de utilizável.
+\item \textbf{Dádiva da natureza}: Utilizáveis que não requerem trabalho humano, direta ou indiretamente, para sua disponibilização. Exemplos de tais utilizáveis são a luz solar, o vento, etc.
+\item \textbf{Produto}: Um utilizável que requer trabalho, direto ou indireto, para sua criação. Os tipos de insumos diretos que compõem um produto são um dos três seguintes: dádivas da natureza, trabalho e produtos previamente produzidos. Os próprios produtos previamente produzidos requerem os mesmos três tipos de insumos diretos; repetindo essa decomposição várias vezes, restam apenas dois tipos de insumos finais: dádivas da natureza e trabalho.
+\item \textbf{Mercadorias}: Uma classe especial de utilizáveis que pressupõe noções altamente abstratas, como propriedade e direito exigível. Uma mercadoria se concretiza em uma transação de troca ou venda entre um vendedor e um comprador. Para que um utilizável se torne uma mercadoria, portanto, ele deve ser propriedade do vendedor. Embora produtos e mercadorias sejam utilizáveis, eles não são categorias idênticas; apenas se sobrepõem.
+\begin{itemize}
+\item \textbf{Mercadoria-produto}: A sobreposição entre as duas categorias, produtos que também são mercadorias.
+\end{itemize}
+\item \textbf{Dinheiro}: Um tipo especial de mercadoria, é universal no sentido de ser aceitável em troca de qualquer mercadoria.
+\item \textbf{Preço}: Uma soma de dinheiro trocada pela transferência da propriedade da mercadoria.
+\item \textbf{Aluguel}: O preço do direito de uso --- geralmente por um período determinado --- de algo utilizável.
+\item \textbf{Empréstimo de dinheiro}: Um caso especial de aluguel; o aluguel pago neste caso são juros, cuja taxa é medida como uma porcentagem (do valor total emprestado) dividida por uma unidade de tempo.
+\item \textbf{Força de trabalho}: A capacidade de realizar tarefas laborais concretas; é um produto bastante singular. Requer tanto dons da natureza quanto trabalho como insumos. Este último inclui o fornecimento de educação, treinamento, moradia, bem como produtos consumíveis usados para sustentar o trabalhador. Mas, diferentemente de qualquer outro produto, a força de trabalho também produz um insumo final: o próprio trabalho. Além disso, a força de trabalho, sendo um componente de toda a personalidade, diferentemente de quase todos os principais produtos, é “produzida” fora do controle direto das empresas privadas, geralmente no âmbito familiar íntimo. Essa é uma assimetria importante que atribui à força de trabalho um papel central no processo de reprodução econômica.
+\end{itemize}
+Vamos trabalhar então com produtos-mercadorias. isto é, bens que sáo produzidos por trabalhadores e comprados e vendidos a diversos preos no mercado. Queremos investigar como o o preço se liga ao tempo de trabalho.
+
+Em um período de tempo como um ano, uma grande quantidade de produtos é compravada e vendida no mercado, podemos construir uma lita de todas transações em um dado período de tempo e região como $\left\{ 1,2,3,...\right\} $. Esses produtos são oproduzidos e trocados sob diversas circunstâncias diferentes. Agora supondo uma troca que envolva um produto com labor content $L_{i}$ e uma quantidade $M_{i}$ de dinheiro, então podemos definir uma taxa de preço desse produto individual como $\Psi_{i}=M_{i}/L_{i}$ medido em dólares por horas, e vamos chamar esta quantidade de preço específico.
+
+Como os preços tem uma importância central para as firmas que produzem e compram mercadorias, como para as casas que consomem os produtos, estamos interessados em caracterizar os preços ao longo de todas transações. Como cada transaçaão envolve uma quantidade de entrada de trabalho, cada transação é uma compra e venda de uma quantidade definida de trabalho contido.
+
+
+\subsubsection{Probabilidade do preço cair}
+
+Consideramos que temos um cesto de mercadorias-produto $B$ que pode ser mapeado por um vetor $\boldsymbol{b}$ ($B\Leftrightarrow\boldsymbol{b}$), então considerando que o trabalho contido em $B$ é dado por $L\left(B\right)$, da mesma forma $M\left(B\right)$ indica o preço monetário desta cesta. Disso definimos que o preço específico de algo é dado pela relação de dólares por hora deste algo, isto é, o preço específico da cesta seria:
+
+\[
+\overline{\Psi}\left(B\right)=\frac{M\left(B\right)}{L\left(B\right)}\rightarrow M\left(B\right)=\overline{\Psi}\left(B\right)L\left(B\right)
+\]
+
+Vamos considerar que temos uma cesta $B_{0}$ e então encontramos uma cesta $B_{1}$ mais barata. A nova cesta fornece um fator de barateamento:
+
+\[
+C=\frac{M\left(B_{0}\right)}{M\left(B_{1}\right)}>1
+\]
+
+Manipulando temos:
+
+\[
+C=\frac{\overline{\Psi}\left(B_{0}\right)L\left(B_{0}\right)}{\overline{\Psi}\left(B_{1}\right)L\left(B_{1}\right)}\qquad\rightarrow C\frac{\overline{\Psi}\left(B_{1}\right)}{\overline{\Psi}\left(B_{0}\right)}=\frac{L\left(B_{0}\right)}{L\left(B_{1}\right)}
+\]
+
+Agora se consideramos algo similar, quanto ao trabalho contido:
+
+\[
+D=\frac{L\left(B_{0}\right)}{L\left(B_{1}\right)}=C\frac{\overline{\Psi}\left(B_{1}\right)}{\overline{\Psi}\left(B_{0}\right)}
+\]
+
+Então tirando o log:
+
+\[
+\log\left(D\right)=\left[\log\left(C\right)+\log\overline{\Psi}\left(B_{1}\right)\right]-\left[\log\overline{\Psi}\left(B_{0}\right)\right]
+\]
+
+Então queremos saber qual a probabilidade de $D>1$ ou o equivalente, de $\log\left(D\right)>0$. Isso é a probabilidade da soma no primeiro colchete ser maior que a do segundo, isto é:
+
+\[
+P\left(D>1\right)=P\left(\left(\log C+\log\overline{\Psi}_{1}\right)>\left(\log\overline{\Psi}_{0}\right)\right)
+\]
+E como $C>1$ e consequentemente $\log C>0$, ou seja vai sempre somar e contribuir para que esse termo seja maior que $\log\overline{\Psi}_{0}$. Logo a probabilidade deve ser maior contendo esse termo do que sem ele, em outras palavras:
+\begin{align*}
+P\left(\left(\log C+\log\overline{\Psi}_{1}\right)>\left(\log\overline{\Psi}_{0}\right)\right) & >P\left(\left(\log\overline{\Psi}_{1}\right)>\left(\log\overline{\Psi}_{0}\right)\right)\\
+P\left(D>1\right) & >P\left(\left(\log\overline{\Psi}_{1}\right)>\left(\log\overline{\Psi}_{0}\right)\right)
+\end{align*}
+
+Agora considerando que $\overline{\Psi}_{1}$ e $\overline{\Psi}_{0}$ são valor aleatórios retirados de uma mesma distribuição, então a chance de $P\left(X>Y\right)=\frac{1}{2}$. Ou seja:
+
+\[
+P\left(D>1\right)>50\%
+\]
+
+Ou seja, há uma tendência probabilística de o trabalho contido diminuir com a queda do preço. Assumimos que os valores $\overline{\Psi}(B_{0})$ e $\overline{\Psi}(B_{1})$ constituem realizações independentes de uma mesma distribuição $\overline{\Psi}$, mesmo sob a condição $M(B_{0})>M(B_{1})$. 
+
+\subsubsection{Valor esperado de decréscimo}
+
+Em outras palavras, supõe-se que a seleção de cestas por preço monetário não introduz viés sistemático na distribuição do preço específico $\overline{\Psi}(B)=\frac{M(B)}{L(B)}$.
+
+Quanto aos valores esperados temos:
+
+\[
+\left\langle \log\left(D\right)\right\rangle =\left\langle \log\left(C\right)\right\rangle +\left\langle \log\overline{\Psi}\left(B_{1}\right)\right\rangle -\left\langle \log\overline{\Psi}\left(B_{0}\right)\right\rangle 
+\]
+
+Como os dois últimos termos possuem o mesmo valor esperado uma vez que $\overline{\Psi}(B_{0})$ e $\overline{\Psi}(B_{1})$ são realizações independentes de uma mesma distribuição segue que:
+
+\[
+\left\langle \log\left(D\right)\right\rangle =\left\langle \log\left(C\right)\right\rangle >0
+\]
+
+Um vez que $C>1$. Agora usando a \href{https://www.math.mcgill.ca/dstephens/556-2019/Handouts/Math556-04-Inequalities.pdf}{desigualdade de Jensen's} para uma função $g\left(x\right)$ côncava, a gente tem que $\left\langle g\left(X\right)\right\rangle \leq g\left(\left\langle X\right\rangle \right)$, então sendo $g\left(x\right)=\log\left(x\right)$ temos:
+
+\[
+0<\left\langle \log\left(D\right)\right\rangle \leq\log\left(\left\langle D\right\rangle \right)
+\]
+
+Ou seja $\log\left(\left\langle D\right\rangle \right)>0$ para isso ser possível, então precisamos que $\left\langle D\right\rangle >1$. Portanto, existe também uma tendência média de redução do trabalho contido associada à redução do preço monetário.
+
+\subsubsection{Tendência a longo prazo}
+
+Agora se trocarmos por uma cesta $2$ teríamos em um segundo momento:
+
+\[
+D_{2}=\frac{L\left(B_{1}\right)}{L\left(B_{2}\right)}
+\]
+
+Ou considerando desde o começo do processo:
+
+\[
+D^{*}_{2}=\frac{L\left(B_{0}\right)}{L\left(B_{2}\right)}=\frac{L\left(B_{0}\right)}{L\left(B_{1}\right)}\frac{L\left(B_{1}\right)}{L\left(B_{2}\right)}=D_{1}D_{2}
+\]
+
+Se generalizarmos podemos ter então:
+
+\[
+D^{*}_{m}=\prod^{m}_{i=1}D_{i}=\frac{L\left(B_{0}\right)}{L\left(B_{m}\right)}
+\]
+
+Tirando o logaritmo:
+
+\[
+\log\left(D^{*}_{m}\right)=\sum^{m}_{i=1}\log D_{i}
+\]
+
+Agora considerando que todos $D_{i}$ são identicamente distribuídos, isto é, retirado de uma mesma distribuição, então para qualquer $i$ temos $\left\langle \log D_{i}\right\rangle =c>0$, uma vez que já vimos $\left\langle \log\left(D\right)\right\rangle >0$. Logo podemos escrever, pela linearidade do valor esperado ($\left\langle a+b\right\rangle =\left\langle a\right\rangle +\left\langle b\right\rangle $)
+
+\[
+\left\langle \log\left(D^{*}_{m}\right)\right\rangle =mc>0
+\]
+
+Aqui precisamos ter claro que $D^{*}_{m}$ não é igual a $D_{i},$por exemplo como vimos antes $D^{*}_{2}\neq D_{2}$. Considerando que todos $D_{i}$são identicamente distribuídos, é como se cada $D_{i}$ fosse um passo aleatório (mas com $p>0.5$ de avançar) e $D^{*}_{i}$ fosse a distância acumulada depois de alguns passos. Se a cada passo esperamos avançar $\left\langle D_{i}\right\rangle $ após $n$ passos esperamos ter percorrido $\left\langle D^{*}_{n}\right\rangle $. Em analogia é como se após verificarmos muitas trajetórias de $m$ passo, em média nosso caminhante tivesse avançado $mc$.
+
+Agora olhando para uma única trajetória, pela Lei dos Grandes Números:
+
+\[
+\frac{1}{m}\log(D^{*}_{m})\to c
+\]
+
+Ou então:
+
+\[
+\log(D^{*}_{m})\approx mc
+\]
+
+Ou seja, uma única trajetória suficientemente longa tende a apresentar um comportamento próximo ao comportamento médio obtido sobre o conjunto de todas as trajetórias possíveis. Como resultado, seja, a chance do trabalho contido diminuir se aproxima de 1.
+
+Para testar um código foi desenvolvido conforme pode ser visto no \href{https://github.com/jdansb/Econophysics/blob/main/files/dynamic_labor.ipynb}{meu GitHub}. Utilizando uma distribuição normal de média 100 e desvio padrão de 10, realizando $10^{6}$testes, retirando da distribuição um $\Psi_{i}$ e $L_{i}$ para cada uma das duas mercadorias, depois calculando $M_{i}=\Psi_{i}L_{i}$, pudemos conferir que $\approx75\%$ das vezes que o preço cai, o trabalho contido cai também. Nesse caso também tivemos em média uma taxa de barateamento do trabalho contido de $\left\langle D_{i}\right\rangle \approx1.09$. 
+
+Para testar se para um $m\rightarrow\infty$ temos $\log(D^{*}_{m})\approx\left\langle \log(D^{*}_{m})\right\rangle $, rodamos 10 simulações com $10^{6}$trocas, e calculamos a razão entre a média de todas essas simulações e o resultado obtido por uma única execução:
+
+\[
+\frac{\left\langle \log(D^{*}_{m})\right\rangle }{\log(D^{*}_{m})}\approx1.00
+\]
+
+O que essa sessão busca demonstrar então é que existe uma tendência probabilística de que mercadorias mais baratas contenham menos trabalho incorporado. Definindo o preço específico como $\overline{\Psi}(B)=\frac{M(B)}{L(B)}$ e comparando uma cesta inicial $B_{0}$ com uma nova cesta mais barata $B_{1}$, define-se $D=\frac{L(B_{0})}{L(B_{1})}$ onde $D>1$ significa que a nova cesta contém menos trabalho. Como o fator de barateamento monetário $C=\frac{M(B_{0})}{M(B_{1})}>1$ entra positivamente na desigualdade, conclui-se que $P(D>1)>50\%$ assumindo que os preços específicos $\overline{\Psi}(B_{0})$ e $\overline{\Psi}(B_{1})$ são realizações independentes de uma mesma distribuição. Além disso mostramos que o valor esperado também favorece a redução do trabalho incorporado $\langle D\rangle>1$ indicando uma tendência média de diminuição do trabalho contido associada à queda do preço monetário. Por fim, ao iterar sucessivamente esse processo, obtém-se $D^{*}_{m}=\frac{L(B_{0})}{L(B_{m})}$ e, pela Lei dos Grandes Números,$\log(D^{*}_{m})\approx mc,\quad(c>0)$, o que implica que, no longo prazo, uma trajetória típica tende quase certamente à redução contínua do trabalho incorporado. 
+
+A ideia é que embora o trabalho contido $L$ e o preço específico $\Psi$ possam ser assumidos inicialmente como variáveis aleatórias independentes, isso não significa que continuem independentes após condicionarmos pelo preço monetário observado. O ponto central é que o preço monetário é definido por: $M=\Psi L$. ssim, quando selecionamos especificamente uma cesta mais barata, estamos impondo a condição $M_{1}<M_{0}$, ou seja, estamos condicionando sobre o produto das duas variáveis. Esse condicionamento induz dependência estatística entre $L$ e $\Psi$, mesmo que originalmente fossem independentes. A redução do preço monetário precisa decorrer de pelo menos uma das seguintes possibilidades:a) a redução de $\Psi$, b) redução de $L$; ou c) redução simultânea de ambos. Como assumimos que $\Psi$ não possui tendência sistemática entre as cestas comparadas, segue que parte da redução do preço tende probabilisticamente a recair sobre $L$. Portanto, emerge o resultado $P(D>1)>\frac{1}{2}$, não porque exista uma relação causal direta entre trabalho contido e preço específico, mas porque ambos entram multiplicativamente na determinação do preço monetário.
+
+A teoria econômica padrão baseia-se em pressupostos bastante rígidos sobre o comportamento de agentes individuais na economia. Presume-se que os agentes adotem ações ótimas em relação a diversas funções de resposta econômica, frequentemente visualizadas como \" curvas\"{} que se deslocam ou se cruzam. O resultado coletivo da otimização por parte dos agentes é um suposto estado de equilíbrio, no qual forças econômicas opostas se equilibram, até serem perturbadas por fatores \" externos\" . Frequentemente, os pressupostos microeconômicos são transferidos para a modelagem macroeconômica por meio de um agente \" representativo\"{} que otimiza em nome de todos os agentes individuais.
+
+Em contraste, a estrutura probabilística possui fundamentos microeconômicos radicalmente diferentes (até mesmo indiferentes!). Poucas suposições são feitas sobre os agentes individuais, que são considerados apenas fracamente coordenados em nível local em uma economia de mercado capitalista. Eles operam de diversas maneiras, mas estão sujeitos a certas restrições econômicas fundamentais. Se certas variáveis estruturais forem consideradas em equilíbrio, é equilíbrio estatístico, onde mesmo dentro desse estado, as configurações microeconômicas ainda estão sujeitas a mudanças incessantes.
+
+Um conceito central da teoria econômica padrão é o da \" função de produção\" . Ela supostamente especifica a relação tecnológica entre as quantidades de insumos produtivos e os produtos gerados por uma determinada empresa. Na prática, essa relação é quantificada em termos monetários, de modo que $Y=M(B)$ é o valor da cesta $B$ produzida pela empresa e é considerado determinado por uma função de produção:
+
+\[
+Y=f\left(K,T\right)
+\]
+
+onde $K$ é o valor do capital e $T$ é o tempo de trabalho direto empregado. A função de produção mais utilizada tem a seguinte forma (função de produção Cobb-Douglas):
+
+\[
+Y=A\cdot K^{\beta}\cdot T^{1-\beta}
+\]
+
+onde $A$ é um coeficiente supostamente ‘técnico’ e $\beta$ é um parâmetro entre 0 e 1. Através do prisma da função de produção, trabalho e capital tornam-se ‘fatores de produção’ substituíveis.
+
+Ela também está em conformidade com os princípios de distribuição de renda da teoria econômica padrão: cada agente de produção recebe uma quantidade de riqueza correspondente ao que esse agente cria. Capital e trabalho são aqui vistos como fatores que fazem ‘contribuições’ independentes para a produção.
+
+Embora seja amplamente utilizada, a função de produção está repleta de problemas teóricos profundos: a) as funções de produção individuais de todas as empresas na economia não se agregam facilmente em uma só; b) há evidências empíricas esmagadoras de que os salários médios estão acima do ‘produto marginal do trabalho’ teórico na maioria das economias capitalistas. Assim, a função de produção serve mais como um exercício de ajuste de curvas do que como uma modelagem de leis subjacentes que confeririam algum poder preditivo. 
+
+Em contraste, a estrutura probabilística não se baseia em quaisquer pressupostos sobre as empresas possuírem funções de produção bem-comportadas. Partindo de alguns postulados básicos, ela gera afirmações teoricamente consistentes e empiricamente testáveis.
+
+Já discutimos como calcular uma medida do trabalho contido em uma cesta de bens e agora mostramos uma conexão probabilística entre o preço de mercado e a lei de decréscimo do trabalho contido, esta que é considerada uma força dinâmica central na economia capitalista. 
+
+\subsubsection{Limite superior}
+
+Considerando $\mathbb{L}$ o trabalho adicionado no ano, então trabalho contido na cesta que representa a riqueza material acumulada de uma região $B$ pode ser aproximado por exemplo:
+
+\[
+L\left(B\right)\simeq\alpha\cdot\mathbb{L}
+\]
+
+Então há um limite para $\delta$ (taxa de decrescimento do trabalho contido), pois se não, toda a riqueza material poderia ser produzida por uma pequena quantidade de trabalho. Na medida em que tais ativos fossem acessíveis no mercado, eles rapidamente deixariam de estar concentrados e a dependência das famílias em relação aos salários pagos por empresas capitalistas logo desapareceria. 
+
+Vamos investigar qual é esse limite. Vamos considerar que mudanças na riqueza $B$ de um ano $t$ para um ano $t+1$. Parte dessa riqueza é destruída ou consumida, então resta apenas uma riqueza $B'$. Ou seja parte da do trabalho contido no estoque inicial é $L_{t}\left(B\right)$ e se transforma em $L_{t+1}\left(B'\right)$.
+
+Além disso, novos produtos são produzidos e acumulados a cada ano, uma parte então de $\mathbb{L}$ é acumulado, essa parte tem como limite superior parte do excedente que não é consumido pela força de trabalho $\left(1-\omega\right)$, sendo $\omega$ a fração do trabalho contido consumida pela força de trabalho como remuneração. Estamos simplificando para o cenário que o trabalho adicionado se mantém inalterado de um ano a outro.
+
+Se a riqueza material não cair, podemos expressar a acumulação então como:
+
+\begin{align*}
+L\left(B_{t+1}\right) & \geq L\left(B_{t}\right)\\
+L_{t+1}\left(B'\right)+\left(1-\omega\right)\mathbb{L} & \geq L_{t}\left(B\right)
+\end{align*}
+
+Podemos escrever então:
+\begin{itemize}
+\item $L_{t+1}\left(B'\right)=\left(1-\delta\right)L_{t}\left(B'\right)$: o trabalho contido em $B'$ sofre um decréscimo de $\delta$ entre um ano e outro.
+\item $L_{t}\left(B'\right)=\left(1-d\right)L_{t}\left(B\right)$: onde $d$ é a taxa de decréscimo material, isto é, a a fração material de $B$ que foi consumida.
+\end{itemize}
+Então:
+
+\[
+L_{t+1}\left(B'\right)=\left(1-\delta\right)L_{t}\left(B'\right)=\left(1-\delta\right)\left(1-d\right)L_{t}\left(B\right)
+\]
+
+Substituindo:
+
+\begin{align*}
+\left(1-\delta\right)\left(1-d\right)L_{t}\left(B\right)+\left(1-\omega\right)\mathbb{L} & \geq L_{t}\left(B\right)\\
+\left(1-d-\delta-\delta d\right)\alpha\mathbb{L}+\left(1-\omega\right)\mathbb{L} & \geq\alpha\mathbb{L}\\
+\left(1-d\right)\alpha-\left(1-d\right)\alpha\delta+\left(1-\omega\right) & \geq\alpha\\
+-\left(1-d\right)\delta & \geq1-\frac{\left(1-\omega\right)}{\alpha}-\left(1-d\right)\\
+-\delta & \geq\frac{1}{\left(1-d\right)}-\frac{\left(1-\omega\right)}{\alpha\left(1-d\right)}-1\\
+-\delta & \geq-\frac{\left(-\alpha+1-\omega\right)}{\alpha\left(1-d\right)}-1\\
+\delta & \leq1+\frac{\left(-\omega-\alpha+1\right)}{\alpha\left(1-d\right)}\\
+\delta & \leq1-\frac{\omega+\alpha-1}{\alpha\left(1-d\right)}
+\end{align*}
+
+Ou:
+
+\[
+\delta\leq1-\frac{\left(\omega+\alpha-1\right)}{\alpha\left(1-d\right)}
+\]
+
+Dados empíricos indicam $\alpha\approx5$, isto é, a riqueza material acumulada é 5 o trabalho adicionado na economia no ano, uma estimativa de depreciação material de $5\%$ a $8\%$, vamos adotar $d=0.05$ e uma fração de salário da ordem de $\omega=0.5$. Então $\delta\leq5.3\%$. Ou seja, caso a taxa de redução do trabalho contido nas mercadorias ultrapasse aproximadamente $5$ ao ano, o conteúdo de trabalho da riqueza material tenderá a diminuir persistentemente. Isso implica uma dificuldade crescente para a reprodução da acumulação capitalista, uma vez que o sistema depende do trabalho vivo como fonte de valor e mais-valia.
+
+Paradoxalmente, essa redução do conteúdo de trabalho pode representar um avanço do ponto de vista técnico e humano, pois significa que a sociedade é capaz de produzir quantidades crescentes de riqueza material com cada vez menos trabalho necessário. Contudo, se a produtividade cresce rápido demais, o capitalismo passa a necessitar de uma quantidade cada vez menor de trabalhadores para reproduzir a base material da sociedade, enfraquecendo assim o próprio fundamento da valorização do capital. As alternativas existentes para aumentar o limite $\delta$ é reduzir $\omega$, isto é, reduzir a quantidade do trabalho contido destinado aos trabalhadores, intensificando a exploração. Pois reduzir $d$ enfrenta um limite, mesmo pra $d=0,$no nosso caso ficamos com $10\%$ de limite superior. E se olharmos a acumulação $\alpha$, para aumentar o limite é necessário diminuir a riqueza acumulada acumulada. Mas vejamos a contradição, para garantir que a riqueza material não diminua de forma persistente, é preciso diminuir a riqueza acumulada. Testando em código, para as constantes informadas $\delta=5\%<\delta_{lim}$ a riqueza material medida em trabalho contido cresceu $1.64\%$, já para $\delta=5.5\%>\delta_{lim}$ela decaiu $1.45\%$.
+
+\subsubsection{Produtividade}
+
+A forma padrão de medir produtividade é como a razão entre o valor adicionado monetário (isto é, o preço de venda deduzido do custo dos insumos utilizados na produção) e a quantidade de trabalho diretamente empregada na produção da cesta $B$.
+
+Considerando a cesta de produto líquido da economia $B_{out}$, podemos escrever:
+
+\[
+P=\frac{M(B_{out})}{L(B_{out})}
+\]
+
+Onde $M(B_{out})$ representa o valor monetário adicionado e $L(B_{out})$ representa o trabalho diretamente empregado na produção dessa cesta.
+
+Para acompanhar a mudança da produtividade ao longo do tempo, utiliza-se uma cesta de referência $B_{ref}$, cujos preços são reescalados em termos reais (isto é, ajustados pela inflação), de modo que $M_{t+1}(B_{ref})\approx M_{t}(B_{ref})$. Definindo $\delta$ como a taxa de decrescimento do conteúdo de trabalho, temos:
+
+\begin{align*}
+\delta & =1-\frac{L_{t+1}(B_{ref})}{L_{t}(B_{ref})}\\
+ & =1-\frac{M_{t+1}/P_{t+1}}{M_{t}/P_{t}}\\
+ & \approx1-\frac{P_{t}}{P_{t+1}}
+\end{align*}
+
+Então:
+
+\[
+\delta\approx\frac{P_{t+1}-P_{t}}{P_{t+1}}
+\]
+
+Ou seja, ao desconsiderarmos a inflação por meio do uso de preços reais, tratamos o valor monetário adicionado da cesta de produto líquido como aproximadamente constante ao longo do tempo. Nesse caso, aumentos na produtividade implicam reduções no conteúdo de trabalho necessário para produzir essa cesta.
+
+Ou seja, pela própria definição tradicional de produtividade como a razão entre o valor monetário adicionado e o trabalho diretamente dispendido na produção, se o valor monetário adicionado permanecer aproximadamente constante, então um aumento da produtividade corresponde necessariamente a uma redução do trabalho contido na produção desses bens.
+
+O aspecto mais relevante não é apenas a identidade algébrica entre produtividade e conteúdo de trabalho, mas o fato de que a taxa de redução do conteúdo de trabalho corresponde aproximadamente à variação relativa da produtividade.
+
+Essa discussão sobre a queda do conteúdo de trabalho também ajuda a compreender como pode ocorrer um aumento da exploração mesmo sem redução do salário nominal. Podemos imaginar um cenário sem inflação no qual um trabalhador recebe um salário mínimo suficiente para adquirir uma cesta básica de bens necessários à sobrevivência. 
+
+Com o progresso técnico, o conteúdo de trabalho necessário para produzir essa cesta tende a diminuir. Se o salário nominal permanecer constante e os preços monetários da cesta não caírem no curto prazo, então o trabalhador continuará adquirindo a mesma cesta física, porém essa cesta representará uma quantidade menor de trabalho socialmente necessário.
+
+Pode-se objetar que, conforme discutido anteriormente, reduções no conteúdo de trabalho tendem a provocar reduções nos preços. Entretanto, isso não ocorre necessariamente de forma imediata. No curto prazo, preços podem permanecer relativamente rígidos ou ser compensados por inflação e mudanças nos preços relativos da economia.
+
+Por exemplo, outros componentes do custo de vida podem tornar-se relativamente mais caros. Suponha uma segunda cesta contendo o dobro de horas. Se o progresso técnico reduz o conteúdo de trabalho da cesta básica, mas seu preço monetário permanece estável, então a diferença relativa entre o conteúdo de trabalho das duas cestas aumenta. Isso pode se refletir em um aumento de seu preço relativo.
+
+Assim, mesmo que determinadas mercadorias industriais reduzam significativamente seu conteúdo de trabalho, outros componentes do custo de vida podem tornar-se relativamente mais caros, especialmente em setores nos quais o trabalho humano permanece central.
+
+Dessa forma, o salário nominal pode permanecer inalterado enquanto o trabalhador passa a controlar uma parcela menor do trabalho social total produzido na economia.
+
+\subsection{Taxa de acumulação}
+
+Se o trabalho produzido no ano é $\mathbb{L}$ se uma fração $\alpha$ é reinvestido para gerar um novo capital, e denotamos $\mathbb{K}=L\left(B_{cap}\right)$ como o trabalho contido no capital, então a taxa de lucro ao longo de todo capital em termos de trabalho contido pode ser escrito aproximadamente como:
+
+\[
+R=\frac{\alpha_{max}\mathbb{L}}{\mathbb{K}}
+\]
+
+Isto é, uma razão entre todo o trabalho excedente apropriado pelos capitalistas e o estoque de capital, onde $\alpha_{max}=1-\omega$, pois $\omega$ é a fração se apropriada pelos trablhadores. Evidentemente $\alpha_{max}$ também representa a fração máxima do trabalho adicionado que poderia ser reinvestida pelos capitalistas, de forma que $0\leq\alpha\leq\alpha_{max}$.
+
+No próximo ano o estoque de capital é então parte do trabalho produzido no ano anterior que foi convertido e o que restou do estoque do ano passado descontando tanto a depreciação material do capital ($d$) quanto a redução do conteúdo de trabalho das mercadorias causada pelo aumento da produtividade ($\delta$).
+
+\[
+\mathbb{K}_{t+1}=\alpha\mathbb{L}_{t}+\left(1-\delta\right)\left(1-d\right)\mathbb{K}_{t}
+\]
+
+E se usarmos $l$ como o crescimento do trabalho adicionado anualmente temos:
+
+\[
+\mathbb{L}_{t+1}=\left(1+l\right)\mathbb{L}_{t}
+\]
+
+Então:
+
+\begin{align*}
+R_{t+1} & =\alpha_{max}\frac{\mathbb{L}_{t+1}}{\mathbb{K}_{t+1}}\\
+ & =\alpha_{max}\frac{\left(1+l\right)\mathbb{L}_{t}}{\alpha\mathbb{L}_{t}+\left(1-\delta\right)\left(1-d\right)\mathbb{K}_{t}}\\
+ & =\left(\alpha_{max}\frac{\mathbb{L}_{t}}{\mathbb{K}_{t}}\right)\frac{\left(1+l\right)}{\frac{\alpha}{\alpha_{max}}\left(\alpha_{max}\frac{\mathbb{L}_{t}}{\mathbb{K}_{t}}\right)+\left(1-\delta\right)\left(1-d\right)}\\
+ & =R_{t}\frac{\left(1+l\right)}{AR_{t}+B}
+\end{align*}
+
+onde fizemos $A=\frac{\alpha}{\alpha_{max}}$ $B=\left(1-\delta\right)\left(1-d\right)$. Agora tomando a inversa $x_{t}=\frac{1}{R_{t}}:$
+
+\begin{align*}
+\frac{1}{x_{t+1}} & =\frac{1}{x_{t}}\frac{\left(1+l\right)}{\frac{A}{x_{t}}+B}\\
+A+Bx_{t} & =x_{t+1}\left(1+l\right)
+\end{align*}
+
+Ou então:
+
+\[
+x_{t+1}=\frac{A}{\left(1+l\right)}+\frac{B}{\left(1+l\right)}x_{t}=a+bx_{t}
+\]
+
+A solução no ponto de equilíbrio é então quando $x_{t+1}=x_{t}=x^{*}$:
+
+\[
+x^{*}=a+bx^{*}
+\]
+
+Ou seja o ponto de equilíbrio é:
+
+\[
+x^{*}\left(1-b\right)=a\rightarrow x^{*}=\frac{a}{\left(1-b\right)}
+\]
+
+E a distância de um termo $x_{t}$ do equilíbrio pode ser dada por $y_{t}=x_{t}-x^{*}$, então, sendo que $x^{*}=a+bx^{*}$
+
+\begin{align*}
+x_{t+1} & =a+bx_{t}\\
+y_{t_{+1}}+x^{*} & =a+by_{t}+bx^{*}\\
+y_{t_{+1}}+x^{*} & =\left(a+bx^{*}\right)+by_{t}\\
+y_{t+1} & =by_{t}
+\end{align*}
+
+Então é fácil ver que pra $t_{0}$ temos $y_{1}=by_{0}$, pra $t=1$ temos $y_{2}=by_{1}=b^{2}y_{0}$, e de forma geral $y_{t}=b^{t}y_{0}$. Voltando então:
+
+\begin{align*}
+y_{t} & =x_{t}-x^{*}\\
+b^{t}y_{0} & =x_{t}-x^{*}
+\end{align*}
+
+Rearranjando, sendo $y_{t}=x_{t}-x^{*}$:
+
+\[
+x_{t}=x^{*}+b^{t}y_{0}=x^{*}+b^{t}\left(x_{0}-x^{*}\right)
+\]
+
+Então se $\left|b\right|<1$, para $t\rightarrow\infty$ temos que $x_{t}\rightarrow x^{*}$. Ou seja, temos estabilidade se:
+
+\[
+\left|b\right|=\left|\frac{B}{\left(1+l\right)}\right|=\left|\frac{\left(1-\delta\right)\left(1-d\right)}{\left(1+l\right)}\right|<1
+\]
+
+E o ponto de estabilidade é:
+
+\begin{align*}
+x^{*} & =\frac{a}{\left(1-b\right)}\\
+ & =\frac{\frac{\alpha}{\alpha_{max}}}{\left(1+l\right)}\frac{1}{\left(1-\frac{\left(1-\delta\right)\left(1-d\right)}{\left(1+l\right)}\right)}\\
+ & =\frac{\alpha}{\alpha_{max}}\frac{1}{\left(\left(1+l\right)-\left(1-\delta\right)\left(1-d\right)\right)}\\
+ & =\frac{\alpha}{\alpha_{max}}\frac{1}{\left(\left(1+l\right)-\left(1-d-\delta+d\delta\right)\right)}\\
+ & =\frac{\alpha}{\alpha_{max}}\frac{1}{\left(l+d+\delta-d\delta\right)}
+\end{align*}
+
+Considerando $d\delta\approx0$:
+
+\[
+R\approx\frac{\alpha_{max}}{\alpha}\left(l+d+\delta\right)
+\]
+
+Ou seja, no estado estacionário, quanto maior for a fração do excedente reinvestida $\alpha$ na acumulação de capital $B_{cap}$, menor tende a ser a taxa média de lucro.
+
+\subsubsection*{Preço específico de uma cesta suficientemente larga}
+
+O livro argumenta que, para cestas suficientemente grandes e heterogêneas, o preço específico médio tende aproximadamente ao mesmo valor. Isso implica que $\frac{M\left(B_{i}\right)}{M\left(B_{J}\right)}\approx\frac{L\left(B_{i}\right)}{L\left(B_{J}\right)}$, isto é, a razão entre os preços monetários de duas grandes cestas tende a acompanhar a razão entre seus conteúdos de trabalho. Sob essa aproximação, a taxa média de lucro calculada em termos monetários é aproximadamente igual à taxa de lucro calculada em termos de trabalho contido.
+
+Para que essa condição seja válida, é necessário assumir que os preços específicos das mercadorias individuais,$\Psi_{i}=\frac{M_{i}}{L_{i}}$,sejam extraídos de uma mesma distribuição estatística relativamente estável. Assim, pela lei dos grandes números, os preços específicos médios de grandes cestas heterogêneas tendem ao mesmo valor esperado.
+
+Isto é:
+
+\[
+\overline{\Psi}\left(B\right)=\sum^{m}_{j=1}w_{j}\Psi_{j}
+\]
+
+onde os pesos $w_{j}=\frac{L_{j}}{\sum_{k}L_{k}}$ é dado pelo trabalho contido na cesta. Então:
+
+\begin{align*}
+\overline{\Psi}\left(B\right) & =\sum^{m}_{j=1}\frac{L_{j}}{\sum_{k}L_{k}}\Psi_{j}=\frac{\sum_{j}L_{j}\frac{M_{j}}{L_{j}}}{\sum_{k}L_{k}}=\frac{\sum^{m}_{j}M_{j}}{\sum_{k}L_{k}}=\frac{M\left(B\right)}{L\left(B\right)}
+\end{align*}
+
+Pela lei dos grandes números, se a cesta contiver uma quantidade suficientemente grande e heterogênea de mercadorias, espera-se que o preço específico médio da cesta convirja para a média teórica da distribuição. Para testar foi escrito um código construindo duas cestas, com $10^{6}$mercadorias retiradas de uma distribuição normal com média 100 e desvio padrão 10, a razão entre o preço específico de ambas as cestas foi $1.00$.
+
+\subsubsection*{Limite de acumulação}
+
+Frequentemente falamos que o capitalismo é um motor econômico de desenvolvimento pois ele exige o contínuo desenvolvimento das forças produtivas. Podemos verificar isso no fato de que a acumulação material que o capitalista é capaz de possuir, é limitado pela produção anual. 
+
+Isto é, se denotamos $\mathbb{W}$ a riqueza material acumulada, então esperamos algo como:
+
+\[
+\mathbb{W}\propto\mathbb{L}
+\]
+
+Vamos calcular agora esta constante. Considerando que uma fração $\alpha$ do trabalho produzido em um ano $\mathbb{L}$ se transforma em riqueza, e os mesmos fatores de depreciação material $d$ e redução do trabalho contido $\delta$:
+
+\[
+\mathbb{W}_{t+1}=\alpha\mathbb{L}+\left(1-\delta\right)\left(1-d\right)\mathbb{W}_{t}
+\]
+
+Então:
+
+\begin{align*}
+\frac{\mathbb{W}_{t+1}}{\mathbb{L}_{t+1}} & =\frac{\alpha\mathbb{L}+\left(1-\delta\right)\left(1-d\right)\mathbb{W}_{t}}{\left(1+l\right)\mathbb{L}_{t}}\\
+ & =\frac{\alpha}{1+l}+\frac{\left(1-\delta\right)\left(1-d\right)}{\left(1+l\right)}\frac{\mathbb{W}_{t}}{\mathbb{L}_{t}}\\
+x_{t+1} & =a+bx_{t}
+\end{align*}
+
+Temos o mesmo resultado de antes, com a diferença agora que $a=\frac{\alpha}{1+l}$ e $b=\frac{\left(1-\delta\right)\left(1-d\right)}{\left(1+l\right)}$. além de que $x=\frac{\mathbb{W}}{\mathbb{L}}$. Então:
+
+\begin{align*}
+x^{*} & =\frac{a}{\left(1-b\right)}\\
+ & =\frac{\frac{\alpha}{\left(1+l\right)}}{\left(1-\frac{\left(1-\delta\right)\left(1-d\right)}{\left(1+l\right)}\right)}\\
+ & =\frac{\alpha}{\left(\left(1+l\right)-\left(1-\delta\right)\left(1-d\right)\right)}\\
+ & \approx\frac{\alpha}{\left(\left(1+l\right)-\left(1-d-\delta\right)\right)}\\
+ & \approx\frac{\alpha}{\left(l+d+\delta\right)}
+\end{align*}
+
+Ou seja:
+
+\[
+\mathbb{W}\approx\left[\frac{\alpha}{\left(l+d+\delta\right)}\right]\mathbb{L}
+\]
+
+\bibliographystyle{plain}
+\bibliography{tese,Artigo1/references,Artigo2/referencias}
+
+\end{document}

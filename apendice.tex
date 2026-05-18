@@ -1,0 +1,185 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[brazil]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{luainputenc}
+\usepackage{amsmath}
+\usepackage{babel}
+\begin{document}
+
+\appendix
+
+\section{Questões matemáticas e computacionais}
+
+\subsection{Lei de Pareto como lei estatística}
+
+Além da construção do modelo generativo que discutimos com mais detalhes previamente, outra atividade necessária na investigação de sistemas complexos adotando a abordagem proposta consiste na construção de ao menos uma lei estatística macroscópica que deve emergir deste modelo generativo a ser construído. Nesta pesquisa, não nos ocupamos desta parte da investigação; porém, caso o leitor esteja interessado, o livro elaborado por Altmann dedica um capítulo a esta questão, isto é, Como leis estatísticas podem (e devem) ser obtidas a partir dos dados disponíveis\cite{Altmann_2024}. 
+
+Segundo Altmann\cite{Altmann_2024}, a lei de desigualdade de Pareto é a mais influente e provavelmente o primeiro exemplo de lei estatística como uma distribuição de lei de potência. Ela surgiu de uma análise empírica da distribuição de renda de diferentes países, buscando identificar qual a proporção $N\left(x\right)$ da população possui uma renda maior que $x$. Os dados que foram compilados por Pareto de fontes originais são principalmente do século XIX, e o resultado de sua análise foi proposto da seguinte forma: 
+\[
+\ln N\left(x\right)=\ln A-\tilde{\gamma}\ln\left(x\right)
+\]
+Com o mesmo valor $\tilde{\gamma}\approx1.5$ sendo observado em cenários completamente diferentes, Pareto também percebeu que essa aproximação lembra uma função de distribuição cumulativa complementar (\textit{Complementary cumulative distribution function} - CCDF). A alegação de que esta distribuição descreve a renda (e riqueza) em diferentes países e regiões é chamada de lei de Pareto.
+
+O quão bem os dados se ajustam a esta lei é alvo de debate. Além de uma lei de potências, também foram feitas propostas de que os dados seriam bem descritos por distribuições do tipo Lognormal (ou Lognormal generalizado) ou pela lei exponencial de Boltzmann-Gibbs. Pesquisas empíricas mais recentes tem indicado que a distribuição de renda pode ser separada em uma região de baixa renda e uma região de maior renda, passando de uma distribuição exponencial para uma distribuição de lei de potência. De maneira geral, pesquisas recentes examinando os dados fornecidos pela World Distribution of Income tem sugerido uma distribuição bimodal \cite{diss_mods_00007721}.
+
+De toda forma, mais de um século depois de ter sido proposta, a utilidade das distribuições do tipo Pareto para caracterizar distribuições de renda e riqueza continua a ser reconhecida nas análises econômicas modernas. Uma vez que estamos em posse da lei estatística, um caminho possível é procurar a explicação da origem da lei, uma tarefa que o próprio Pareto se dedicou inicialmente. Esta tarefa continua a ser desenvolvida até os dias de hoje, uma vez que nenhuma explicação foi capaz de fazer com que os cientistas considerassem este um caso encerrado.
+
+O outro caminho possível é analisar suas consequências. Sobre isso, um debate que tem sido realizado é como a variação ou a falta de variação do exponente $\tilde{\gamma}$ afetaria o bem estar e a desigualdade na população; assim como foram realizadas discussões econômicas sobre como melhorá-lo, assumindo a validade da lei. Evidentemente, todas essas discussões estão imersas em controvérsias.
+
+\subsubsection{Definição matemática}
+
+Mas por hora, nos interessa que a lei de Pareto nos dá a probabilidade de uma pessoa ter exatamente o valor $x$ da variável de interesse, no nosso caso, a probabilidade de um agente ter uma riqueza no valor $w$ . A função de densidade de probabilidade (\textit{Probability Density Function} - PDF)\footnote{Esta função é usada para especificar a probabilidade de uma variável aleatória estar dentro de um determinado intervalo de valores.} conhecida como lei de Pareto, é \cite{pedroso}:
+
+\[
+p\left(w\right)=\frac{\alpha\beta^{\alpha}}{w^{\alpha+1}}
+\]
+
+Onde $\alpha>0$ é o coeficiente de Pareto (parâmetro de forma) que modela a distribuição e $\beta>0$ é a riqueza mínima (parâmetro de escala). O parâmetro que normalmente domina as discussões sobre a lei de Pareto refere-se ao índice de Pareto. Dessa forma, um objetivo comum é calcular o coeficiente de Pareto nas distribuições que estamos analisando. Para isso, iremos trabalhar com a função de distribuição cumulativa complementar.
+
+A função de distribuição cumulativa (\textit{Cumulative Distribution Function }- CDF) de uma variável aleatória de valor real $x$ é a função dada por: 
+\[
+F_{X}\left(x\right)=P\left(X\leq x\right)
+\]
+Ou seja, temos a probabilidade de uma variável aleatória $X$ assumir um valor menor ou igual a $x$. A CDF de uma variável contínua $X$ pode ser expressa em termos de uma função densidade $f_{x}$ de probabilidade dada por: 
+\[
+F_{X}\left(x\right)=\int^{x}_{-\infty}f_{X}\left(t\right)dt
+\]
+
+A CCDF pode ser definida, então, como: 
+\[
+\overline{F}_{X}\left(x\right)=P\left(>x\right)=1-F_{X}\left(x\right)
+\]
+Isto é, a probabilidade de uma variável aleatória $X$ assumir um valor maior que $x$. No nosso caso, estamos interessados na probabilidade de que, ao selecionarmos um agente aleatoriamente, ele tenha uma riqueza superior a $w$, fazendo uma pequena mudança de notação, temos:
+
+\[
+\overline{F}_{X}\left(w\right)=P\left(X>w\right)=1-F_{X}\left(w\right)
+\]
+
+Podemos calcular ,então, a CDF de Pareto da seguinte forma:
+
+\[
+F_{X}\left(w\right)=Pr\left(X\leq w\right)=\int^{w}_{-\infty}p\left(w'\right)dw'
+\]
+
+Resolvendo a integral: 
+\[
+\begin{split}F_{X}\left(w\right) & =\int^{w}_{\beta}\frac{\alpha\beta^{\alpha}}{x'^{\alpha+1}}dw'\\
+ & =\alpha\beta^{\alpha}\left(\frac{w'^{-\left(\alpha+1\right)+1}}{-\left(\alpha+1\right)+1}\right)|^{w}_{\beta}\\
+ & =\alpha\beta^{\alpha}\left(\frac{w'^{-\alpha}}{-\alpha}\right)|^{w}_{\beta}\\
+ & =\alpha\beta^{\alpha}\left(\frac{w^{-\alpha}}{-\alpha}-\frac{\beta^{-\alpha}}{-\alpha}\right)\\
+ & =\left(\frac{\beta}{\beta}\right)^{\alpha}-\left(\frac{\beta}{w}\right)^{\alpha}\\
+ & =1-\left(\frac{\beta}{w}\right)^{\alpha}
+\end{split}
+\]
+Então, o CCDF da lei de Pareto será:
+
+\[
+\overline{F}_{X}\left(w\right)=1-\left(1-\left(\frac{\beta}{w}\right)^{\alpha}\right)=\left(\frac{\beta}{w}\right)^{\alpha}=aw^{-\alpha}
+\]
+
+Onde $a=\beta^{\alpha}$. Se aplicarmos o logaritmo natural, temos:
+
+\[
+\ln\overline{F}_{X}\left(w\right)=\ln\left(aw^{-\alpha}\right)=\ln\left(a\right)+\ln\left(w^{-\alpha}\right)=\ln\left(a\right)-\alpha\ln\left(w\right)
+\]
+Onde retomamos a equação de Preto $\ln N\left(x\right)=\ln A-\tilde{\gamma}\ln\left(x\right)$, identificando $\overline{F}(w)=N(x)$ e $\alpha=\tilde{\gamma}$. Porém, estamos interessados em obter o índice de Pareto de uma distribuição de valores. Isso é obtido mais facilmente após realizarmos uma linearização. Para linearizar o CCDF da lei de Pareto, começamos aplicando o logaritmo:
+
+\[
+\begin{split}\log_{10}\left(\overline{F}_{X}\left(w\right)\right) & =\log_{10}\left(aw^{-\alpha}\right)\\
+ & =\log_{10}\left(a\right)+\log_{10}\left(w^{-\alpha}\right)
+\end{split}
+\]
+Como $a$ é um valor constante, Nada nos impede de escrever $a=10^{b}$ . Escrevendo a linearização do CCDF de Pareto como $y=\log_{10}\left(\overline{F}_{X}\left(w\right)\right)$, temos então:
+
+\[
+\begin{split}y & =\log_{10}\left(10^{b}\right)+\log_{10}\left(w^{-\alpha}\right)\\
+ & =b\log_{10}\left(10\right)-\alpha\log_{10}\left(w\right)
+\end{split}
+\]
+Fazendo uma substituição de variável do tipo $x=\log_{10}\left(w\right)$ , ficamos então com a seguinte equação linear:
+
+\[
+y=b-\alpha x
+\]
+O índice de Pareto nada mais é do que a inclinação desta reta. Além disso, podemos escrever a constante $b$ em termos das constantes originais da lei de Pareto da seguinte forma:
+
+\[
+b=\log_{10}\left(a\right)=\log_{10}\left(\beta^{\alpha}\right)
+\]
+Ou ainda, de forma inversa, podemos obter $\beta$ a partir da constante $b$ e do coeficiente $\alpha$ calculando $\beta=10^{\left(b/\alpha\right)}$. Este é o CCDF linearizado da lei de Pareto , após aplicarmos o logaritmo na base 10, isto precisará ser retomado mais tarde. Para calcular o índice de Pareto de um conjunto de dados é comum aplicar algum método matemático a esse conjunto de dados, tipicamente regressão linear.
+
+\subsection{Gini}
+
+A curva de Lorenz é dada por uma função do tipo $L(x)$ que nos indica a fração de riqueza (ou renda) em posse da fração $x$ da população. A igualdade perfeita é dada, então, por uma reta $L(x)=x$.
+
+O coeficiente de Gini é uma medida da desigualdade em um conjunto de dados e é dado pela razão entre a área que se encontra entre a reta de igualdade perfeita e a curva de Lorenz, e a área total sob a reta de igualdade perfeita.
+
+Se temos um conjunto de dados ordenados $(y_{1}\leq y_{2}\leq\dots\leq y_{N})$, a proporção acumulada da população, ou seja, a posição no eixo $X$ para o dado $i$ é dada por:
+
+\[
+x_{i}=\frac{i}{N}
+\]
+
+Consequentemente a distância entre dois dados $i$ e $i+1$ é dada por
+
+\[
+\Delta x=\frac{1}{N}
+\]
+
+A altura da curva de Lorentz é dado por:
+
+\[
+y_{i}=\frac{\sum^{i}_{k=1}y_{k}}{\sum^{N}_{k=1}y_{k}}
+\]
+
+Para a reta de igualdade perfeita temos: 
+\[
+y^{*}_{i}=x_{i}=\frac{i}{N}
+\]
+
+Logo a diferença entre as alturas é dada por:
+
+\[
+\Delta y_{i}=\frac{i}{N}-\frac{\sum^{i}_{k=1}y_{k}}{\sum^{N}_{k=1}y_{k}}
+\]
+
+Assim sendo, a área dada pela diferença entre a reta da igualdade e a curva de Lorenz para a distância entre dois dados é dada por:
+
+\[
+\Delta x\Delta y_{i}=\frac{1}{N}\left(\frac{i}{N}-\frac{\sum^{i}_{k=1}y_{k}}{\sum^{N}_{k=1}y_{k}}\right)
+\]
+
+Somando então sobre todos os dados:
+
+\[
+\begin{split}A & =\sum^{N}_{i=1}\frac{1}{N}\left(\frac{i}{N}-\frac{\sum^{i}_{k=1}y_{k}}{\sum^{N}_{k=1}y_{k}}\right)\\
+ & =\frac{1}{N}\left(\frac{1}{N}\sum^{N}_{i=1}i-\frac{\sum^{N}_{i=1}\sum^{i}_{k=1}y_{k}}{\sum^{N}_{k=1}y_{k}}\right)
+\end{split}
+\]
+O primeiro termo entre parênteses: 
+\[
+\frac{1}{N}\sum^{N}_{i=1}i=\frac{1}{N}\frac{N\left(N+1\right)}{2}=\frac{N+1}{2}
+\]
+Para o somatório duplo no segundo termo, percebendo que para cada $k$ o valor $y_{k}$ vao aparecer em todos $i\geq k$, isto é $N-k+1$ vezes: 
+\[
+\sum^{N}_{i=1}\sum^{i}_{k=1}y_{k}=\sum^{N}_{k=1}\left(N-k+1\right)y_{k}
+\]
+Então: 
+\[
+A=\frac{1}{N}\left(\frac{N+1}{2}-\frac{\sum^{N}_{k=1}\left(N-k+1\right)y_{k}}{\sum^{N}_{k=1}y_{k}}\right)
+\]
+Por fim, nos resta apenas lembrar que o Gini é dado pela razão entre a área que se encontra entre a reta da igualdade e a curva de Lorenz ($A$) e a própria área abaixo da reta da igualdade. Considerando que os dados estejam normalizados, a área abaixo da reta da igualdade perfeita corresponde simplesmente à metade da área de um quadrado de lado $1$ ou seja, $1/2$ o coeficiente de Gini é então:
+
+\[
+G=\frac{2}{N}\left(\frac{N+1}{2}-\frac{\sum^{N}_{k=1}\left(N-k+1\right)y_{k}}{\sum^{N}_{k=1}y_{k}}\right)
+\]
+Ou em uma forma mais comumente encontrada na literatura\cite{gini}: 
+\[
+G=\frac{1}{N}\left(N+1-2\left(\frac{\sum^{N}_{k=1}\left(N-k+1\right)y_{k}}{\sum^{N}_{k=1}y_{k}}\right)\right)
+\]
+
+\bibliographystyle{plain}
+\bibliography{tese,Artigo1/references,Artigo2/referencias}
+
+\end{document}
