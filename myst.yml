@@ -26,6 +26,8 @@ project:
           title: Modelos de Regressão
     - title: Econofísica
       children:
+        - file: oquee
+          title: O que é 
         - file: moeda
           title: Moeda
         - file: valor
