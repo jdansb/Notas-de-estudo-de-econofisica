@@ -179,6 +179,494 @@ Ou em uma forma mais comumente encontrada na literatura\cite{gini}:
 G=\frac{1}{N}\left(N+1-2\left(\frac{\sum^{N}_{k=1}\left(N-k+1\right)y_{k}}{\sum^{N}_{k=1}y_{k}}\right)\right)
 \]
 
+\subsection{Revisão de conceitos estatísticos}
+
+Vamos fazer uma revisão baseada no apêndice do livro de Econometri Básica\cite{gujarati2011econometria}.
+
+\textbf{Somatório:}
+\begin{itemize}
+\item $\sum^{n}_{i=1}ck=c\sum^{n}_{i=1}k=ckn$
+\end{itemize}
+\textbf{Espaço amostral:}
+\begin{itemize}
+\item \textbf{Espaço amostral (população)}: O conjunto de todos os resultados possíveis de um experimento aleatório.
+\begin{itemize}
+\item \textbf{Ponto amostral}: cada membro desse espaço amostral.
+\end{itemize}
+\item \textbf{Evento}: um subconjunto do espaço amostral. 
+\begin{itemize}
+\item \textbf{Eventos mutuamente exclusivos}: se a ocorrência de um evento eliminar a ocorrência do outro. 
+\end{itemize}
+\item \textbf{Eventos (coletivamente) exaustivos}: se o conjunto de eventos exaurem todas os possíveis resultados de um experimento. 
+\end{itemize}
+\textbf{Probabilidade e variáveis aleatórias}
+
+Seja $A$ um evento em um espaço amostral, por $P(A)$, a probabilidade do evento $A$, entendemos a proporção de vezes que o evento A ocorrerá em repetidas tentativas de um experimento. Ou, em um total de $n$ possíveis resultados igualmente prováveis de um experimento, se $m$ deles são favoráveis à ocorrência do evento A, definimos a razão $m/n$ como a frequência relativa de A. 
+\begin{itemize}
+\item $0\leq P\left(A\right)\leq1$ para cada $A$
+\item Se $A,B,C$ são um conjunto de eventos exaustivos então a probabilidade de termos um evento A ou B ou C ... é $P\left(A+B+C\right)=1$.
+\item Se A e B são mutuamente exclusivos: $P\left(A+B\right)=P\left(A\right)+P\left(B\right)$
+\item \textbf{Variável aleatória}: uma variável cujo valor é determinado pelo resultado de um experimento aleatório, usualmente denotado por letras maíusculas, ex: $X$.
+\begin{itemize}
+\item Os valores assumidos pela variável aleatória são normalmente denotados por letras minúsculas, ex.: $x$.
+\end{itemize}
+\end{itemize}
+\textbf{Função de densidade de probabilidade}
+
+\textbf{Discreto}: Se $X$ é uma variável aleatória discreta $f\left(x\right)=P\left(X=x_{i}\right)$ então a função densidade de probabilidade (FDP) significa a probabilidade de que a variável aleatória discreta $X$ tome o valor $x_{i}$, sendo $f\left(x\right)=0$ para $x\neq x_{i}$.
+
+\textbf{Contínuo}: o elemento da probabilidade $f\left(x\right)dx$ é a probabilidade associada a um pequeno intervalo de uma variável contínua e $P\left(a\leq x\leq b\right)$ indica a probabilidade de que $x$ situe-se no intervalo entre $a$ e $b$.
+
+Sendo:
+
+\begin{align*}
+f\left(x\right) & \geq0\\
+\int^{+\infty}_{-\infty}f\left(x\right)dx & =1\\
+\int^{b}_{a}f\left(x\right)dx & =P\left(a\leq x\leq b\right)
+\end{align*}
+
+\textbf{Função de densidade de probabilidade conjunta: }
+
+\textbf{Caso discreto} : É a probabilidade de que $X$ tome valor $x_{i}$ e $Y$ tome o valor $y_{i}$ dada por $f\left(x,y\right)=P\left(X=x_{i}\text{ e }Y=y_{i}\right)$.
+
+\textbf{Caso contínuo:}
+
+\begin{align*}
+f\left(x,y\right) & \geq0\\
+\int^{+\infty}_{-\infty}\int^{+\infty}_{-\infty}f\left(x,y\right)dxdy & =1\\
+\int^{b}_{a}\int^{d}_{c}f\left(x,y\right)dxdy & =P\left(a\leq x\leq b,c\leq y\leq d\right)
+\end{align*}
+
+\textbf{Função de densidade de probabilidade marginal (ou individual)}
+
+\textbf{Caso discreto}: em relação a $f\left(x,y\right)$, $f\left(x\right)$ e $f\left(y\right)$ são obtidas por $f\left(x\right)=\sum_{y}f\left(x,y\right)$, onde somamos sobre todos valores de $Y$.
+
+\textbf{Função de densidade de probabilidade condicional:}
+
+Expressa a probabilidade de que $X$ assuma o valor $x$, posto que $Y$ assumiu o valor $y$:
+
+\[
+f\left(x|y\right)=P\left(X=x|Y=y\right)
+\]
+
+Se relaciona com a função de densidade de probabilidde conjunta da seguinte forma:
+
+\[
+f\left(x|y\right)=\frac{f\left(x,y\right)}{f\left(y\right)}\rightarrow f\left(x,y\right)=f\left(y\right)f\left(x|y\right)
+\]
+
+A probabilidade de que $x$ e $y$ aconteçam é o produto entre a probabilidade que $y$ aconteça e a probabilidade de que $x$ aconteça posto que $y$ aconteceu.
+
+\textbf{Independência estatística:}
+
+As duas variáveis são independente ssomente se:
+
+\[
+f\left(x,y\right)=f\left(x\right)f\left(y\right)
+\]
+\textbf{Média (valor esperado) de uma dsistribuição de probabilidde:}
+
+Propriedades:
+\begin{itemize}
+\item Se $c$ é constante $E\left(b\right)=b$.
+\item Se $k$ e $c$ são constantes: $E\left(aX+b\right)=aE\left(x\right)+b$
+\item Se $X$ e $Y$ são variáveis aleatórias independentes $E\left(XY\right)=E\left(X\right)E\left(Y\right)$\footnote{Isso não implica que E$\left(\frac{X}{Y}\right)=\frac{E\left(X\right)}{E\left(Y\right)}$.}
+\item Se $X$ é uma variável aleatória com função função de densidade de probabilidade $f\left(x\right)$ e $g\left(x\right)$ é qualquer função de $X$ então:
+\end{itemize}
+\begin{align*}
+E\left[g\left(X\right)\right] & =\sum_{x}g\left(x\right)f\left(x\right) & \text{se {X} for discreta}\\
+ & =\int^{+\infty}_{-\infty}g\left(x\right)f\left(x\right)dx & \text{se {X} for contínua}
+\end{align*}
+
+Note que se $g\left(x\right)=x$ então temos simplesmente o valor esperado de $X$.
+
+\textbf{Variância}: É a distribuição (dispersão) em torno do valor esperado.
+
+\[
+var\left(x\right)=\sigma^{2}_{x}=E\left[\left(X-\mu\right)^{2}\right]
+\]
+
+Onde $E\left(X\right)=\mu$ é o valor esperado, e $\sigma_{x}$também é conhecido como desvio padrão.
+
+\begin{align*}
+var\left(X\right) & =\sum_{x}\left(x-\mu\right)^{2}f\left(x\right) & \text{se {X} for discreta}\\
+ & =\int^{+\infty}_{-\infty}\left(x-\mu\right)^{2}f\left(x\right)dx & \text{se {X} for contínua}
+\end{align*}
+
+Propriedades:
+\begin{itemize}
+\item $var=E\left(X^{2}\right)-E\left(X\right)^{2}$
+\item Se $c$ é constante a variância é $0$
+\item Se $a$ também é constante $var\left(aX+c\right)=a^{2}var\left(X\right)$
+\item Se $X$ e $Y$ são variáveis aleatórias independentes $var\left(X\pm Y\right)=var\left(X\right)+var\left(Y\right)$
+\end{itemize}
+\textbf{Covariância}
+
+A covariância de duas variáveis aleatória $X$ e $Y$ com média $\mu_{x}$ e $\mu_{y}$ é dado por:
+
+\[
+cov\left(X,Y\right)=E\left[\left(X-\mu_{x}\right)\left(Y-\mu_{y}\right)\right]
+\]
+
+Ou seja:
+
+\begin{align*}
+cov\left(X,Y\right) & =\sum_{x,y}\left(x-\mu_{x}\right)\left(y-\mu_{y}\right)f\left(x,y\right)\\
+ & =\sum_{x,y}xyf\left(x,y\right)-\mu_{y}\sum_{x,y}xf\left(x,y\right)-\mu_{y}\sum_{x,y}yf\left(x,y\right)+\mu_{y}\mu_{x}\sum_{x,y}f\left(x,y\right)\\
+ & =\sum_{x,y}xyf\left(x,y\right)-\mu_{y}\sum_{x}xf\left(x\right)-\mu_{y}\sum_{y}yf\left(y\right)+\mu_{y}\mu_{x}\\
+ & =\sum_{x,y}xyf\left(x,y\right)-\mu_{y}\mu_{x}-\mu_{x}\mu_{y}+\mu_{y}\\
+ & =\sum_{x,y}xyf\left(x,y\right)-\mu_{y}\mu_{x}
+\end{align*}
+
+Ou de forma análoga pro caso contínuo:
+
+\begin{align*}
+cov\left(X,Y\right) & =\int^{+\infty}_{-\infty}\left(x-\mu_{x}\right)\left(y-\mu_{y}\right)f\left(x,y\right)dxdy\\
+ & =\int^{+\infty}_{-\infty}xyf\left(x,y\right)dxdy-\mu_{y}\mu_{x}
+\end{align*}
+
+De forma geral:
+
+\[
+cov\left(X,Y\right)=E\left(XY\right)-\mu_{y}\mu_{x}
+\]
+
+A covariância mede o quanto as duas variáveis variam conjuntamente em relação às médias. Se $a=\left(x-\mu_{x}\right)>0$ e $b=\left(y-\mu_{y}\right)>0$ então $ab>0$. Agora se ambos $a<0$ também $b<0$ então também temos $ab>0$. Ou seja, se sempre variam juntas vamos ter predominância de $ab>0$ resultando em uma covariância positiva, de forma similar se sempre variam em sentido oposto, teremos predominâmcia de $ab<0$ então teremos uma covariância negativa. Mas se for igualmente distribuído, então teremos uma covariância próxima de zero.
+
+Propriedades:
+\begin{itemize}
+\item Se $X$ e $Y$ são independentes então $cov\left(X,Y\right)=0$.
+\item Se $a,b,c,d$ são constantes: $cov\left(a+bX,c+dY\right)=bd\cdot cov\left(X,Y\right)$
+\end{itemize}
+\textbf{Coeficiente de correlação:}
+
+\[
+\rho=\frac{cov\left(X,Y\right)}{\sqrt{var\left(X\right)var\left(Y\right)}}=\frac{cov\left(X,Y\right)}{\sigma_{x}\sigma_{y}}
+\]
+
+\textbf{Outra interpretação}: Vamos olhar para a correlação de Pearson para uma amonstra constituída por um conjunto de pontos $\left\{ \left(x_{i},y_{i}\right)\right\} $, acredito que a melhor forma é ter uma interpretção geométrica. Se separarmos em um conjunto de pontos $X=\left(x_{1},x_{2},\dots,x_{n}\right)$ e outro $Y=\left(y_{1},y_{2},\dots,y_{n}\right)$ então se descontarmos os valores médios:
+
+\[
+\tilde{X}=\left(x_{1}-\overline{x},x_{2}-\overline{x},\dots,x_{n}-\overline{x}\right),\quad,\tilde{Y}=\left(y_{1}-\overline{y},y_{2}-\overline{y},\dots,y_{n}-\overline{y}\right)
+\]
+Vamos sobrepor a distribuição de pontos em torno da origem. Agor podemos analisar como cada uma das distribuições se afastam da origem. Se teos só três pontos, temos que $\tilde{X}$ e $\tilde{Y}$ denotam vetores em $3D$. O produto escalar de ambos é dado por:
+
+\[
+\tilde{Y}\cdot\tilde{X}=\left\Vert \tilde{X}\right\Vert \left\Vert \tilde{Y}\right\Vert \cos\left(\theta\right)
+\]
+
+Então:
+
+\[
+\cos\left(\theta\right)=\frac{\tilde{Y}\cdot\tilde{X}}{\left\Vert \tilde{X}\right\Vert \left\Vert \tilde{Y}\right\Vert }=\frac{\sum^{n}_{i=1}\left(x_{i}-\overline{x}\right)\left(y_{i}-\overline{y}\right)}{\sqrt{\sum^{n}_{i=1}\left(x_{i}-\overline{x}\right)^{2}}\sqrt{\sum^{n}_{i=1}\left(y_{i}-\overline{y}\right)^{2}}}=r
+\]
+
+Portanto, a correlação de Pearson nos fornece o cosseno do ângulo entre os vetores formados pelas variáveis após removermos seus valores médios. Em outras palavras, ela mede o alinhamento entre as variações de $X$ e $Y$ em torno de suas respectivas médias, interpretadas como vetores em um espaço n-dimensional. Conectando com a discussão anterior, tínhamos:
+
+\[
+\rho=\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}=\frac{\sum_{x,y}(x-\mu_{x})(y-\mu_{y})f(x,y)}{\sqrt{\sum_{x}(x-\mu_{x})^{2}f(x)}\sqrt{\sum_{y}(y-\mu_{y})^{2}f(y)}}
+\]
+
+Neste caso, como temos $n$ pares observados, a probabilidade empírica de selecionar qualquer observação individual de $X$ (ou de${Y})$ é $f(x_{i})=f(y_{i})=\frac{1}{n}.$ Além disso, como os dados são observados em pares $(x_{i},y_{i})$, a distribuição conjunta empírica satisfaz: $f(x_{i},y_{j})=\begin{cases}
+\frac{1}{n}, & i=j\\
+0, & i\neq j
+\end{cases}$. Assim, o termo da covariância pode ser escrito como:
+
+\[
+\sum_{x,y}(x-\mu_{x})(y-\mu_{y})f(x,y)=\frac{1}{n}\sum^{n}_{i=1}(x_{i}-\mu_{x})(y_{i}-\mu_{y}).
+\]
+
+Os fatores $1/n$ do numerador e do denominador então se cancelam, resultando em:
+
+\[
+\rho=\frac{\sum^{n}_{i=1}(x_{i}-\bar{x})(y_{i}-\bar{y})}{\sqrt{\sum^{n}_{i=1}(x_{i}-\bar{x})^{2}}\sqrt{\sum^{n}_{i=1}(y_{i}-\bar{y})^{2}}}
+\]
+
+\textbf{Spearman}
+
+Não difere muito do caso anterior, apens que ao invés de trabalharmos com os dados originais, nós transformarmos eles em um ranking, só então aplicamos a correlação de Pearson.
+
+Tanto nesta seção quanto na anterior, devemos ter em mente que não analisamos os erros padrão nem os p-values. Em geral, essa análise adicional é importante para avaliar a significância estatística dos resultados, especialmente nos testes de correlação. No entanto, em muitos casos a regressão linear pode ser utilizada apenas como uma ferramenta descritiva, isto é, com o objetivo de encontrar a reta que melhor representa a distribuição dos pontos, independentemente de inferência estatística sobre os coeficientes.
+
+\textbf{Variâncias de variáveis correlacionadas}
+
+Se são correlacionadas então: $var\left(X\pm Y\right)=var\left(X\right)+var\left(Y\right)\pm cov\left(X,Y\right)$
+
+\textbf{Expectativa condicional}
+
+A expectativa condicional de $X$ dado $Y=y$ é:
+
+\begin{align*}
+E\left(X|Y=y\right) & =\sum_{x}xf\left(x|Y=y\right) & \text{se {X} for discreta}\\
+ & =\int^{+\infty}_{-\infty}xf\left(x|Y=y\right)dx & \text{se {X} for contínua}
+\end{align*}
+
+Se $E\left(X|Y\right)$ é uma variável aleatória porque é uma função da variável condicionamente, $E\left(X|Y=y\right)$ é uma constante para um dado valor específico de $Y$.
+
+\textbf{Variância condicional}
+
+De modo análogo sendo $var\left(X|Y=y\right)=E\left\{ \left[X-E\left(X|Y=y\right)\right]^{2}|Y=y\right\} $:
+
+\begin{align*}
+E\left(X|Y=y\right) & =\sum_{x}\left[X-E\left(X|Y=y\right)\right]^{2}f\left(x|Y=y\right) & \text{se {X} for discreta}\\
+ & =\int^{+\infty}_{-\infty}\left[X-E\left(X|Y=y\right)\right]^{2}f\left(x|Y=y\right)dx & \text{se {X} for contínua}
+\end{align*}
+
+Propriedades da expectativa e variância condicional:
+\begin{itemize}
+\item Se $f\left(X\right)$ então $E\left(f\left(X\right)|X\right)=f\left(X\right)$
+\item Se $f\left(X\right)$ e $g\left(X\right)$ são funções de $X$ então $E\left(f\left(X\right)Y+g\left(X\right)\right)=f\left(X\right)E\left(Y|X\right)+g\left(X\right)$
+\item Lei das expectativas iteradas: $E\left(Y\right)=E_{X}\left[E\left(Y|X\right)\right]=\sum_{x}E\left(Y|X=x\right)f\left(x\right)$, onde $E_{X}$ denota que a expectativa ta cobrindo todos os valores de $X$.
+\item Se $X$ e $Y$ forem independentes $E\left(Y|X\right)=E\left(Y\right)$ e $var\left(Y|X\right)=var\left(Y\right)$
+\end{itemize}
+\textbf{Momentos de ordem superior:}
+
+Momento de ordem $r$: $E\left[\left(X-\mu\right)^{r}\right]=m_{r}$. Terceiro e quarto momento são utilizados no estudo da ``forma'' de uma probabilidade. Para o calculo da assimetria (falta de simetria) calculamos $S=m_{3}/\sigma^{3}$ e curtose (elevação ou achatamento) $K=m_{4}/m^{2}_{2}$. Nese caso $K<3$ são chamadas platiúrticas (gordas ou de cada curtas) e $K>3$são chamadas de leptocúrticas (magras ou cadas longas). E ainda $K=3$ é chamada de mesocúritca (distribuição normal).
+
+\textbf{Distribuições:}
+
+Sobre a normal:
+\begin{itemize}
+\item Por questão de notação, denotamos uma variável distribuída de forma normal como$X\sim N\left(\mu,\sigma^{2}\right)$.
+\item Uma combinação linear de variáveis de distribuição normal é distribuída normalmente: $Y=aX_{1}+bX_{2}\sim N\left[\left(a\mu_{1}+b\mu_{2}\right),\left(a^{2}\sigma^{2}_{1}+b^{2}\sigma^{2}_{2}\right)\right]$
+\item Teorema central do lime: $\overline{X}_{x\rightarrow\infty}\sim N\left(\mu,\frac{\sigma^{2}}{n}\right)$, isto é, $\overline{X}$ aproxima-se da distribuição normal com média $\mu$ e variância $\sigma^{2}/n$. 
+\begin{itemize}
+\item Esse resultado é verdadeiro não importando a forma da FDP original.
+\end{itemize}
+\item Se $X$ e $Y$ possuem distribuição conjunta normal (isto é, os pares $(X,Y)$ formam uma distribuição normal bidimensional), então toda a dependência entre elas é determinada pela covariância. Nesse caso, dizer que:$Cov(X,Y)=0$ é equivalente a dizer que são independentes.
+\end{itemize}
+\textbf{Inferência estatística: estimação}
+
+Pode ser que sabemos (ou supomos) que uma variável aleatória $X$ segue uma distribuição de probabilidade particicular, mas não sabemos os valores dos parâmetros da distribuição. Por exemplo, se temos uma distribuição normal, podemos querer saber a média e a variância.O procedimento habitual é ter uma amostra aleatória de tamanho $n$ e então utilizar estes dados para estimar os parâmetros desconhecidos. Se temos uma variável aleatória $X$ com FDP $f(x)$ e repetimos o experimento 100 vezes de forma independente, podemos considerar este como um único experimento que tem como resultado uma amostra $X_{1},X_{2},\dots,X_{100}$, onde todas tem a mesma distribuição $f(x)$. Nesse caso, a FDP conjunta deste experimento é $f(x_{1},\dots,x_{100})=f(x_{1})\cdots f(x_{100}),$pois as observações são independentes e identicamente distribuídas. Assim, $X_{1},\dots,X_{100}$ constituem uma amostra aleatória de tamanho $n=100$ proveniente de uma população com FDP $f(x)$. Deve estar claro: o experimento aqui consiste em retirar 100 valores aleatórios $x_{i}$de $X$. Ou seja, uma amostra aleatória de tamanho $n$ é o conjunto de $n$ valores observados de uma variável aleatória gerada repetidamente segundo a mesma FDP $f(x)$.
+
+\textbf{Estimação pontual}
+
+Vamos supor que sabemos a FDP, mas não sabemos um parâmetro $\theta$. Sorteamos então uma amostra aleatória de tamanho $n$ e desenvolvemos uma função dos valores da amostra de modo que $\widehat{\theta}=f\left(x_{1},\dots,x_{n}\right)$ (chmado de estimador ou estatística) forneça uma estimativa do verdadeiro $\theta$ (chamado de estimativa)\footnote{Vale dizer que $\widehat{\theta}$ também pode ser tratada como uma variável aleatória pois é uma função dos dados amostrais, com uma própria distribuição.}. Se ele fornece uma estimativa única, é então conhecido como estimativa pontual.
+
+\textbf{Estimação intervalar}
+
+Agora não temos mais apenas um valor estimado, mas um intervalo no qual esperamos que o verdadeiro valor do parâmetro esteja. O conceito importante é o da distribuição de probabilidade do estimador. Por exemplo, se uma variável aleatória $X$ possui distribuição normal, então a média da amostra também possui uma distribuição normal com média $\mu$ (a média verdadeira da população) e variância $\sigma^{2}/n$. Assim, a distribuição do estimador $\overline{X}$ é $\overline{X}\sim N\left(\mu,\frac{\sigma^{2}}{n}\right).$
+
+Como sabemos que, em uma distribuição normal, o intervalo entre $\mu\pm2\sigma/\sqrt{n}$ corresponde a aproximadamente $95\%$ da área sob a curva da distribuição, temos que $P\left(\mu-\frac{2\sigma}{\sqrt{n}}\leq\overline{X}\leq\mu+\frac{2\sigma}{\sqrt{n}}\right)\approx0.95,$sendo $\mu$ a média da distribuição da população e também da distribuição teórica do estimador, e $\overline{X}$ a média empírica da amostra. Ou seja, temos aproximadamente $95\%$ de chance de que nossa média amostral $\overline{X}$ esteja a uma distância inferior a $\frac{2\sigma}{\sqrt{n}}$ da média verdadeira teórica. Podemos mostrar facilmente que $a-b\leq X\leq a+b$ é equivalente a $X-b\leq a\leq X+b$, bastando rearranjar os termos da desigualdade, portanto, $P\left(\overline{X}-\frac{2\sigma}{\sqrt{n}}\leq\mu\leq\overline{X}+\frac{2\sigma}{\sqrt{n}}\right)\approx0.95$\footnote{Mas vale destacar que aqui $\sigma$ representa o desvio padrão verdadeiro da população. Na prática, como esse valor geralmente é desconhecido, podemos aproximá-lo pelo desvio padrão medido empiricamente na amostra. Contudo, essa substituição adiciona uma incerteza extra à estimação, já que o próprio desvio padrão passa a ser estimado a partir da amostra.}. Equivalentemente, o intervalo $\left[\overline{X}-\frac{2\sigma}{\sqrt{n}},\overline{X}+\frac{2\sigma}{\sqrt{n}}\right]$ possui 95\% de chances de conter o verdadeiro valor de $\mu$\footnote{Detalhe técnico: Em mensurações repetidas como essa, os intervalos assim estabelecidos incluirão o verdadeiro $\mu$ com 95\% de confiança. Porém não podemos dizer que seja de 95\% a probabilidade de que um intervalo particular medido contenha $\mu$. Como esse intervalo é fixado, a probabilidade de que ele incluirá $\mu$ é 0 ou 1. O que podemos afirmar é que, se construirmos 100 desses intervalos, 95 dos 100 intervalos incluirão $\mu$; não podemos garantir que um intervalo em particular incluirá necessarimante $\mu$.}.
+
+De forma mais geral, na estimação intervalar, construímos dois estimadores $\widehat{\theta}_{1}$ e $\widehat{\theta}_{2}$ de maneira que:
+
+\[
+P\left(\widehat{\theta}_{1}\leq\theta\leq\widehat{\theta}_{2}\right)=1-\alpha\quad0<\alpha<1
+\]
+
+Ou seja, podemos afirmar tanto que $p=1-\alpha$ é a probabilidade de que este intervalo contenha o verdadeiro $\theta$ . Este intervalo se chama intervalo de confiança $p$, sendo $p$ o coeficiente de confiança e $\alpha$ o nível de significância. 
+
+\textbf{Métodos de estimação}
+
+Há três métodos principais de estimação de parâmetros.
+
+\textbf{Método dos mínimos quadrados:} consiste em definir uma função erro, geralmente baseada na soma dos quadrados dos desvios entre os dados observados e os valores previstos pelo modelo, e minimizá-la. Já utilizamos essa ideia anteriormente para estimar a inclinação de uma reta. 
+
+\textbf{Método da verossimilhança}: depende da função de verossimilhança. Vamos supor que temos uma variável aleatória $X$ com uma FDP $f\left(X,\theta\right)$, novamente conhecemos a FDP nãos não o valor do parâmetro. Se temos uma amostra de $n$ variáveis aleatórias $X_{i}$, novamente temos uma FDP conjunta. Agora temos uma interpretação dual desta FPD.
+
+Se sabemos o $\theta$ ela é uma FDP de observar os dados dos valores amostrais. Mas mas se temos os valores amostrais $x_{n}$ então ela pode ser uma função de $\theta$. Neste caso chamamos de função de verossimilhança, e agora buscamos o valor do parâmetro $\theta$ que torna a amostra observada a mais plausível possível. A função verossimilhança, é então:
+
+\[
+L\left(\theta;x_{1},\dots,x_{n}\right)=\prod_{i}f\left(x_{i};\theta\right)
+\]
+
+O estimador de máxima verossimilhança de $\theta$ é aquele que maximiza a função de verossimilhança da amostra. Por questões matematicas em geral tomamos o logaritmo, e seguindo as regras de cálculo diferenciamos a função com respeito a incognita e igualamos a derivada a zero. O estimador obtido assim é chamado de estimador de máxima verossimilhança. Por exemplo, a distribuição de Poisson é $f\left(X\right)=e^{-\lambda}\lambda^{x}/x!$ e $E\left(X\right)=\lambda$. Então obtemos $n$ valores a partir da FDP e construímos uma amostra, a FDP conjunta da amostra é:
+
+\[
+L\left(\theta;x_{1},\dots,x_{n}\right)=\prod_{i}\frac{e^{-\lambda}\lambda^{x_{i}}}{x_{i}!}
+\]
+
+Tirando o logaritmo:
+
+\begin{align*}
+\log L & =\sum\left[-\lambda\log e+x_{i}\log\lambda-\log x_{i}!\right]\\
+ & =-\lambda n+\sum x_{i}\log\lambda-\sum\log x_{i}!
+\end{align*}
+
+Diferenciando com respeito a $\lambda$ e igualando a zero:
+
+\[
+0=-n+\frac{\sum x_{i}}{\widehat{\lambda}}
+\]
+
+Então $\widehat{\lambda}=\frac{\sum x_{i}}{n}=\overline{X}$, sendo que $\overline{X}$ é o estimador de $E\left(X\right)$.
+
+\textbf{Método dos momentos: }O método dos momentos baseia-se no chamado princípio da analogia, segundo o qual as propriedades observadas na amostra devem reproduzir, ao menos aproximadamente, as propriedades teóricas da população. Em termos matemáticos, isso significa substituir os momentos (como a média $E(X)$ por exemplo) pelos seus correspondentes amostrais (como a média $\overline{X}$). Assim, os parâmetros desconhecidos da distribuição são estimados impondo que os momentos teóricos coincidam com os momentos observados na amostra. A justificativa desse procedimento decorre da Lei dos Grandes Números, segundo a qual a média amostral converge para a média populacional à medida que o tamanho da amostra aumenta.
+
+Por exemplo, considere uma variável aleatória com distribuição exponencial, $X\sim\text{Exp}(\lambda)$. Nesse caso, a média populacional é dada por $E(X)=\frac{1}{\lambda}$. Pelo método dos momentos, substituímos a média populacional pela média observada na amostra, isto é, $\overline{X}=\frac{1}{\lambda}$ e obtemos o estimador pelo método dos momentos: $\hat{\lambda}=\frac{1}{\overline{X}}$. Assim, o parâmetro desconhecido da distribuição é estimado a partir da média observada na amostra. Mas eu não me aprofundarei nem no princípio da analogia, e nem no método dos momentos generalizados.
+
+\textbf{Propriedades de pequenas amostras:} Por trás desses conjuntos de propriedades está a noção de que um estimador possui uma distribuição de probabilidade.
+
+\textbf{Sem viés}: $E\left(\widehat{\theta}\right)=\theta$, sendo $\text{viés}=E\left(\widehat{\theta}\right)-\theta$
+
+\textbf{Variância mínima}: dizemos que $\widehat{\theta}$ é um estimador de variância mínima se sua variância for menor que a de qualquer outro estimador.
+
+\textbf{Melhor estimador não enviesado} \textbf{(ou estimador eficiente)}: Se é o estimador de menor variância e sem viés.
+
+\textbf{Linearidade}: Um estimador $\widehat{\theta}$ é um estimador linear se ele é um função linear das observações da amostra. Como por exemplo, a média da amostra é uma função linear dos valores de $X$ :$\overline{X}=\frac{1}{n}\sum X_{i}$.
+
+\textbf{Melhor estimador linear não viesado}: se o estimador é linear, não viesado e possui uma variância mínima.
+
+\textbf{Estimador com erro quadrado médio mínimo (MSE)}: Definimos $MSE=E\left[\left(\widehat{\theta}-\theta\right)\right]^{2}$
+
+Enquanto a variância mensura a dispersão da distribuição de $\widehat{\theta}$ em torno da média, o MSE mensura a dispersão em torno do valor verdadeiro. E relação pode ser escrita como:
+
+\[
+MSE=E\left[\left(\widehat{\theta}-\theta\right)^{2}\right]=var\left(\widehat{\theta}\right)+\left[vies\left(\widehat{\theta}\right)\right]^{2}
+\]
+
+Na prática, o critério de mínimo erro quadrático médio (MSE) é frequentemente utilizado quando se deseja equilibrar simultaneamente viés e variância, permitindo inclusive a utilização de estimadores viesados caso isso resulte em menor erro total de estimação.
+
+\textbf{Propriedades de grandes amostras ou assintóticas:}
+
+Um estimador pode não satisfazer uma ou mais propriedades em amostra pequena, mas à medida que o tamanho da amostra cresce, o estimador pode possuir várias propriedade estatísticas desejáveis. 
+
+\textbf{Ausência assintótica de viés}: $\lim_{n\rightarrow\infty}E\left(\widehat{\theta}_{n}\right)=\theta$
+
+\textbf{Consistência}: Quando o estimador $\widehat{\theta}$ se aproxima do valor verddeiro de $\theta$ à medida que o tamanho da amostra torna-se cada vez maior. Diz-se, mais formalmente, que $\widehat{\theta}$ é um estimador consistente de $\theta$ se a probabilidade de que o valor absoluto da diferença entre $\widehat{\theta}$ e $\theta$ seja menor do que $\delta$, isto é, uma quantidade positiva arbitrariamente pequena, aproxima-se de 1 quando $n$ tende ao infinito. Simbolicamente:
+
+\[
+\lim_{n\rightarrow\infty}P\left\{ \left|\widehat{\theta}-\theta\right|<\delta\right\} \quad\delta>0
+\]
+
+Isso é frequentemente expresso como:
+
+\[
+\underset{n\rightarrow\infty}{\text{plim}}\widehat{\theta}=\theta
+\]
+
+Condição suficiente: tanto o viés $\lim_{n\rightarrow\infty}E\left(\widehat{\theta}_{n}\right)=\theta$ quanto a variância $\lim_{n\rightarrow\infty}var\left(\widehat{\theta}_{n}\right)=0$ devem tender a zero a medida que o tamanho da amostra cresce. Ou seja, o MSE deve tender a zero a medida que $n$ cresce.
+
+Algumas propriedades dignas de nota:
+\begin{enumerate}
+\item Invariância (propriedade de Slutsky): Se $\widehat{\theta}$ for consistente e $h\left(\widehat{\theta}\right)$ for qualquer função que dependa apenas de $\widehat{\theta}$: $\underset{n\rightarrow\infty}{\text{plim}}h\left(\widehat{\theta}\right)=h\left(\theta\right)$
+\item Se $b$ é uma constante: $\underset{n\rightarrow\infty}{\text{plim}}b=b$
+\item Se $\widehat{\theta}_{1}$ e $\widehat{\theta}_{2}$ forem estimadores consistemtes:
+
+\begin{align*}
+\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{1}+\widehat{\theta}_{2}\right) & =\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{1}\right)+\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{2}\right)\\
+\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{1}\widehat{\theta}_{2}\right) & =\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{1}\right)\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{2}\right)\\
+\underset{n\rightarrow\infty}{\text{plim}}\left(\frac{\widehat{\theta}_{1}}{\widehat{\theta}_{2}}\right) & =\frac{\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{1}\right)}{\underset{n\rightarrow\infty}{\text{plim}}\left(\widehat{\theta}_{2}\right)}
+\end{align*}
+
+\item \textbf{Assintoticamente eficiente}: A variância da distribuição assintótica (quando $n\rightarrow\infty$) é chamada de variância assintótica de $\widehat{\theta}$. Então se $\widehat{\theta}$ for consistente e sua variância assintótica for menor do que a variância assintótica de todos os estimadores consistentes de $\theta$ então $\widehat{\theta}$ é chamado de assintoticamente eficiente.
+\item Normalidade assintótica: o estimador $\widehat{\theta}$ é considerado ter distribuição assintoticamente normal se sua distribuição amostral tende a aproximar-se da distribuição normal à medida que o tamanho da amostra cresce.
+\end{enumerate}
+\textbf{Inferência estatística: estando as hipóteses}
+
+O problema do teste de hipótese pode ser estabelecido da seguinte forma: admita que tenhamos uma variável aleatória $X$ com uma FDP conhecida f$\left(x,\theta\right)$, em que $\theta$ é o parâmetro da distribuição. Ao obtermos uma amostra aleatória de tamanho $n$, obtemos o estimador pontual $\widehat{\theta}$. 
+
+Uma vez que o verdadeiro $\theta$ é raramente conhecido, levantamos a questão: o valor observado do estimador, obtido a partir da amostra, é plausível sob a distribuição que ele teria caso $\theta=\theta^{*}$. Isto é, a amostra poderia ter sido gerada por uma distribuição cujo parâmetro verdadeiro é $\theta^{*}$?
+\begin{itemize}
+\item \textbf{Hipótese nula (ou sustentada) $H_{0}$}: Na linguagem de teste da hipótese, ela afirma que os dados observados são compatíveis com a distribuição que o estimador $\widehat{\theta}$ teria caso o verdadeiro valor do parâmetro fosse $\theta=\theta^{*}$. 
+\item \textbf{Hipótese alternativa} $H_{1}$ : A hipótese nula deve ser testada contra uma hipótese alternativa, por exemplo, $H_{1}$ $\theta\neq\theta^{*}$, ao qual afirma que o verdadeiro valor do parâmetro é diferente de $\theta^{*}$. Neste caso, a amostra observada não faz muito sentido se o parâmetro verdadeiro for $\theta^{*}$.
+\end{itemize}
+A hipótese nula e a alternativa podem ser simples ou compostas. Hipótese simples é quando se especifica os valor dos parâmetros da distribuição (ex.: $\sigma=2$), e hipóetse composta quando não (ex.: $\sigma>2$).
+
+Para testar a hipótese nula, utilizamos a informação da amostra para obter o que é chamado de estatística de teste e então utilizamos a abordagem do intervalo de confiança ou do teste de significância para testar a hipótese nula. Camos trabalhar com um exemplo. Vamos supor que temos uma população de homens com altura média de $\mu$ e desvio padrão $\sigma=2.5$. Uma amostra de 100 homens foi tirada dessa população com média de $\overline{X}=67$. 
+
+Ou seja:
+
+\begin{align*}
+X\sim N\left(\theta,\sigma^{2}\right) & =N\left(\mu,2.5^{2}\right)\\
+\overline{X}=67 & n=100
+\end{align*}
+
+E vamos admitir que:
+
+\begin{align*}
+H_{0}: & \mu=\mu^{*}=69\\
+H_{1}: & \mu\neq69
+\end{align*}
+
+A questão é: poderia a amostra com $\overline{X}=67$ (a estatística de teste), ter sido extraída da população com o valor médio de $\mu=69$?
+
+\textbf{Abordagem do intervalo de confiança}
+
+Tendo então a variável aleatória $X\sim N\left(\theta,\sigma^{2}\right)$ e tendo a estatística de teste $\overline{X}\sim\left(\mu,\sigma^{2}/n\right)$. Podemos então estabelecer um intervalo de confiança $\left(100-\alpha\right)$ para $\mu$, e verificar se esse intervalo inclui $\mu=\mu^{*}$. Se incluir não podemos rejeitar a hipótese nula, se não incluir, podemos rejeitar. Assim se $\alpha=0.05$ temos um intervalo de confiança de $95\%$ e se esse intervalo incluir $\mu^{*}$ não podemos rejeitar a hipótese nula e esperamos que 95 entre 100 intervalos assim estabelecidos deverão incluir $\mu^{*}$\footnote{Mas ainda há um risco de que no específico caso que realizarmos este teste, seja um dos 5\% que não incluiria $\mu^{*}.$}.
+
+Usando os valores conhecidos de $\sigma$ e $n$$\overline{X}\sim N\left(\mu,\sigma^{2}/n\right)=N\left(\mu,\left(0.25\right)^{2}\right)$, Ou seja, $\sigma_{\overline{X}}=0.25$ é o erro padrão de $\overline{X}$. Como o intervalo entre $\overline{X}\pm1.96\sigma_{\overline{X}}$ cobre aproximadamente 95\% da area sob a normal, então o intervalo de confiança de 95\% de que $\mu$ esteja no intervalo é $\left[66.51,67.49\right]$. Uma vez que estabelecemos o intervalo, tudo que temos que fazer é verificar se $\mu$ está nesse intervalo. Se estiver não podemos rejeitara hipótese nula, se não estiver, podemos rejeitar. Como este intervalo não inclui $\mu^{*}=69$ então rejeitamos a hipótese nula com um coeficiente de confiança de 95\%\footnote{Mas observe que neste caso se a hipótese for que $\mu=\overline{X}$, nunca rejeitaríamos a hipótese. A hipótese então deve ser formulada independentemente dos dados observados.}.
+
+Na linguagem do teste de hipóteses, o intervalo de confiança é chamada de região de aceitação, e as regiões fora de região crítica (ou região de rejeição). Os limites inferiores e superiores são chamados de valores críticos.
+
+Temos ainda dois tipos de erros:
+\begin{itemize}
+\item \textbf{Erro do tipo 1}: rejeitar $H_{0}$ quando ela é verdadeira.
+\item \textbf{Erro do tipo 2:} Não rejeitar $H_{0}$quando ela é falsa.
+\end{itemize}
+\textbf{Tipos de erro}
+
+A abordagem clássica é supor que um erro do tipo 1 seja seja mais sério do que um erro do tipo 2. Ou seja primeiro se minimiza o erro do tipo 1, e então minimiza um erro do tipo 2 quando possível.
+
+Temos:
+\begin{itemize}
+\item $\alpha$: \textbf{nível de significância} é a probabilidade de um erro do tipo 1.
+\item $\beta$ é a probabilidade de um erro do tipo 2.
+\begin{itemize}
+\item Potência de teste: a probabilidade de não cometer um erro do tipo 2. Capacidade de rejeitar uma falsa hipótese nula.
+\end{itemize}
+\end{itemize}
+Ou seja fixamos $\alpha$ e nívels como $0.01$ ou $0.05$ e maximizamos a potência de teste. Vamos tomar novamente um exemplo.
+
+Vamos tomar $X\sim\left(\mu,100\right)$, uma amostra com 25 observações e considerar uma hipótese $H_{0}:\mu=50$. Temos também então $\overline{X}\sim N\left(\mu,100/25\right)$. Considerando um estimador com essa variância que tivesse média de $50$, a região de confiança seria $\pm1.6\sqrt{100/25}$ em torno da média, ou seja entre $46.08$ e $53.2$, rejeitamos então a hipótese nula de que a média é verdadeira se o valor da média da amostra estiver fora desse intervalo. Lembrando que obtemos isso a partir de que:
+
+\[
+P\left(\overline{X}-a\leq\mu\leq\overline{X}+a\right)=P\left(\mu-a\leq\overline{X}\leq\mu+a\right)
+\]
+
+Porém queremos saber a probabilidade de que $X$ esteja situado na região crítica se $\mu_{v}$ verdadeiro possuir um valor diferente de $50$ Vamos considerar três hitpóeses alternativas: $48,52,56.$ Nesse caso, considerando que $X$ tem 95\% de cair no intervalo $\left[46.08,53.2\right]$ de acordo com nossa hipótese, tem 5\% de chance de cair fora do intervalo e ser rejeitado se $\mu_{v}=50$. Podemos ver que caso a hipótese nula esteja correta, $\alpha$ nos a probabilidade de rejeitar a hipótese nula mesmo ela sendo verdadeira (erro do tipo I).
+
+Aqui devemos nos atentar ao fato de que, em muitos testes estatísticos implementados em softwares como o Stata (por exemplo, o teste de correlação de Pearson), formulamos uma hipótese nula que representa ausência de efeito ou relação. No caso do teste de Pearson, a hipótese nula usual é a ausência de correlação linear na população, portanto quanto maior a probabilidade de que os dados observados serem compatíveis com a hipótese nula, mais fraco estatisticamente consideramos o resultado do nosso teste. Assim, quanto menor o nível de significância menos propensos estamos de cometer um erro do tipo I, isto é, descartar a hipótese nula mesmo ela sendo verdadeira. Se adotamos um valor muito baixo de $\alpha$ e mesmo assim rejeitamos a hipótese nula, supomos que é porque ela provavelmente é realmente falsa\footnote{Ainda que nunca possa ser $\alpha=0$, pois isso implicaria em nunca rejeitar a hipótese nula para nunca cometer nenhum erro do tipo I.}.
+
+Mas se $\mu_{v}=48$ então sobre para 17\% a chance de rejeitar a hipótese nula , também temos 17\% para caso seja $\mu_{v}=52$ e 85\% caso seja $\mu_{v}=0.56$. Mas veja bem, se fosse $\mu=48$, então em cada 100 execuções, 83 vezes nossa média da amostra retornaria um um valor dentro do intervalo, ou seja, eu não rejeitaria a hipótese nula, mesmo estando errada e cometeríamos um erro do tipo II, assim, não rejeitar a hipótese nula não significa demonstrar que ela seja verdadeira; significa apenas que os dados observados não foram suficientemente improváveis sob a hipótese considerada. Da mesma forma, rejeitar a hipótese nula não significa demonstrar que ela seja falsa, mas sim que os dados observados foram suficientemente improváveis sob essa hipótese segundo o critério de significância adotado.
+
+Podemos notar que pela natureza aleatória do experimento, conforme diminuimos $\alpha$, aumentamos a região de aceitação e podemos acabar aumentando a quantidade de erro do tipo II. Agora, vamos resumir os passos envolvidos no teste da hipótese estatística:
+\begin{itemize}
+\item \textbf{Passo 1}. Formule a hipótese nula $H_{0}$ e a hipótese alternativa $H_{1}$ (por exemplo: $H_{0}:\mu=69$ e $H_{1}:\mu\neq69$). 
+\item \textbf{Passo 2}. Selecione a estatística de teste (por exemplo: $\overline{X}$ ).
+\item \textbf{Passo 3}. Determine a distribuição de probabilidade da estatística de teste (por exemplo: $\overline{X}\sim N\left(\mu,\sigma^{2}/n\right)$. 
+\item \textbf{Passo 4}. Escolha o nível de significância $\alpha$ (a probabilidade de cometer um erro do tipo I: rejeitar $H_{0}$ quando ela é verdadeira).
+\item \textbf{Passo 5}. Utilizando a distribuição de probabilidade da estatística de teste, estabeleça um valor de confiança$100(1-\alpha)\%$. Se o valor hipotetizado em $H_{0}$ (por exemplo: $\mu=69$) pertencer ao intervalo de confiança, não rejeitamos $H_{0}$ ao nível $\alpha$. Porém, se ele estiver fora desse intervalo (ou seja, dentro da região de rejeição), pode-se rejeitar a hipótese nula. Tenha em mente que, ao rejeitar uma hipótese nula, corre-se o risco de estar errado em uma porcentagem $\alpha$, e ao não rejeitar também temos uma chance $\beta$ de estarmos errados.
+\end{itemize}
+
+\textbf{Valor p ou nível exato de significância}
+
+Existe uma alternativa mais informativa do que simplesmente pré-selecionar níveis arbitrários de significância $\alpha$. Além disso, os exemplos anteriores assumiam que a variância da população era conhecida, hipótese frequentemente irrealista, já que na prática normalmente não conhecemos nem a média nem a variância populacional.
+
+O valor-p (ou nível exato de significância) de uma estatística de teste é definido como o menor nível de significância ao qual a hipótese nula pode ser rejeitada. Para entender essa ideia, suponha a hipótese nula $H_{0}:\mu=a.$ A partir de uma amostra, calculamos a média amostral $\overline{X}$e para um dado nível de significância $\alpha$, podemos construir um intervalo de confiança de nível$\left(1-\alpha\right)\%$. Se o valor hipotético $a$ estiver fora desse intervalo, rejeitamos $H_{0}$; caso contrário, não a rejeitamos.
+
+Caso tivéssemos rejeitado a hipótese nula, poderíamos imaginar diminuir $\alpha$. Como isso aumenta o intervalo de confiança, torna-se mais difícil rejeitar $H_{0}$. Nesse contexto, o valor-$p$ representa exatamente o ponto limite: ele é o menor valor de $\alpha$ para o qual a hipótese nula ainda seria rejeitada pelos dados observados. Ou seja, quanto menor o valor-p, maior precisaria ser o intervalo de confiança para que $H_{0}$ deixasse de ser rejeitada. Equivalentemente, isso significa que os dados observados são menos compatíveis com a hipótese nula, pois seriam mais improváveis caso $H_{0}$ fosse verdadeira. Ou seja, para um valor-p de $5\%$ por exemplo, aassumindo que a hipótese nula seja verdadeira, existe menos de 5\% de probabilidade de observar um resultado tão extremo quanto o obtido.
+
+Como mencionado, em grande parte dos testes estatísticos, a hipótese nula $H_{0}$ representa uma hipótese de ausência de efeito, ausência de diferença ou ausência de relação entre variáveis. Nesse contexto, o objetivo do teste é procurar evidências contra a hipótese nula. Assim, quanto menor o valor-p, menos compatíveis os dados observados parecem ser com a hipótese nula e, portanto, maior a evidência contra $H_{0}$. Entretanto, é importante ressaltar que o teste frequentista não prova a hipótese alternativa; ele apenas avalia quão incompatíveis os dados observados são com a hipótese nula.
+
+\textbf{Abordagem do teste da significância}
+
+Vamos abordar uma variável aleatória normal normalizada:
+
+\[
+Z=\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim N\left(0,1\right)
+\]
+
+$\overline{X}$ e $n$ são conhecidos, e se $\sigma$ for especificado e considerarmos um $\mu=\mu^{*}$específico então podemos calcular a probabilidade de ter um valor igual ou maior que $Z$. Se a probabilidade for muito pequena, então podemos rejeitar a hipótese nula, isto é, se a hipótese nula fosse verdadeira, deveríamos ter uma probabilidade alta de obter $Z$ ou maior. Voltando ao nosso exemplo, suponha a hipótese nula $H_{0}:\mu=69$. Nesse caso,
+
+\[
+Z=\frac{67-69}{2.5/\sqrt{100}}=-8
+\]
+.
+
+A probabilidade de obter um valor de $Z$ tão extremo quanto $\left|8\right|$ (ou mais), assumindo que $H_{0}$ seja verdadeira, é extremamente pequena. Isso significa que, se de fato $\mu=69$, seria extremamente improvável observar uma média amostral tão distante quanto $\overline{X}=67$. Portanto, suspeitamos que nossa amostra não provenha de uma população cuja média verdadeira seja $69$.
+
+Na linguagem dos testes de hipótese, dizemos que uma estatística de teste é estatisticamente significativa quando a probabilidade de observar um resultado tão extremo quanto o obtido é menor ou igual ao nível de significância $\alpha$, isto é, a probabilidade máxima tolerada de cometer um erro do tipo I (rejeitar $H_{0}$ quando ela é verdadeira). Análogo a discussão anterior, assumindo que a hipótese é verdadeira se escolhemos $\alpha=0.05$. temos um intervalo de confiança de 95\%, mas ainda sim, 5\% dos dados coletados aleatoriamente poderiam ter um valores extremos fora do intervalo e rejeitaríamos a hipótese nula mesmo sendo verdadeira. Se definirmos $\alpha=0.05$,então rejeitamos a hipótese nula sempre que a probabilidade associada ao valor observado da estatística (ou maior) de teste for menor que $5\%$. Em nosso exemplo, a probabilidade de obter um valor tão extremo quanto $Z=-8$ é muito menor que $2.5\%$ em cada cauda da distribuição normal. Portanto, consideramos o resultado estatisticamente significativo e rejeitamos a hipótese nula de que o verdadeiro valor de $\mu$ seja $69$. Na prática então esta abordagem nos dá p-value.
+
+A estrutura geral é então:
+\begin{itemize}
+\item \textbf{Passo 1.} Formule a hipótese nula $H_{0}$ e a hipótese alternativa $H_{1}$
+\item \textbf{Passo 2}. Selecione a estatística de teste.
+\item \textbf{Passo 3}. Determine a distribuição de probabilidade da estatística de teste.
+\item \textbf{Passo 4}.Calcular a probabilidade, assumindo $H_{0}$ verdadeira, de obter um resultado tão extremo quanto o observado.
+\end{itemize}
+
 \bibliographystyle{plain}
 \bibliography{tese,Artigo1/references,Artigo2/referencias}
 
