@@ -1,0 +1,3321 @@
+#LyX 2.5 created this file. For more info see https://www.lyx.org/
+\lyxformat 643
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass revtex4-1
+\begin_preamble
+%\documentclass[11pt,a4paper]{article}
+%\documentclass[11pt,aps,pre,superscriptaddress,notitlepage]{revtex4-1}
+%\documentclass[aps,twocolumn]{revtex4-2}
+
+\PassOptionsToPackage{british}{babel}
+\usepackage{babel}
+\usepackage{epsfig}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{orcidlink}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage[title]{appendix}
+
+
+ 
+
+\usepackage{soul}%strike text
+\newcommand{\R}{\color{red}}
+\newcommand{\B}{\color{blue}}
+\newcommand{\G}{\color{teal}}
+%\newcommand{\new}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+ 
+ 
+\end_preamble
+\use_default_options false
+\begin_modules
+enumitem
+\end_modules
+\maintain_unincluded_children no
+\language british
+\language_package default
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize a4
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plainnat
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\crossref_package prettyref
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\backgroundcolor none
+\fontcolor none
+\notefontcolor lightgray
+\boxbgcolor red
+\table_border_color default
+\table_odd_row_color default
+\table_even_row_color default
+\table_alt_row_colors_start 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style british
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\docbook_mathml_version 0
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Inequality in a model of capitalist economy
+\end_layout
+
+\begin_layout Subsection
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:introduction"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The search of a first-principle model capable of elucidating the emergence and robustness of Pareto's law
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "paretonovo"
+literal "false"
+
+\end_inset
+
+ is a central challenge in the field of Econophysics.
+ Actually,
+ as originally reported by Pareto,
+ income and wealth real-world present two regimes:
+ the upper tail follows a power-law (Pareto's law),
+ while the lower values display exponential behavior 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dragulescu2001,yakovenko2023"
+literal "false"
+
+\end_inset
+
+.
+ Such first-principle model would provide a fundamental understanding of the mechanisms governing these properties,
+ transcending mere empirical observations to reveal the possible underlying principles that drive economic inequality and its evolution over time.
+ In this regard,
+ agent-based models
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "chakraborti2011"
+literal "false"
+
+\end_inset
+
+,
+ particularly kinetic exchange models
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "metzler2023"
+literal "false"
+
+\end_inset
+
+,
+ allow for the simulation of transactions among agents —
+such as individuals,
+ firms,
+ or other economic entities—
+ that drive economic dynamics and help identify the underlying processes shaping these systems.
+ This approach has paved the way for numerous efforts over the past few decades to explain a variety of phenomena,
+ particularly the unequal distribution of wealth (see,
+ for instance,
+ 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "boghosian2014a,metzler2019,chakraborti2000,dragulescu2000,bouchaud2000"
+literal "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "yakovenko2009,chakraborti2011,chakrabarti2013"
+literal "false"
+
+\end_inset
+
+ for reviews).
+ It is well known that unbiased random exchanges result in a condensed phase populated by the poorest agents
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "boghosian2014a,Cardoso2023"
+literal "false"
+
+\end_inset
+
+.
+ To prevent such condensation and generate realistic distributions,
+ extra mechanisms or regulatory controls have been introduced.
+ These mechanisms can include the introduction of specific tax structures
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "LIMA2022,Calvelli2023,Dias2024"
+literal "false"
+
+\end_inset
+
+ or other wealth constraints,
+ which,
+ while effective in shaping outcomes,
+ can make the results less purely emergent and more dependent on externally imposed rules.
+ Let us give some examples.
+ In random asset exchange models,
+ the introduction of savings can mitigate condensation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "chakraborti2000"
+literal "false"
+
+\end_inset
+
+,
+ stabilizing the wealth distribution with a most probable value away from zero.
+ The two-regime wealth/income distributions can be reproduced by the introduction of disorder in saving propensity
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Chatterjee2004"
+literal "false"
+
+\end_inset
+
+,
+ and also by wealth-based advantage mechanisms
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Calvelli2023,Vallejos2018"
+literal "false"
+
+\end_inset
+
+.
+ When networks are considered instead of the more common mean-field setup (where all agents are potentially connected),
+ topology can influence the wealth distribution
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "KOHLRAUSCH2024"
+literal "false"
+
+\end_inset
+
+.
+ Moreover,
+ the power-law exponent can be altered by diverse factors,
+ for instance by the distribution of saving propensities
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "AYDINER2018"
+literal "false"
+
+\end_inset
+
+,
+ or by network position exchanges
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "metzler2019"
+literal "false"
+
+\end_inset
+
+.
+ In the present paper,
+ using agent based simulations,
+ we investigate a model that,
+ simultaneously gives rise to two key phenomena:
+ the emergence of the dual-regime structure in wealth and income distributions,
+ alongside the development of a two-class society.
+\end_layout
+
+\begin_layout Standard
+In his seminal work 
+\begin_inset Quotes bls
+\end_inset
+
+The Social Architecture of Capitalism
+\begin_inset Quotes brs
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "WRIGHT2005589"
+literal "false"
+
+\end_inset
+
+,
+ Ian Wright explores the intricate dynamics that results in the self-organization of a capitalist society with a given distribution of wealth among its members.
+ Using an agent-based model known as Social Architecture (SA) model,
+ Wright provides a theoretical framework aiming to explain the ubiquitous presence of Pareto's law,
+ which reflects that a small percentage of a population controls a large portion of a particular resource such as wealth or income.
+ Wright's work offers insights into how individual interactions and institutional structures collectively shape economic distributions.
+ The model effectively reproduces the so called,
+ 
+\begin_inset Quotes bls
+\end_inset
+
+80/20 rule
+\begin_inset Quotes brs
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+ The 
+\begin_inset Formula $80/20$
+\end_inset
+
+ rule derives its name from Pareto's observation of the Italian economy,
+ where he found that roughly 20% of the population owned 
+\begin_inset Formula $\sim80$
+\end_inset
+
+% of the resources.
+ The term is used generically,
+ although the ratio 
+\begin_inset Formula $f:(1-f)$
+\end_inset
+
+ may vary across different countries and societies,
+ reflecting a broader pattern in which a small proportion of inputs or entities accounts for a large share of outcomes or resources
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "boghosian2014,boghosian2014a"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+,
+ but,
+ most notably,
+ it naturally generates the two-pattern shape of the wealth or income distributions (exponential-like,
+ for low wealth/income,
+ power-law for high wealth/income).
+\end_layout
+
+\begin_layout Standard
+Wright compares his results with real data,
+ demonstrating that the model captures a significant portion of the dynamics of the capitalist system.
+ In addition to the two regimes of wealth and income distributions,
+ the model can reproduce the statistics of other economic indicators,
+ such as firm size (power law),
+ firm size growth rate (double exponential),
+ firm demises per month (log-normal),
+ and recession duration (exponential).
+ These patterns emerge naturally and robustly from the simple set of rules that define the model.
+ Hence,
+ the SA model lays the foundation for exploring various economic phenomena,
+ starting from microscopic (or agent-based) dynamics controlled by a few parameters.
+ Several follow-up studies have been published
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Cottrell2009,WRIGHT2010,LAVICKA2010,ISAAC2019,VILLA2022,MAX2024"
+literal "false"
+
+\end_inset
+
+,
+ but the SA model itself has not been thoroughly analyzed.
+\end_layout
+
+\begin_layout Standard
+Our present goal is to investigate aspects related to inequality in income and wealth distributions using the SA model.
+ We aim to conduct a comprehensive examination of the role played by the model parameters as well as certain details of Wright's original model.
+ Specifically,
+ we seek to answer the following questions:
+ How do the distributions of income and wealth across different classes depend on parameters such as system size,
+ total wealth,
+ and average wage?
+ How robust are these results?
+ Are they universal and,
+ if so,
+ to what extent?
+ Or are they sensitive to key parameters,
+ and if so,
+ to what degree?
+\end_layout
+
+\begin_layout Standard
+By analyzing the social and economic structures that contribute to income disparities and wealth concentration in capitalist societies,
+ we aim to identify the key parameters and dynamic rules that give rise to Pareto-like distributions and other significant economic measurements.
+ Ultimately,
+ this paper seeks to contribute to a broader understanding of inequality and concentration phenomena in socio-economic systems.
+\end_layout
+
+\begin_layout Section
+Model
+\end_layout
+
+\begin_layout Standard
+The model implemented in this paper is the original SA proposed by Ian Wright
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "WRIGHT2005589"
+literal "false"
+
+\end_inset
+
+.
+ However,
+ we have chosen a slightly different notation and terminology to align with those commonly used in econophysics and agent-based modeling.
+ The society consists of 
+\begin_inset Formula $N$
+\end_inset
+
+ agents (which are labeled 
+\begin_inset Formula $i=1,\dots,N$
+\end_inset
+
+ and are not necessarily individuals,
+ but can represent other economic entities),
+ where each agent 
+\begin_inset Formula $i$
+\end_inset
+
+ has a positive integer quantity 
+\begin_inset Formula $w_{i}(t)$
+\end_inset
+
+ representing wealth,
+ which varies over time.
+ Here wealth is defined as an amount of money,
+ assets or goods that can be eventually transformed into money,
+ owned by each person in a population.
+ Although this quantity does not need to be an integer,
+ we follow the original proposal,
+ as this distinction is not critical to our analysis.
+ The size of the population,
+ 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ and the total wealth of the system,
+ 
+\begin_inset Formula $W=\sum^{N}_{i=1}w_{i}(t)$
+\end_inset
+
+,
+ are conserved,
+ so the wealth per capita 
+\begin_inset Formula $\overline{w}=W/N$
+\end_inset
+
+ is constant.
+ Agents can be in one of three classes:
+ employees (working class),
+ employers (capitalist class),
+ or unemployed.
+ Then,
+ each agent is characterized by an index 
+\begin_inset Formula $e_{i}\neq i$
+\end_inset
+
+,
+ which identifies their employer:
+ 
+\begin_inset Formula $e_{i}=j$
+\end_inset
+
+ if agent 
+\begin_inset Formula $j$
+\end_inset
+
+ is the employer of agent 
+\begin_inset Formula $i$
+\end_inset
+
+,
+ and 
+\begin_inset Formula $e_{i}=0$
+\end_inset
+
+ if agent 
+\begin_inset Formula $i$
+\end_inset
+
+ is unemployed or employer.
+ Therefore,
+ at any time 
+\begin_inset Formula $t$
+\end_inset
+
+,
+ the state of the entire economy is defined by the set of pairs 
+\begin_inset Formula $S(t)=\left\{ \left(w_{i}(t),e_{i}(t)\right):1\leq i\leq N\right\} $
+\end_inset
+
+.
+ A firm consists of a set of employees and an employer,
+ which is the only owner of the firm.
+\end_layout
+
+\begin_layout Standard
+The model has four parameters:
+ system size 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ and the minimum (
+\begin_inset Formula $p_{a}$
+\end_inset
+
+) and maximum (
+\begin_inset Formula $p_{b}$
+\end_inset
+
+) wages employees can receive.
+ Unless stated otherwise,
+ all random selections (agents,
+ wealth aliquots,
+ wages,
+ etc.) are uniform.
+\end_layout
+
+\begin_layout Standard
+Besides agents (employees and employers),
+ the model includes a market value 
+\begin_inset Formula $V$
+\end_inset
+
+,
+ representing goods and services produced by firms.
+ 
+\begin_inset Formula $V$
+\end_inset
+
+ grows with consumer expenditures and decreases with firm revenues.
+ Firms compete for a share of this pool rather than receiving direct payments.
+\end_layout
+
+\begin_layout Standard
+In the initial state,
+ all agents have the same wealth (
+\begin_inset Formula $w_{i}(0)={W}/N$
+\end_inset
+
+) and are all unemployed (
+\begin_inset Formula $e_{i}(0)=0$
+\end_inset
+
+).
+ At each time step (which we set to be a month as in the original paper),
+ the following six steps are executed 
+\begin_inset Formula $N$
+\end_inset
+
+ times,
+ to give each agent the opportunity to be active once per month on average.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+leftmargin=*
+\end_layout
+
+\end_inset
+
+
+\series bold
+\lang english
+Agent selection
+\series default
+\lang british
+ – An agent 
+\begin_inset Formula $i$
+\end_inset
+
+ is randomly selected.
+ Then,
+ the following rules are applied,
+ being 3,
+ 4 and 6 related to wealth exchanges,
+ while rules 2 and 5 are related to changes of status.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+\lang english
+Hiring
+\series default
+\lang british
+ – Only if 
+\begin_inset Formula $i$
+\end_inset
+
+ is unemployed,
+ then:
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+leftmargin=*
+\end_layout
+
+\end_inset
+
+A potential employer 
+\begin_inset Formula $j$
+\end_inset
+
+ is selected from the set 
+\begin_inset Formula $H$
+\end_inset
+
+ of all agents except the employees,
+ with probability 
+\begin_inset Formula $P(j)=w_{j}/\sum_{n\in H}w_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $w_{j}\ge\overline{p}$
+\end_inset
+
+ (average wage,
+ or salary,
+ from the distribution of wages),
+ then:
+ the agent 
+\begin_inset Formula $i$
+\end_inset
+
+ is hired by 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $j$
+\end_inset
+
+ was unemployed,
+ it becomes hence an employer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% 
+\end_layout
+
+\begin_layout Plain Layout
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+\lang english
+Expenditure
+\series default
+\lang british
+ (on goods and services) – A random integer 
+\begin_inset Formula $w$
+\end_inset
+
+ in the range 
+\begin_inset Formula $\left[0,w_{k}\right]$
+\end_inset
+
+ is selected for a random agent 
+\begin_inset Formula $k\neq i$
+\end_inset
+
+.
+ This amount,
+ representing the agent's expenditure,
+ is subtracted from their wealth and added to the market value,
+ so:
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+w_{k} & \to & w_{k}-w,\\
+V & \to & V+w.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+\lang english
+Market revenue
+\series default
+\lang british
+ (from sales of goods and services) – Only if 
+\begin_inset Formula $i$
+\end_inset
+
+ is not unemployed,
+ a random integer 
+\begin_inset Formula $w\in[0,V]$
+\end_inset
+
+ is transferred from the market value to the agent 
+\begin_inset Formula $i$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+ &  & V\to V-w,\\
+%
+\end{eqnarray*}
+
+\end_inset
+
+In all cases,
+ 
+\begin_inset Formula $w$
+\end_inset
+
+ counts as revenue for the firm owner,
+ either if 
+\begin_inset Formula $i$
+\end_inset
+
+ is the owner itself or if 
+\begin_inset Formula $i$
+\end_inset
+
+ is an employee (in which case 
+\begin_inset Formula $e_{i}$
+\end_inset
+
+ is the owner).
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+\lang english
+Firing –
+\series default
+\lang british
+ Only if 
+\shape italic
+i
+\shape default
+ is an employer,
+ then:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+leftmargin=*
+\end_layout
+
+\end_inset
+
+The number 
+\begin_inset Formula $m$
+\end_inset
+
+ of employees to be fired is defined according to the formula 
+\begin_inset Formula $m=max(n_{i}-\frac{w_{i}}{\overline{p}},0)$
+\end_inset
+
+,
+ where 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ is the number of agents employed by agent 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+A number 
+\begin_inset Formula $m$
+\end_inset
+
+ of agents from the list of 
+\begin_inset Formula $i$
+\end_inset
+
+'s employees are randomly selected to be fired.
+\end_layout
+
+\begin_layout Enumerate
+Furthermore,
+ if all workers are fired,
+ then the employer 
+\begin_inset Formula $i$
+\end_inset
+
+ becomesunemployed.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+\lang english
+Wage payment –
+\series default
+\lang british
+ Apply only when agent 
+\begin_inset Formula $i$
+\end_inset
+
+ is an employer.
+ For each agent 
+\begin_inset Formula $j$
+\end_inset
+
+ employed by 
+\begin_inset Formula $i$
+\end_inset
+
+,
+ the following transfer occurs 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Formula $w_{i}\to w_{i}-p$
+\end_inset
+
+,
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $w_{j}\to w_{j}+p$
+\end_inset
+
+,
+ 
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $p$
+\end_inset
+
+ is a discrete amount randomly selected from the interval 
+\begin_inset Formula $[p_{a},p_{b}]$
+\end_inset
+
+,
+ but if 
+\begin_inset Formula $p>w_{i}$
+\end_inset
+
+,
+ then a new wage 
+\begin_inset Formula $p$
+\end_inset
+
+ is selected from the interval 
+\begin_inset Formula $[0,w_{i}]$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+The update is asynchronous,
+ that is,
+ the system state is updated each time each rule is applied.
+ At the end of 
+\begin_inset Formula $N$
+\end_inset
+
+ iterations of these six rules,
+ 
+\begin_inset Formula $t$
+\end_inset
+
+ is incremented by one unit (i.e.,
+ one month).
+ Unless otherwise stated,
+ the values of the parameters used in the simulations of the model are:
+ system size 
+\begin_inset Formula $N=1000$
+\end_inset
+
+ agents,
+ wealth per capita 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+,
+ salary range 
+\begin_inset Formula $[p_{a},p_{b}]=[10,90]$
+\end_inset
+
+.
+ Typically,
+ the maximum simulation time is 
+\begin_inset Formula $t_{max}=1000$
+\end_inset
+
+ years,
+ and the values of all state variables are recorded at the end of each year.
+ For statistical calculations,
+ data were recorded after reaching a steady state,
+ discarding a short transient period.
+\end_layout
+
+\begin_layout Section
+Preliminary analysis
+\end_layout
+
+\begin_layout Standard
+The distribution of the population among the three classes of agents,
+ along with the wealth distribution within each group,
+ which emerges from the dynamics of the model,
+ is displayed in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:portrait"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+.
+ We observe a significant concentration of wealth within the capitalist class;
+ however,
+ it does not exhibit the typical pattern of wealth inequality —
+where most agents have no wealth—
+ commonly found in binary exchange models from the existing literature when there is no intervention (such as taxes or assistance programs)
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "moukarzel2007,boghosian2014,CARDOSO2020,LIMA2022"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 1
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename facw-class.png
+	width 60text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Complementary cumulative wealth distribution (black symbols) 
+\begin_inset Formula $F(w)$
+\end_inset
+
+ and fraction of the population in each class (color plot) vs.
+ wealth 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ Result for 
+\begin_inset Formula $N\simeq10^{5}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+ and wage range 
+\begin_inset Formula $[10,90]$
+\end_inset
+
+.
+ Data accumulated over 1000 years,
+ recorded at the end of each year for each agent.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:portrait"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 2
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename wealth.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Complementary cumulative distributions of the wealth per capita within each class.
+ We used 
+\begin_inset Formula $N=102400$
+\end_inset
+
+,
+ 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+,
+ and salary range 
+\begin_inset Formula $[10,90]$
+\end_inset
+
+.
+ The segment with slope -1,
+ which represents an upper bound,
+ is drawn for comparison.
+ Data of a single realization were accumulated over 1000 years.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:wealth-histograms"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The separate distributions of wealth per capita within is class is shown in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wealth-histograms"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ exhibiting a long tail for the capitalist class,
+ with workers and unemployed present an abrupt cut-off.
+ This decomposition helps to understand the origins of the two regimes observed in the global distribution of wealth,
+ as shown in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:portrait"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In the following sections we will take a closer look on this impact of system size and wealth per capita on the economy dynamics.
+ We will also see that a key parameter of the model is 
+\begin_inset Formula $R\equiv\overline{w}/\overline{p}$
+\end_inset
+
+.
+ In fact,
+ first note that,
+ according to the rules,
+ the dynamics will not be impacted if wealth is scaled by an arbitrary quantity,
+ for example,
+ by 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+,
+ which only alters the monetary unit.
+ Typically,
+ we will use 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{p}=50$
+\end_inset
+
+,
+ unless indicated differently.
+ Given the chosen initial state,
+ where agents start as unemployed with the same wealth 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ then,
+ 
+\begin_inset Formula $R\ge1$
+\end_inset
+
+ is necessary to comply with 
+\begin_inset Formula $w_{j}\geq\overline{p}$
+\end_inset
+
+ (rule 2(b)),
+ to start hiring,
+ and to prevent the system from becoming trapped in its initial state.
+\end_layout
+
+\begin_layout Standard
+The remainder of the paper is organized as follows:
+ In Sec.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:wealth"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ we investigate the wealth distribution in more detail,
+ focusing systematically on the effects of system size 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ and wage interval.
+ In Sec.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:income"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ we conduct a similar analysis for the income distribution.
+ Finally,
+ in Sec.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:final"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ we present a discussion and the main conclusions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Wealth distribution
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:wealth"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this section,
+ we analyze the wealth distribution by varying key model parameters:
+ system size,
+ total wealth,
+ and average wage.
+\end_layout
+
+\begin_layout Subsection
+Influence of system size 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 3
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename wxN.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename wxwbar.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ Wealth per capita within each class vs (a) 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ for 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+,
+ and (b) 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ for 
+\begin_inset Formula $N=1000$
+\end_inset
+
+ (b).
+ For each abscissa value,
+ we plot the average (symbols) and standard deviation (bars) computed over 100 realizations of 1000 years.
+ In all cases,
+ the wage range is [10,90].
+ The missing points for unemployed in (b) is due to the disappearance of this class.
+ The dashed lines are a guide to the eye.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:N&w"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Examining the square root of the variance of the wealth distribution (shown by error bars in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:N&w"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+),
+ we find that it decreases with 
+\begin_inset Formula $N$
+\end_inset
+
+ for employed and unemployed agents,
+ indicating increased homogeneity within these groups.
+ Conversely,
+ the variance among capitalists rises with 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ likely due to the extended asymptotic tail seen in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wealth-histograms"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ which suggests a divergent second moment in the limit 
+\begin_inset Formula $N\to\infty$
+\end_inset
+
+.
+ As 
+\begin_inset Formula $N$
+\end_inset
+
+ increases keeping 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ constant (thus raising total wealth 
+\begin_inset Formula $W$
+\end_inset
+
+),
+ the range of capitalist wealth broadens,
+ resulting in greater heterogeneity and an increased likelihood of encountering extremely wealthy agents,
+ as illustrated in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:distribution-size"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(a).
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\end_layout
+
+\begin_layout Plain Layout
+%
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Notice the change in the asymptotic behavior of 
+\begin_inset Formula $F(w)$
+\end_inset
+
+ as 
+\begin_inset Formula $N$
+\end_inset
+
+ increases,
+ where the tail decays more slowly,
+ approaching the law 
+\begin_inset Formula $F(w)\sim1/w$
+\end_inset
+
+,
+ indicating a greater concentration of large fortunes within an oligarchic group.
+ This trend is reflected in the Gini index (or Gini coefficient),
+ which increases gradually with 
+\begin_inset Formula $N$
+\end_inset
+
+ and tends to saturation,
+ as shown in the inset of Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:distribution-size"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(b).
+ The same trend is reflected in the Kolkata index
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "BANERJEE2020"
+literal "false"
+
+\end_inset
+
+ also shown in the inset.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 4
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fw-N.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename Lw-N.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) Complementary cumulative wealth distribution of the full population,
+ 
+\begin_inset Formula $F(w)$
+\end_inset
+
+,
+ and (b) corresponding Lorenz curves,
+ for different system sizes 
+\begin_inset Formula $N$
+\end_inset
+
+ indicated in the legend,
+ with 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+ and wage range 
+\begin_inset Formula $[10,90]$
+\end_inset
+
+.
+ In (a),
+ the line with slope -1 is drawn for comparison.
+ In (b),
+ the inset shows the average annual (over 1000 years) Gini and Kolkata indexes vs 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ In the current and subsequent figures,
+ each distribution was built with values recorded at the end of each year,
+ accumulated over the years of a single realization.
+ For the inequality indices,
+ we present the average of the annual values (symbols) and their standard deviation (represented by bars).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:distribution-size"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Influence of the wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:wealth-total"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:N&w"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(b) shows how the distribution of wealth across the different classes (scaled by 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+) is affected when changing the wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+.
+ The increase of 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ has a strong effect on the distribution of wealth,
+ notability enhancing the relative wealth of the capitalists while reducing the relative wealth in the working and unemployed classes.
+\end_layout
+
+\begin_layout Standard
+Upon closer examination of the cumulative distribution in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fvsw-barw"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(a),
+ it is clear that the tail decays more slowly as 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ increases.
+ Recalling that this second regime is associated with the capitalist class,
+ according to Figs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:portrait"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wealth-histograms"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ the observed flattening implies that capitalist wealth tends to concentrate in a more exclusive oligarchy with the higher 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+.
+ In other words,
+ the probability of finding agents with very high wealth increases.
+ This is an expected effect,
+ also captured by the Lorenz curves in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fvsw-barw"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(b),
+ showing that an increase in total wealth leads to a noticeable increase of the Gini index,
+ i.e.,
+ the inequality increases.
+ This illustrates the common mistake of using a high gross domestic product as an indicator of progress and equality of opportunities!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 5
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename fw-wbar.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename Lw-wbar.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) Complementary cumulative wealth distribution of the full population,
+ 
+\begin_inset Formula $F(w)$
+\end_inset
+
+,
+ and (b) corresponding Lorenz curves,
+ for different levels of the wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ indicated in the legend.
+ The population size is 
+\begin_inset Formula $N=1000$
+\end_inset
+
+ and the wage range 
+\begin_inset Formula $[10,90]$
+\end_inset
+
+.
+ In (b),
+ the inset shows the average annual Gini and Kolkata indexes vs 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Fvsw-barw"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For sufficiently large values of 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ (e.g.,
+ for 
+\begin_inset Formula $\overline{w}\gtrsim300$
+\end_inset
+
+ in the figure),
+ there is a drastic change in the profile of 
+\begin_inset Formula $F(w)$
+\end_inset
+
+,
+ where the second regime flattens.
+ This indicates the appearance of a very wealthy class,
+ separated by a gap in the wealth distribution.
+ Moreover,
+ let us remark that,
+ in the extreme of 
+\begin_inset Formula $R\equiv\overline{w}/\overline{p}\gg1$
+\end_inset
+
+,
+ the system can freeze with the condensation of the workforce in an oligarchy that concentrates most part of the wealth of the system and their firms cannot bankrupt,
+ which is what happens in the case of the largest value of 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ plotted.
+\end_layout
+
+\begin_layout Subsection
+Influence of the wage interval
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:wage"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We analyze various wage ranges,
+ 
+\begin_inset Formula $[p_{a},p_{b}]$
+\end_inset
+
+,
+ where salaries are uniformly distributed,
+ and explore their impact on the distribution of wealth.
+ By varying the wage intervals while keeping the mean value 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ fixed,
+ we found that the results remain notably invariant to the wage range,
+ as shown in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wageranges"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(a).
+ This is in agreement with the results for uniform distributions reported in Ref.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "lin-lux"
+literal "false"
+
+\end_inset
+
+.
+ The same holds for bimodal distributions,
+ as illustrated in the figure for 
+\begin_inset Formula $p=10$
+\end_inset
+
+ and 90,
+ with probability 1/2.
+ We also explored non-uniform salary distributions,
+ finding again no significant differences.
+ Consequently,
+ a significant conclusion not addressed in the original model is that the effect of wages is determined by their mean value 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+.
+ Furthermore,
+ the same results are consistently observed for the same ratio 
+\begin_inset Formula $R=\overline{w}/\overline{p}$
+\end_inset
+
+.
+ Thus,
+ decreasing 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ exerts an identical effect as increasing 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ both enhancing inequality.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 6
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename fw-collapse.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename fy-collapse.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ Complementary cumulative distributions of (a) wealth,
+ 
+\begin_inset Formula $F(w)$
+\end_inset
+
+,
+ and (b) income,
+ 
+\begin_inset Formula $F(y)$
+\end_inset
+
+,
+ for different wage ranges 
+\begin_inset Formula $[p_{a},p_{b}]$
+\end_inset
+
+ indicated in the legend.
+ The bimodal case corresponds to 
+\begin_inset Formula $p=10$
+\end_inset
+
+ or 
+\begin_inset Formula $p=90$
+\end_inset
+
+,
+ with equal probability 1/2.
+ 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+ (blue),
+ 600 (red),
+ and 
+\begin_inset Formula $N=10^{3}$
+\end_inset
+
+.
+ Note that,
+ in all cases,
+ 
+\begin_inset Formula $\overline{p}=50$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:wageranges"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Income distribution
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:income"
+
+\end_inset
+
+ In this section,
+ we focus on the distribution of incomes (earnings),
+ applying a similar analysis as for the wealth distribution.
+ The results for income reveal trends similar to those for wealth in relation to inequality.
+ Let us remark that firm owners (capitalists) collect revenues,
+ while workers receive salaries (wages),
+ and both are computed as incomes.
+\end_layout
+
+\begin_layout Standard
+We consider income to be the sum of all remunerations received by the agent over a one-year period.
+ A worker receives a wage (rule 6),
+ while a capitalist receives a revenue,
+ directly or through its employees (rule 4).
+ Additionally,
+ if an agent changes status within a year,
+ they can receive both types of income:
+ wages and revenues.
+\end_layout
+
+\begin_layout Standard
+The separate distributions of worker's wages and of firms' revenues are shown in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:renda-fontes"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ exhibiting a long tail for revenues.
+ A qualitatively similar result has been previously reported by L.
+ Lin
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "lin-lux"
+literal "false"
+
+\end_inset
+
+,
+ although for other parameter values.
+ Therefore,
+ the distributions of total income,
+ Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-size"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+ (as a function of system size) and Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-wealth"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+ (as a function of wealth per capita),
+ both present two regimes that can be associated to each source of income.
+ We have shown a similar decomposition before,
+ when discussing wealth,
+ as illustrated in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wealth-histograms"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% fig 7
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename incomes.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Annual income cumulative distribution due to workers' wages and the revenue of firms.
+ We used 
+\begin_inset Formula $N=102400$
+\end_inset
+
+,
+ 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+,
+ and salary range 
+\begin_inset Formula $[10,90]$
+\end_inset
+
+.
+ The segment with slope -1 is drawn for comparison.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:renda-fontes"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Influence of the system size 
+\begin_inset Formula $N$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-size"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+ we show the impact of the size of the system on the distribution of wealth.
+ In panel (a),
+ we can see how the two-regime distribution evolves as we increase the number of agents,
+ with a Pareto regime similar to that of the wealth distribution.
+ In the inset of panel (b),
+ we observe a slow increase of the inequality with 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ as measured by the Gini and Kolkata indexes,
+ similarly to the behavior of wealth distribution with 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%fig 8
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename fy-N.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename Ly-N.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) Annual income complementary cumulative distribution 
+\begin_inset Formula $F(y)$
+\end_inset
+
+ of the full population and (b) corresponding Lorenz curves,
+ for different system sizes 
+\begin_inset Formula $N$
+\end_inset
+
+ indicated in the legend,
+ with 
+\begin_inset Formula $\overline{w}=100$
+\end_inset
+
+ and wage range 
+\begin_inset Formula $[10,90]$
+\end_inset
+
+.
+ In (a),
+ the line with slope -1 is drawn for comparison.
+ In (b),
+ the inset shows the average annual Gini and Kolkata indexes vs 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:income-size"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Influence of the wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-wealth"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+ shows how the system responds when we increase the wealth per capita.
+ Similarly to the behavior found in the previous section for the wealth distribution,
+ a strong increase of income inequality also occurs,
+ as measured by the Gini and Kolkata indexes,
+ shown in the inset of panel (b),
+ which originates from the cumulative wealth distribution and Lorenz curves displayed in Figs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-wealth"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+ (a) and (b),
+ respectively.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%Fig 9
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename fy-wbar.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename Ly-wbar.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ (a) Annual income complementary cumulative distribution 
+\begin_inset Formula $F(y)$
+\end_inset
+
+ of the full population 
+\begin_inset Formula $F(y)$
+\end_inset
+
+,
+ and (b) corresponding Lorenz curves,
+ for different values of the wealth per capita.
+ Annual Gini and Kolkata indexes vs.
+ 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ is in the inset.
+ The system size is 
+\begin_inset Formula $N=1000$
+\end_inset
+
+ and the wage range is [10,90].
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:income-wealth"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Influence of wage interval
+\end_layout
+
+\begin_layout Standard
+Regarding the wage interval,
+ we confirm here the same behavior observed in wealth distributions,
+ which depends only on the average wage 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+,
+ as shown in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:wageranges"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+(b).
+ Therefore,
+ increasing 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ produces a rapid decay of income inequality.
+\end_layout
+
+\begin_layout Section
+Final remarks and perspectives
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:final"
+
+\end_inset
+
+ We have conducted a detailed study of the so-called Social Architecture (SA) model,
+ introduced by Wright in 2005
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "WRIGHT2005589"
+literal "false"
+
+\end_inset
+
+.
+ The model is based on a few simple rules that govern status changes and wealth exchanges.
+ The former occur through hiring and firing,
+ while wealth exchange happens in two ways:
+ directly,
+ as employers pay salaries,
+ and indirectly,
+ as (all) agents contribute to a common fund from which employers retrieve their profits.
+ In contrast to most models in the literature discussed in Sec.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:introduction"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ starting from initial conditions in which agents are in equal economic and social positions,
+ the the SA model system self-organizes into two classes with a wealth distribution characterized by the two-regime real-world shape.
+\end_layout
+
+\begin_layout Standard
+Wright presented the model with four parameters:
+ system size 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ wealth per capita 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ and the lower/upper limits of the salary range,
+ 
+\begin_inset Formula $p_{a}$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{b}$
+\end_inset
+
+.
+ Regarding system size,
+ we have shown that for sufficiently large 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ the average values of wealth and income within each class become independent of 
+\begin_inset Formula $N$
+\end_inset
+
+,
+ although long-tails develop with increasing 
+\begin_inset Formula $N$
+\end_inset
+
+ for the capitalist class.
+ Moreover,
+ the same qualitative results are observed even for systems as small as 
+\begin_inset Formula $N=100$
+\end_inset
+
+.
+ In terms of the salary range,
+ the results are sensitive only to the average value 
+\begin_inset Formula $\overline{p}=(p_{a}+p_{b})/2$
+\end_inset
+
+.
+ Moreover,
+ since the quantities appearing in the governing rules can be scaled —
+indicating a choice of monetary unit without altering the dynamics—
+ we arrive to the conclusion that the only remaining relevant parameter is the ratio 
+\begin_inset Formula $R=\overline{w}/\overline{p}$
+\end_inset
+
+.
+ On the one hand,
+ 
+\begin_inset Formula $R\geq1$
+\end_inset
+
+ is required for the dynamics to evolve from the initial state,
+ as agents would otherwise not have enough wealth to hire employees on average.
+ Furthermore,
+ if 
+\begin_inset Formula $R$
+\end_inset
+
+ is too large,
+ it leads to an anomalous concentration of wealth and a freezing of the dynamics.
+ Remarkably,
+ within the regime 
+\begin_inset Formula $R\geq1$
+\end_inset
+
+,
+ this single parameter model yields a two-regime distribution of wealth and income:
+ Boltzmann-Gibbs-like for low values and Pareto-like at the tails.
+\end_layout
+
+\begin_layout Standard
+To quantify the inequality in wealth and income distributions,
+ we utilized both the Gini and the Kolkata indexes
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "BANERJEE2020"
+literal "false"
+
+\end_inset
+
+.
+ Their dependence on the system size 
+\begin_inset Formula $N$
+\end_inset
+
+ and on the average wealth 
+\begin_inset Formula $\bar{w}$
+\end_inset
+
+,
+ shown in the insets of Figs.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:distribution-size"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+b,
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Fvsw-barw"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+b,
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-size"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+b and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:income-wealth"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+b,
+ display similar trends,
+ as expected.
+ According to the model's predictions,
+ we have seen that increasing total wealth in the system,
+ while keeping wages fixed,
+ does not alleviate inequality.
+ On the contrary,
+ it amplifies wealth concentration within the capitalist class and reduces the average wealth of employees,
+ thereby increasing inequality,
+ as evidenced by the wealth distribution and the inequality indexes.
+ Similar effects are observed with respect to income.
+ These results align with the argument that unregulated capitalism drives increasing inequality
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "piketty"
+literal "false"
+
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $R$
+\end_inset
+
+ is the relevant parameter,
+ increasing the average wage has the same effect as decreasing total wealth.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% FIG 10
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h!
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename duration.png
+	width 45text%
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Uninterrupted duration (in months) of agents in each class vs.
+ 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+,
+ in 100 simulations up to 
+\begin_inset Formula $t=100$
+\end_inset
+
+ years (after a transient of 50 years),
+ for 
+\begin_inset Formula $N=1000$
+\end_inset
+
+ and wage range [10,90].
+ Symbols represent the average and error bars the standard deviation.
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:duration"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let us also include and comment an additional simulation result.
+ The model yields a high level of mobility between classes,
+ as illustrated in Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:duration"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ where we plot the average uninterrupted time each agent spends in a given class as a function of wealth per capita.
+ For 
+\begin_inset Formula $\overline{w}\simeq100$
+\end_inset
+
+,
+ the time spent in the worker and capitalist classes is shorter than one year and increases with 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ becoming larger for workers,
+ while the agents remain less time unemployed on average as 
+\begin_inset Formula $\overline{w}$
+\end_inset
+
+ increases.
+ This mobility may seem unrealistic at first sight.
+ However,
+ note,
+ for example,
+ that according to data from the US Bureau of Labor Statistics,
+ 50% of private establishments fail in the first five years
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "BLS-US"
+literal "false"
+
+\end_inset
+
+.
+ According to the model,
+ this effect can be understood by observing the higher concentration of wealth that makes capitalist agents more robust against decaying to the unemployed class.
+\end_layout
+
+\begin_layout Standard
+Let us now discuss some model assumptions that could be revised,
+ potentially opening new research perspectives.
+ One such assumption is the expenditure rule.
+ In its current form,
+ an agent could theoretically spend their entire wealth in a single transaction.
+ This is clearly extreme when considering a real economy.
+ Modifying this rule could help extend the persistence of capitalists within their class.
+ In fact,
+ this issue is crucial for employers,
+ as the model makes no distinction between personal and firm wealth,
+ meaning that a business owner could exhaust both in a single transaction!
+ In addition,
+ employers hire new employees whenever the opportunity arises,
+ without limitations.
+ It could be interesting to impose constraints related to market value,
+ such as limiting spending to employee savings or firm cash reserves.
+ Another point is that,
+ in this model,
+ agents are homogeneous and indistinguishable apart from the class to which they belong,
+ with no variation in skill levels.
+ Specifically,
+ hiring assumes that unemployed agents are actively seeking jobs,
+ while employed agents are not pursuing market reallocation,
+ even though people may seek salary upgrades.
+ Some variants addressing this aspect have already been explored
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "WRIGHT2010"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Overall,
+ considering that,
+ as shown in the present work,
+ this is essentially a one-parameter model (namely,
+ 
+\begin_inset Formula $R$
+\end_inset
+
+),
+ the results are remarkable.
+ Unlike other valuable models which reproduce the Pareto law or even the two regimes mentioned in Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:introduction"
+plural "false"
+caps "false"
+noprefix "false"
+nolink "false"
+tuple "list"
+
+\end_inset
+
+,
+ the SA model stands out for its simplicity.
+ It requires no additional rules or interventions to produce a two-class distribution,
+ offering a fundamental approach for further investigation on the dynamics of wealth distribution and inequality within a simplified economic framework.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang english
+Acknowledgments:
+
+\series default
+\lang british
+ We acknowledge financial support from CAPES,
+ grant 88887.969088/2024-00 and finance code 001.
+ C.A.
+ acknowledges partial financial support from Brazilian agencies CNPq (311435/2020-3) and FAPERJ (CNE E-26/204.130/2024).
+ S.G.
+ would also like to thank CNPq for partially supporting this work under grant 314738/2021–5.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%-------------------------------------------
+\end_layout
+
+\begin_layout Plain Layout
+% References
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "references"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

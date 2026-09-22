@@ -1,0 +1,336 @@
+\newpage
+\section{Visão monetária da econofisica}
+
+I had initially decided to use this space to focus only on quantitative discussions about econophysics models, mainly aiming to share code and the mathematical development of these models. I thought this because I felt I did not have the capacity to engage in a conceptual discussion about economics. However, I believe there are some conceptual discussions within econophysics that should be remembered. This is why I decided to bring a paper on the \href{https://github.com/jdansb/Econophysics/blob/main/files/Filosofia\%20da\%20Econof\%C3\%ADsica.md}{Philosophy of Econophysics}, and today I want to present the paper \href{https://arxiv.org/abs/1608.04832}{Monetary Economics from an Econophysics Perspective} written by Victor M. Yakovenko, where, as he himself says: "the style of this paper is quite informal, and the primary focus is on conceptual foundation, rather than technical details of mathematical models and empirical data."
+
+Since his model has an indisputable importance in establishing wealth distribution inequality as one of the main objects of study in econophysics, I believe it is interesting to engage with this conceptual discussion about his models. As in the previous case, my text is meant to be no more than a summary of the full work, where I attempt to compile the excerpts I consider most important.
+
+Although this is not the part that interests me most at the moment, I would like to highlight the result of Yakovenko's model:
+
+\begin{quote}
+…there are few rich agents with high monetary balances and many poor agents with low balances, so the distribution is highly unequal, even though the agents are statistically identical. This is a shocking conclusion for the social sciences, where inequality is generally attributed to intrinsic differences between agents. There is a critique that many economists are not fully familiar with the concept of statistical equilibrium, but only with mechanical equilibrium.
+
+\end{quote}
+
+To proceed, we need to start with the definition of money: money is then just a digital accounting, a digital token, that is, it can be expressed as a number. Moreover, by its very functioning, money must necessarily be conserved, so this is not a peculiar artifact but a fundamental accounting principle on which the functionality of money is based. That is, the agents involved cannot produce or destroy money.
+
+This becomes explicit when we list the three properties of money: medium of exchange, measure of value, and store of value, which only make sense if money is conserved. These properties would be lost if agents were able to produce money themselves.
+
+How money can arise in a system where agents cannot produce it? Suppose we have a system where all agents start with 0 money, but when one agent provides a service to another, the balances of both agents change conservatively, that is, we can simply record that one agent now has a negative balance for having ‘paid’ and another agent has a positive balance for having ‘received’; it is just a matter of accounting. However, what happens in this system if there is no lower limit on negative balances? Could I indefinitely enjoy the services of others? In this sense, it is necessary to impose a minimum limit, such that as soon as an agent reaches this balance, they cannot receive services without providing them.
+
+At this point, we can simplify money by shifting all balances so that the negative limit is now zero. This is equivalent to initially giving each agent an initial amount of money equal in magnitude to the previous minimum limit. Thus, the minimum balance is now zero, and the initial balance (or now, the initial money) is an amount greater than zero. Since money is now positive, we could even use physical objects as symbols of money. Yakovenko cites Modern Monetary Theory (MMT) as a reference for discussing how money is created at the national scale.
+
+What I find most interesting are two things. First, as already mentioned, the initial condition of monetary balances among agents, even if they are statistically identical, does not lead to an equal distribution of money. Second, quoting Yakovenko:
+
+\begin{quote}
+The laissez-faire economic school argues that if all constraints and regulations are removed, the economy will reach a natural equilibrium and should remain so. However, this argument is misleading, since equilibrium cannot be reached without the imposition of boundary conditions, that is, regulations.
+
+\end{quote}
+
+To illustrate the discussion, we can work with a simple code example. First, let's build a model where we have N agents with 10 coins each. At each step, we randomly select 2 agents and transfer one coin from one agent to the other. The result at three different time steps can be seen below.
+
+What we can observe is that this system without restrictions does not reach equilibrium. As time progresses, the curve in the histogram becomes flatter and flatter, never reaching a true equilibrium, since it is always possible for an agent to increase their debt to an infinite amount.
+
+ Below we perform a similar simulation, but now we set a lower limit of 0. That is, an agent cannot incur debt. If a given agent's wealth is 0, they can only gain coins, not give them away. Two results can be observed here:
+
+\begin{enumerate}
+    \item The system reaches equilibrium: we can see that the histogram at 3 different time steps is qualitatively the same.
+    \item Even though the initial conditions and the rules of exchange are identical, the final wealth distribution is highly unequal.
+\end{enumerate}
+
+ Reversing our discussion, we can see that if we move the minimum limit from 0 to -10, and equivalently the initial wealth is also 10 units lower than in the previous case, that is, each agent starts with 0 coins, we can notice that the result is analogous to the previous case, just shifted 10 units to the left. 
+
+ \textbf{Fallacy 1}: Money grows as a result of investment.
+
+It is claimed that by buying \$100 worth of gold and selling it years later for \$200, the amount of money has increased.
+
+To advance the discussion, we need to distinguish between what the author calls two layers: there is a physical layer in society, where all things with physical existence are located, and a monetary layer, that is, related to money—an informational layer. The two layers are coupled and related but are not exactly the same thing. In this example, we have a gold transaction in the physical layer and a monetary transaction in the informational layer.
+
+In this case, it is necessary to consider all agents involved. From an individual perspective, it seems that money has increased, but that is because we are looking at a single individual. Nothing in this example necessarily implies that money ceases to be conserved when we look at the system as a whole. Even if I give \$100 to one agent in exchange for gold, and then give that gold to another agent in exchange for \$200—even if those agents never interact with each other—in the most extreme case, this only implies that there must have been \$300 in existence in the system from the beginning. Another example involving pension fund investment is discussed in the paper, as well as the following recommended reading: H. S. Dent, The Great Boom Ahead (Hyperion, New York, 1993).
+
+\textbf{Fallacy 2}: Money grows as a result of production: If money is a way of measuring wealth, and if collective wealth increases over time as a result of production, then money should increase as well.
+
+However, an increase in production—the expansion of the physical layer—does not immediately translate into the expansion of the monetary layer. They are different and follow different rules. This type of argument is usually brought up by the monetary school of economics.
+
+
+\textbf{Fallacy 3}: The third fallacy concerns economic models without money.
+
+Most recent economic crises occur in the monetary layer, not in the physical one. Therefore, if we try to eliminate money from the model—assuming an ideal functioning—we cannot explain economic crises. On the other hand, we can reduce the model to the transfer of money between agents (abstracting from production issues) and still obtain interesting results. This is, for example, the approach adopted in *The Social Architecture of Capitalism* (Ian Wright).
+
+Money and physical goods belong to different layers of the economy, but they are usually combined into a single variable called *wealth*, defined as   $w_i = m_i + \sum_{j} p_j v_{ji}$, where the wealth of agent \(i\) is given partly by monetary wealth ($m_i$) and partly by the products in their possession, where the price ($p_j$) is a conversion coefficient that converts from physical units—the volume ($v_{ji}$) of product ($j$) held by agent($i$) —into monetary units.
+
+Since it combines concepts from two different layers, wealth behaves differently from money. For example, wealth can grow with productivity.
+
+
+\textbf{Fallacy 4}: Once the distinction between money and wealth is made, a valid critique of econophysics can be directed at models that attempt to interpret the transfer and conservation not of money, but of wealth. Although mathematically equivalent, there is a conceptual difference.
+
+We now arrive at what is probably one of the most relevant topics: the creation of money by the state. When we think about whether money is conserved (or not), this is one of the main points to raise—after all, the state has the ability (which it indeed exercises) to produce money. It is therefore natural to ask how to reconcile this state capacity with a conservative model of money. In this sense, Yakovenko defines the economic system as the set of private agents, with the state considered external to the system. In that case, the system is conservative, even though the total quantity is not maintained due to the inflow and outflow of money from interactions between the system and external components. In other words, when building a model of an economic system, the state is considered external, and under this condition, money is conserved.
+
+And what are the motivations or needs for the state to inject money into the system? One reason among many is population growth. If the population increases but the amount of money does not, then money per capita will decrease, meaning that the purchasing power of a given amount of money increases. This consequent decrease in prices is called *deflation*, and as soon as an agent perceives this phenomenon, they may feel encouraged to hold onto money, since they will be able to buy more goods in the future—thus withdrawing more money from circulation and accentuating deflation. It can therefore be argued that the state should increase the amount of money at least in proportion to ($N$). Even the monetary school proposed a monetary rule of constant money injection according to a regular schedule, arguing that moderate inflation stimulates the economy.
+
+If we follow the concept that money should be earned through labor, the best way for the state to inject new money is by financing public infrastructure projects that will benefit society as a whole. Part of the financing for these projects can also be covered by taxes collected by the state; the proportion between both sources is a technical and practical matter, not a dogma such as a “balanced government budget.” A practical example of such spending is military expenditure. Only the government can afford the enormous cost of ballistic missiles that no one actually wants to use—the military-industrial complex has been the main driver of the U.S. economy for many years. Thousands of dollars of new money have been created to pay for wars.
+
+Within the state, the government is merely an executive arm and is usually separate from the central bank, which holds monetary authority. This means that the government typically does not print money on its own. Instead, it obtains resources by collecting taxes, fees, or borrowing—such as through the issuance of public bonds. In the latter case, private agents lend money to the government, which does not change the total amount of money in the system. In the United States, the government almost always operates in deficit, issuing new bonds to refinance old ones. New money is injected into the system when the Federal Reserve creates bank reserves and buys these bonds on the market, thus expanding the monetary base. However, the Federal Reserve is not allowed to buy bonds directly from the government—only from commercial banks—thus creating the same flow but paying fees to the banks for their intermediation.
+
+Moreover, government bonds stipulate that, at the end of their term, the government must return to the Central Bank the principal amount plus interest. However, since the Central Bank transfers its profits to the Treasury, the net result is equivalent to an interest-free loan from the Central Bank to the government. This process also allows the Central Bank to either inject or remove money from the economy, depending on the circumstances.
+
+Nevertheless, since this purchase cannot be made directly from the government, commercial banks (usually private) come into play as intermediaries in the process. This intermediation grants them significant profits, either through reselling the bonds to the central bank or through related financial operations, which reinforces their position within the financial system.
+
+\textbf{Fallacy 5}: Money grows as a result of loans between individuals.
+
+This is a ‘simple’ case, similar to the investment example. Money remains conserved when we consider the system as a whole. If agent 1 lends money to agent 2, the amount of money lent is subtracted from one agent and added to the other. During the loan, agent 1 provides money to agent 2, who in return gives a promissory note. But this note is not money—it is a personal agreement between agents. It does not circulate and therefore does not correspond to an increase in money, regardless of the interest rate it promises.
+
+\textbf{Fallacy 6}: Money grows as a result of interest.
+
+Following the previous example, if money is lent at an interest rate, then agent 1 lends, for example, \$100 to agent 2 and receives \$110 in return. But again, this additional money must simply originate from other agents within the system. The total amount of money, evidently, remains conserved at the system level. None of this necessarily implies the creation of new money—which leads us to the next fallacy.
+
+\textbf{Fallacy 7}: Money is debt.
+
+At first glance, the act of taking a loan may sound similar to the case we described earlier of money creation, where agent 1 provided a service to agent 2 and received a unit of money deducted from agent 2’s wealth—possibly even resulting in a negative money balance. However, there are significant differences between money and debt:
+
+\begin{itemize}
+    \item Debt creates a \textit{chain} connecting two agents until the debt is repaid. A money transaction, by contrast, is a final point—after it occurs, the agents have no further obligations toward each other.
+    \item Debt is personal, while money is anonymous. The identification of agents must appear on a promissory note, but not on a coin or bill.
+    \item Debt imposes a due date for repayment, whereas money has no temporal mark.
+    \item There are penalties for failing to pay a debt, but no analog exists for money.
+    \item Debt usually involves interest; money does not.
+\end{itemize}
+In short, debt is a promise to pay money, not money itself. In a sense, we can think of loans and promissory notes as forming a third laye*, above the second (monetary) layer where money actually circulates.
+
+\textbf{Fallacy 8}: Debt stabilizes itself.  
+
+Let’s first discuss debt as the creation of a particle–antiparticle pair. We now define the net worth of agent ($i$) as  $\omega_i = m_i + d_i$
+where $m_i$ is the amount of money held by agent $i$, and $d_i = \sum d_{ij}$ represents monetary obligations, with $d_{ij}$ being the amount that agent $j$ owes to $i$. Thus, $d_i < 0$ indicates that agent $i$ owes money, while $d_i > 0$ means that agent $i$ has money to receive.
+
+Evidently, if agent 1 lends \$10 to agent 2, they lose 10 coins (their $m_i$ decreases by 10), which reduces their total money holdings, but they gain 10 coins in monetary obligations (their $ d_i $ increases by \$10), so their net worth remains unchanged.
+
+If we allow loans between agents without imposing limits, debt cannot stabilize itself. Let’s repeat our previous simulation with a lower limit of 0 coins, but now, if an agent runs out of money, they can borrow from other agents and issue a promissory note. Instead of analyzing the amount of money each agent possesses, we will now analyze their \textit{net worth}.
+
+Below is a Python code snippet that can easily be adjusted to include interest (by changing the ratio between the money lent and the debt incurred) or to remove limits (by setting a very low limit so that it virtually does not exist, or by replacing the \verb|elif| with just an \verb|else|).
+
+To simplify things, the code does not directly simulate debt between agents, but we can imagine that there is an intermediary agency. Whenever agent 1 lends 10 coins to agent 2 (without interest), agent 1 gains 10 coins in receivable debt, and agent 2 incurs 10 coins of debt—but we do not keep a record of who owes whom. When agent 2 repays part of the debt, this "central agency" collects the coins and selects someone with receivable debt to have part of their debt repaid.
+
+In a sense, we are removing one of the typical conditions of debt (or adding an intermediary), but note that this still does not constitute money. For example, agents cannot trade debt among themselves. If agent 1 ends up with 0 coins after lending, they cannot hire agent 3 and pay only with the promise of money to be received from the loan to agent 2.
+
+ And here is a code snippet to generate a histogram: 
+
+ We obtain an analogous result to the case where we had only money and no restriction. In practice, the boundary condition is removed, and debt is not capable of stabilizing itself unless we impose a constraint again. Below is the result of the simulation. In all figures, we used $N = 10,000$ agents and considered one step to be exactly N interactions, allowing all agents the opportunity to be selected once per step in each role. The minimum money limit always remained fixed at 0, each agent started with 10 coins, and each transaction always involved the transfer of one unit of currency. For each unit of currency transferred as a loan, a debt of one unit was also created (without interest). Two simulations were run: one stopping at step 300 and the other at step 600.
+
+What we observe is that the distribution becomes wider and lower as time passes—an irreversible diffusion. As seen before, the system does not tend toward any equilibrium.
+
+Below, we imposed a restriction where each agent can only take a loan if they have no unpaid debt. One possible way to remove the intermediary—while keeping the restriction of a single debt—is to create another list that records to whom each agent owes money, so that repayment would always occur directly to the lender. However, I believe the result is sufficient to demonstrate our point: the system reaches an equilibrium with a left boundary at -1. 
+
+ \textbf{Fallacy 9}: Interest rates stabilize debt.
+
+This is a similar fallacy—the truth is that interest rates actually make the system even more unstable. As mentioned earlier, only debt constraints are capable of stabilizing the system.
+
+Below we have two situations very similar to the previous case, but now with an interest rate of 100\%. That is, when an agent takes a loan of one coin, they incur a debt of two coins. As discussed, we can see that the system becomes even more destabilized, clearly leading to a separation of society into two groups: those with positive wealth and those with negative wealth. As in the case without interest, there is no equilibrium point for the system.
+
+ By adding again the restriction that an agent cannot take a new loan while still in debt, we create a left boundary and once more allow the system to reach equilibrium. 
+
+ \textbf{Fallacy 10}: Economic models in which debts are always repaid as promised. On one hand, if this is indeed the case, we can simply omit the debt mechanism, as is implicitly assumed in many models. However, as discussed earlier, some agents will not be able to repay their debts, since this process appears to be irreversible. One possible outcome is that the agent declares bankruptcy, thereby nullifying the promissory note between both parties.
+
+Another possibility is that the agent takes on new debt to pay off the old one. This option postpones the repayment deadline, but the total debt in the system will continue to grow until it reaches a critical value, triggering a massive cascade of bankruptcies.
+
+The growth of credit and its collapse are processes that occur in a highly correlated and synchronized manner. A conceptual understanding and mathematical description of the regime shift between debt expansion and contraction remain open problems in econophysics.
+
+\textbf{Fallacy 11}: Banks create money.
+
+In reality, they create debt. At a more abstract level, lending can be aggregated and anonymized by banks. Agents who wish to lend deposit money in the bank, and the bank, in turn, lends money to other agents.
+
+Moreover, unlike loans between individuals, depositors can still use their money. The bank creates checking accounts for depositors so that they can issue checks instead of using cash, while the deposited money is placed by the commercial bank as reserves in the central bank. Thus, the bank has two faces: one facing consumers (with deposits and loans) and another facing the central bank, where transactions occur between banks when checks are cleared.
+
+When agent 1, who has an account at bank A, writes a transfer check to agent 2, who has an account at bank B, a corresponding amount of reserves is transferred from bank A to bank B at the central bank. Hence, interbank transactions represent yet another layer of the monetary economy above individual transactions. The conservation of money applies to bank reserves, which are merely transferred between banks.
+
+Banks support a volume of transfers far greater than the volume of their reserves. If agent 1 transfers money to agent 2 and both hold accounts in the same bank, there is no transfer of reserves between banks—only a change in the digital balances of their accounts. Furthermore, many clients of banks A and B make transactions in both directions, such that these flows cancel out and the net daily transfer of reserves is much smaller than the total transaction volume. Finally, banks can also take temporary loans from other banks or from the central bank, so the discussion about individual loans is replicated at the level of banks themselves.
+
+However, when agent 1 deposits money in the bank, they believe they still have that money. And when agent 2 takes a loan from the bank, they also believe they now have money. This is what makes it appear as though the total amount of money in the system has doubled. Yet the increase in money circulating among agents is exactly equal to the increase in debt in the system. Borrowing money is not the same as receiving money as payment—the borrowing agent remains connected to the bank. Another way to see this is that the creation of debt by banks does not change the banks’ reserves at the central bank, which remain subject to the law of conservation. Thus, this so-called \textit{endogenous} money creation through debt differs fundamentally from the \textit{exogenous} money creation that occurs when the state injects money into the system.
+
+\textbf{Fallacy 12}: The reserve requirement limits the maximum debt.
+
+ Let us now ask how much “money” banks can create in this way.
+
+ By regulation, banks are required to maintain reserves equal to a fraction $R$ of all deposits.   If we have an initial total amount of money $M_0$ deposited in banks, the amount available for lending is $(1 - R)M_0$.  If that amount is redeposited, then the quantity available for a new loan becomes $(1 - R)^2 M_0$. That is, in the first round we had $(1 - R)M_0$ available for loans, in the second round $(1 - R)^2 M_0$, and in the $n$-th round we will have $(1 - R)^n M_0$.   Summing all these, the total amount of money available for loans is:
+
+$$\sum_{n=1}^{\infty} (1 - R)^n M_0$$
+
+If we include the initial deposit $M_0$ is:
+
+$$M = \sum_{n=0}^{\infty} (1 - R)^n M_0$$
+
+We can rewrite this as:
+
+$$\frac{M}{M_0} = \sum_{n=0}^{\infty} (1 - R)^n$$
+
+A geometric series is defined as: %](https://en.wikipedia.org/wiki/Geometric_series)
+
+$$\sum_{n=0}^{\infty} a r^n$$
+
+If $|r| < 1$, the series converges to the limit $\frac{a}{1 - r}$.  Here $a = 1$ and $|r| = |1 - R| < 1$, so our sum tends to:
+
+$$\frac{M}{M_0} = \frac{1}{1 - (1 - R)} = \frac{1}{R}$$
+
+If the money $M_0$ is the initial deposit, the amount of money generated through lending is $M - M_0$.  Thus:
+
+$$\frac{M - M_0}{M_0} = \frac{M}{M_0} - 1 = \frac{1}{R} - 1 = \frac{1 - R}{R}$$
+This means that for an initial deposit $M_0$, a new amount of money equal to $M_0 (1 - R) / R$ will be generated.
+
+In addition to the reserve requirement, banks must also maintain an additional reserve to clear interbank transactions.
+
+However, these limits are soft, not hard constraints. For example, in the United States, the reserve requirement applies only to certain financial institutions and only for certain types of accounts; there are even countries with no reserve requirements at all. Therefore, this restriction is more of a myth than a fact. In practice, banks can create debt without limit.
+
+It is evident, however, that if people could borrow money without restriction, they would pay for goods and services entirely with borrowed money. If banks could "create money" easily, they would create it for themselves. Yet there is still the need for debts to be repaid when they mature, similar to what we discussed earlier regarding loan crises—but on a much larger scale due to aggregation, consolidation, leveraging, and multiplication by the banks.
+
+Crises like that of 2008 threaten the entire economy, leaving the central bank with no option but to intervene and save the financial system by absorbing the losses. The process occurs in two stages. First, the financial system issues enormous loans to borrowers who are unable to repay. In the second stage, a few years later, when the loans mature, it becomes clear that these borrowers do not have the capacity to repay the money they borrowed.
+
+This triggers a major crisis that forces a public monetary authority to intervene. In the U.S., the Federal Reserve massively purchases these bank assets, adding trillions of new dollars to bank reserves. As a result, banks exchange an asset for real money created exogenously.
+
+Thus, the creation of a large-scale crisis is an essential part of the modus operandi of the current financial system. The crisis serves to transform debt that was created endogenously into real money created exogenously.
+
+If the central bank can create new money, the central question becomes: who will receive this money? The central bank can only interact with commercial banks; thus, the money inevitably flows to banks, bankers, and the upper class, increasing inequality in society.
+
+\textbf{The ultimate source of capitalist monetary profit is state money} 
+
+This cycle of loans, crises, and bailouts provides insight into two related issues:  
+1. Everyone expects their money to grow due to interest, but where does this extra money come from if money is conserved?  
+2. Regarding capitalist profit, in the $M-C-M'$ circuit as exposed by Karl Marx in Capital.
+
+Suppose capitalists have a stock of money $M$. They then spend this money to build factories, hire workers, and buy materials, eventually producing the commodity $C$. They aim to sell the commodities on the market and end up with a balance $M' > M$, i.e., a profit.
+
+
+But who will buy these commodities? Assuming they are for consumer goods for masses, they will be purchased by workers, who can only pay for the commodities with the money they received from the capitalists. Thus, in aggregate, the net money balance $M'$ of the capitalists after selling the commodities cannot exceed the initial balance $M$. Individual capitalists may earn profits by creating losses for less competent competitors, but the class as a whole cannot have net profit.
+
+Interest and profit can be temporarily sustained if consumers go into debt. However, at some point, the debt must be repaid. The financial system may use various tricks to postpone repayment, but eventually it has to be settled, and the delay fuels the crisis. At this point, when a catastrophic crisis explodes, the state (the government and the central bank) intervenes and injects exogenous money into the system, generating profit and interest. Hence, we conclude that the ultimate source of capitalist monetary profit is state money.
+
+
+\subsection{Money as a tool of coercion}
+
+There is a section in \textit{Classical Econophysics} that also addresses the question of money, and I believe this discussion complements what has been presented so far. What I intend to present is a brief discussion that covers mainly the 15 pages between the sections “11.2 Two theories of money” and “11.4 Money space, an illustration,” aiming to illustrate the State Theory of Money.
+
+In this theory, the state decides what counts as money by stipulating what it will accept as payment for obligations. In other words, the state can make a certain type of currency by requiring citizens to pay their taxes in that currency. The need to prevent counterfeiting may favor the idea of making currency out of a particular substance, but there is no inherent connection between the value of money as money and its value as metal. We can say that money has three functions:
+
+\begin{enumerate}
+    \item \textbf{Medium of exchange}: Money is used as an intermediary in the exchange of other commodities that are of primary interest to traders.
+    \item \textbf{Unit of account}: Prices, debts, etc., are denominated in the monetary unit.
+    \item \textbf{Store of value}: People can store their wealth in the form of money.
+\end{enumerate}
+In this conception of money, its function as a unit of account is seen as primary. The monetary unit denominates the citizen’s debt to the state.
+
+Há algumas evidência históricas que são costumeiramente relembradas para defender a STM. Primeiro há um contra-exemplo para a ideia de que moedas surgiram apenas para fornecerem um peso padrão para metais preciosos, como uma evolução natural da prática de usar uma mercadoria intermediária como unidade de conta (neste caso, um metal precioso). Na Mesopotâmia antiga transações comerciais foram registradas em unidades de Shekels, que possuiam um equivalente em barley ou prata. Mas as transações não eram feitas em prata.Além disso, as primeiras moedas estavam longe de terem um peso padronizado.
+
+Mas o que acredito ser mais interessante de ser discutido diz respeito à relação coercitiva entre o estado e a população mediada pelo dinheiro. O livro apresenta a seguinte citação de Forstater:
+
+\begin{quote}
+if the subsistence base was capable of supporting the population entirely, colonial subjects would not be compelled to offer their labor-power for sale. Colonial governments thus required alternative means for compelling the population to work for wages. The historical record is clear that one very important method for accomplishing this was to impose a tax and require that the tax obligation be settled in colonial currency. This method had the benefit of not only forcing people to work for wages, but also of creating a value for the colonial currency and monetizing the colony. In addition, this method could be used to force the population to produce cash crops for sale. What the population had to do to obtain the currency was entirely at the discretion of the colonial government, since it was the sole source of the colonial currency.
+
+\end{quote}
+
+We then move on to discuss monetary records and relations. It should be noted that when the state shifts from taxing in goods to taxing in money, it moves from a direct appropriation (when the peasant had a duty to provide labor time or harvest to the state) to an indirect one (our current system), mediated by money. Furthermore, to operate a monetary system based on accounts—something more abstract, for example, where money is digital—an educated class is required, since this system demands mathematical skills and more advanced technology; it also requires that a secure and reliable system of writing and storage has been developed.
+
+In a system based on physical coins, such as precious metals, these requirements are lower. For example, the amount of money in each individual’s possession is obtained simply by checking the number of coins they hold. That is, the physical presence of the coins in a pouch represents a number; the possession of that pouch by an individual defines the possession of that money. In other words, when we move from an account-based system to one based on coin minting, we have a decentralization process; the latter is flexible and low-technology. An evident limitation is that it is not possible to have a negative number of coins.
+
+But my main goal here is to illustrate the mechanism by which an economy monetized by a colonizing power is exploited. The example given bears some resemblance to Nigeria in 1905 and the British Empire.
+
+ 
+ \textbf{Step 0}: We begin with an initial state without money or obligations.
+
+\begin{table}
+\centering
+
+\begin{tabular}{l l l}
+\textbf{Agent} & \textbf{Money} & \textbf{Tax obligation} \\
+
+\textbf{State} & 0 & 0 \\
+\textbf{Ana} & 0 & 0 \\
+\textbf{Tiago} & 0 & 0 \\
+\textbf{Felipe} & 0 & 0 \\
+\textbf{TOTAL} & 0 & 0 \\
+
+\end{tabular}
+
+\end{table}
+
+\textbf{Step 1}: The state issues currency.
+
+\begin{table}
+\centering
+
+\begin{tabular}{l l l}
+\textbf{Agent} & \textbf{Money} & \textbf{Tax obligation} \\
+
+\textbf{State} & 9 & 0 \\
+\textbf{Ana} & 0 & 0 \\
+\textbf{Tiago} & 0 & 0 \\
+\textbf{Felipe} & 0 & 0 \\
+\textbf{TOTAL} & 9 & 0 \\
+
+\end{tabular}
+
+\end{table}
+
+\textbf{Steps 2 and 3}:
+
+\begin{enumerate}
+    \item The state employs Felipe in the army and pays him 7 coins;
+    \item The state announces a tax obligation of 2 coins for everyone.
+\end{enumerate}
+
+\begin{table}
+\centering
+
+\begin{tabular}{l l l}
+\textbf{Agent} & \textbf{Money} & \textbf{Tax obligation} \\
+
+\textbf{State} & 2 & 6 \\
+\textbf{Ana} & 0 & -2 \\
+\textbf{Tiago} & 0 & -2 \\
+\textbf{Felipe} & 7 & -2 \\
+\textbf{TOTAL} & 9 & 0 \\
+
+\end{tabular}
+
+\end{table}
+
+\textbf{Step 4}: Since Ana and Tiago need to pay the tax in the new currency in order not to be punished, they sell food to Felipe in exchange for coins.
+
+\begin{table}
+\centering
+
+\begin{tabular}{l l l}
+\textbf{Agent} & \textbf{Money} & \textbf{Tax obligation} \\
+
+\textbf{State} & 2 & 6 \\
+\textbf{Ana} & 3 & -2 \\
+\textbf{Tiago} & 2 & -2 \\
+\textbf{Felipe} & 2 & -2 \\
+\textbf{TOTAL} & 9 & 0 \\
+
+\end{tabular}
+
+\end{table}
+
+\textbf{Step 5}: Tax collection day arrives and the taxes are paid.
+
+\begin{table}
+\centering
+
+\begin{tabular}{l l l}
+\textbf{Agent} & \textbf{Money} & \textbf{Tax obligation} \\
+
+\textbf{State} & 8 & 0 \\
+\textbf{Ana} & 1 & 0 \\
+\textbf{Tiago} & 0 & 0 \\
+\textbf{Felipe} & 0 & 0 \\
+\textbf{TOTAL} & 9 & 0 \\
+
+\end{tabular}
+
+\end{table}
+
+Felipe has spent all his money and needs to be hired again. Tiago sold part of his production only to cover his debt. Ana kept one coin and is now in a position to operate as a trader; although she exchanged useful food for a coin that has no “real” use, she made a social advancement: she now owns a coin of the king and thus participates indirectly in the king’s power and authority. With this coin she can command the labor of her peers. At first glance, the purchase may appear to be a symbol of reciprocity and a free, voluntary exchange, but behind it lies a system of coercion and the fear of tax collection.
+
+Finally, to conclude the discussion, in a monetary economy the state has two ways of accessing the population’s labor. It can levy a tax in money and then spend that money on buying labor or goods, or it can simply create new money. The two processes are mutually interdependent. If no initial money exists, it is impossible to levy a tax; likewise, if there is no tax, the money will have no value and the state will not be able to appropriate real resources with that currency.
+
+In a “natural” economy, the state’s appropriation of resources is direct and limited by the state’s political ability to coerce. With the invention of money, appropriation split into two: a symbolic appropriation of coins through taxation, and a real appropriation through the purchase of labor time and goods. In this way, real appropriation appears to be something voluntary, while the coercive aspect of the process occurs entirely in the realm of symbols.
+
+ 
