@@ -1,0 +1,1570 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[brazil]{article}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=2.5cm}
+\usepackage[]
+ {hyperref}
+\begin{document}
+\title{Processos de Markov}
+
+\maketitle
+
+Estas são notas de estudo bastante iniciais baseado no materal ``Stochastic Processes and Brownian Motion''\cite{cao2012stochastic} do professor J. Cao. Vamos supor que um sistema arbitrário pode estar em $N$estados distintos. Vamos dizer que o sistema esta em um estado $m$ qualquer no instante $s$, e queremos saber a possibilidade do sistema estar no estado $n$ no instante $s+1$, isto é:
+
+\[
+P\left(n,s+1\right)
+\]
+
+Se tivermos conhecimento de $m$ e $s$, podemos descrever essa quantidade como a probabilidade do sistema estar no estado $n$ no instante $s+1$ dado que o sistema esteja no estado $m$ no instante $s$, probabilidades dessa forma são chamadas de probabilidades condicionais:
+
+\[
+Q\left(m,s|n,s+1\right)
+\]
+
+Em muitos sistemas de interesse, a probabilidade de transição do estado $m$ para o estado $n$ é independente do tempo, então podemos simplificar a notação:
+
+\[
+Q\left(m,s|n,s+1\right)=Q\left(m,n\right)
+\]
+
+Porém, uma vez que $m$ é um estado qualquer que nao sabemos, precisamos considerar todos os possíveis estados:
+
+\[
+P\left(n,s+1\right)=\sum_{m}P\left(m,s\right)Q\left(m,n\right)
+\]
+
+Ou seja, consideramos a probabilidade do sistema estar em um estado $m$ qualquer no instante $s$, ee a probabilidade de transicionar para $n$ no instante $s+1$, ambos como eventos independentes. Progredimos, mas $P\left(m,s\right)$é tão misterioso quanto $P\left(n,s+1\right)$
+
+Quando fazemos experimento normalmente temos uma condição inicial conhecida:
+
+\[
+p\left(m,0\right)=\begin{cases}
+1 & m=k\\
+0 & m\neq0
+\end{cases}
+\]
+
+Podemos então fazer uma regressao. Podemos escrever $P\left(m,s\right)$ em termos do estado $l$ no instante $s-1$:
+
+\[
+P\left(m,s\right)=\sum_{l}P\left(l,s-1\right)Q\left(l,m\right)
+\]
+
+Substituindo:
+
+\begin{align*}
+P\left(n,s+1\right) & =\sum_{m}\left[\sum_{l}P\left(l,s-1\right)Q\left(l,m\right)\right]Q\left(m,n\right)\\
+ & =\sum_{l}P\left(l,s-1\right)\sum_{m}Q\left(l,m\right)Q\left(m,n\right)
+\end{align*}
+
+Considerando que temos sempre $N$ possíveis estado para o sistema, podemos perceber que $Q\left(m,n\right)$ tem dois parâmetros ($m$ e $n$), e ambos podem assumir $N$, temos entõ $N\times N$ combinações possíveis e podemos considerar umq matriz $\boldsymbol{Q}$ com elementos $\boldsymbol{Q}_{mn}=Q\left(m,n\right)$.
+
+Assim podemos representar:
+\[
+\sum_{m}Q\left(l,m\right)Q\left(m,n\right)=\sum_{m}\boldsymbol{Q}_{lm}\boldsymbol{Q}_{mn}
+\]
+
+Como a soma da linha $l$ da matriz $\boldsymbol{Q}$ pela coluna $n$ da matriz da matriz $\boldsymbol{Q}$. Lembrando que definimos mais cedo que as probabiliddes de transição são independentes do tempo, então $\boldsymbol{Q}_{lm}$ e $\boldsymbol{Q}_{mn}$ são elements diferentes de uma mesma matriz $\boldsymbol{Q}$, Podemos denotar então:
+
+\[
+\sum_{m}\boldsymbol{Q}_{lm}\boldsymbol{Q}_{mn}=\left(\boldsymbol{Q}\boldsymbol{Q}\right)_{ln}=\left(\boldsymbol{Q}^{2}\right)_{ln}
+\]
+
+Entao:
+
+\[
+P\left(n,s+1\right)=\sum_{l}P\left(l,s-1\right)\left(\boldsymbol{Q}^{2}\right)_{ln}
+\]
+
+Podemos ainda imaginar que:
+
+\[
+P\left(l,s-1\right)=\sum_{k}P\left(k,s-2\right)Q\left(k,l\right)
+\]
+
+Então:
+
+\[
+P\left(n,s+1\right)=\sum_{k}P\left(k,s-2\right)\sum_{l}\boldsymbol{Q}_{kl}\left(\boldsymbol{Q}^{2}\right)_{ln}
+\]
+
+Então agora estamos a linha $k$e a coluna $n$ do produto $\boldsymbol{Q}\cdot\boldsymbol{Q}^{2}=\boldsymbol{Q}^{3}$ou:
+
+\[
+P\left(n,s+1\right)=\sum_{k}P\left(k,s-2\right)\left(\boldsymbol{Q}^{3}\right)_{kn}
+\]
+
+Observe que de certa fora ``sumiu'' as referêncis ao estado $l$, seu impacto é ter uma multiplicação a mais na matriz $\boldsymbol{Q}$. O que faz sentido já que $l$ era um dos $N$ estados possíveis qualquer. Se a gente reescrever $s-2=0$ então $s=2$:
+
+\[
+P\left(n,3\right)=\sum_{k}P\left(k,0\right)\left(\boldsymbol{Q}^{3}\right)_{kn}
+\]
+
+Agora $P\left(k,0\right)$ é um estado inicial conhecido, temos um ponto de partida possível. Mas $3$ é arbitrário, para um $t$ qualquer, teremos:
+
+\[
+P\left(n,t\right)=\sum_{k}P\left(k,0\right)\left(\boldsymbol{Q}^{t}\right)_{kn}
+\]
+
+Ou podemos reescrever na notação do livro:
+
+\[
+P\left(n,s+1\right)=\sum_{m}P\left(m,0\right)\left(\boldsymbol{Q}^{s+1}\right)_{mn}
+\]
+
+Procesos que podem ser descritos dessa maneira se chamam processo de Markov, e a sequência de eventos é chamada de cadeia de Markov. Além disso, se $p\left(m,0\right)\neq0$ somente para $m=k$ , ou seja, não sabemos apenas as probabilidades iniciais, mas o estado inicial, então:
+
+\[
+P\left(n,s+1\right)=P\left(k,0\right)\left(\boldsymbol{Q}^{s+1}\right)_{mn}=\left(\boldsymbol{Q}^{s+1}\right)_{mn}
+\]
+
+Uma vez que $P\left(k,0\right)=1$.
+
+\subsection{Matriz de transição de probabilidade}
+
+A mariz $\boldsymbol{Q}$ não é necessariamente hermitiana, isto é $\boldsymbol{Q}=\overline{\boldsymbol{Q}^{T}}$, onde $\overline{\boldsymbol{Q}^{T}}$ é a transposta conjugada de $\boldsymbol{Q}$. Se fosse, as probabilidades de transição dos estados seriam independentes do sentido, isto é, a chance de ir do $m$ pro $n$ seria a mesma de ir do $n$ pr o $m$. 
+
+A não hermiticidade também implica que os auto-valores não são necessariamente reais. Porém ainda temos dois conjuntos de autovetores, um $\boldsymbol{x_{i}}$ a esquerda e outro $\boldsymbol{y}_{i}$ que satisfaz as relações:
+
+\begin{align*}
+\boldsymbol{x}_{i}\boldsymbol{Q} & =\lambda_{i}\boldsymbol{x}_{i}\\
+\boldsymbol{Q}\boldsymbol{y}_{i} & =\lambda_{i}\boldsymbol{y}_{i}
+\end{align*}
+
+Estes autovetores são ortonormais
+
+\[
+\left\langle x_{i}|y_{i}\right\rangle =\delta_{ij}
+\]
+
+E portanto formam um conjunto completo:
+
+\[
+\sum_{i}\left|\boldsymbol{y}_{i}\right\rangle \left\langle \boldsymbol{x}_{i}\right|=\text{I}
+\]
+
+Como a conservação de probabilidade restringem os elementos para serem não-negativos e $\sum_{n}Q_{mn}=1$, isto é, tem $100\%$ de chance do sistema no estado $m$ em $s$, estar em algum estado $s+1$, então todos os autovalores de $\boldsymbol{Q}$ estão limitados pel circulo no plano complexo\footnote{Onde $\forall i$ significa para todo i.}.
+
+\[
+\left|\lambda_{i}\right|\leq1,\forall i
+\]
+
+Então se temos $\lambda_{i}\boldsymbol{y}_{i}=Q\boldsymbol{y}_{i}$, o índice $i$ indica o auto valor $i$. Usando a notação $y_{i}\left(m\right)$ pra indicar o elemento $m$ do vetor então a relação do autovalor também deve ser válida para cada elemento do autovetor:
+
+\begin{align*}
+\lambda_{i}y_{i}\left(n\right) & =\sum_{m}Q_{nm}y_{i}\left(m\right)\\
+\left|\lambda_{i}y_{i}\left(n\right)\right| & =\left|\sum_{m}Q_{nm}y_{i}\left(m\right)\right|\\
+\left|\lambda_{i}\right|\left|y_{i}\left(n\right)\right| & \leq\sum_{m}Q_{nm}\left|y_{i}\left(m\right)\right|
+\end{align*}
+
+Onde usamos as propriedade da função modular de ser subaditivo ($\left|a+b\right|\leq\left|a\right|+\left|b\right|$) e mulitplicativo $\left|ab\right|=$$\left|a\right|\left|b\right|$ . Como $\left|y_{i}\left(n\right)\right|$, é finito, então para um $n$ qualquer devemos ter uma constante $c$ de forma que sempre $\left|y_{i}\left(n\right)\right|\leq c$. 
+
+Pegando então $n=n^{*}$ onde assume o valor máximo e substituindo então $\left|y_{i}\left(n^{*}\right)\right|=c$ e considerando que para todos os $m$ temos $\left|y_{i}\left(m\right)\right|\leq c$
+
+\begin{align*}
+\left|\lambda_{i}\right|\left|y_{i}\left(n\right)\right| & \leq\sum_{m}Q_{nm}\left|y_{i}\left(m\right)\right|\\
+\left|\lambda_{i}\right|c & \leq\sum_{m}Q_{n^{*}m}\left|y_{i}\left(m\right)\right|\leq\sum_{m}Q_{n^{*}m}c\\
+\left|\lambda_{i}\right| & \leq\sum_{m}Q_{n^{*}m}\\
+\left|\lambda_{i}\right| & \leq1
+\end{align*}
+
+Onde usamos novamente que $\sum_{m}Q_{nm}=1$. Outra característica é que $\boldsymbol{Q}$ semppre tem o autovalor $\lambda=1$. Pegando agora o outro autovetor pela esquerda\footnote{Note como antes tínhamos $\boldsymbol{Q}\boldsymbol{y}_{i}$ e gora temos $\boldsymbol{x}_{i}\boldsymbol{Q}$, entao agora percorremos a linha do vetor linha $\boldsymbol{x}_{i}$ e a corresponde coluna da matriz $\boldsymbol{Q}$.}:
+
+\begin{align*}
+\lambda_{i}x_{i}\left(n\right) & =\sum_{m}x_{i}\left(m\right)Q_{mn}\\
+\sum_{n}\lambda_{i}x_{i}\left(n\right) & =\sum_{m}\left(\sum_{n}Q_{mn}\right)x_{i}\left(m\right)\\
+\sum_{n}\lambda_{i}x_{i}\left(n\right) & =\sum_{m}\left(\sum_{n}Q_{mn}\right)x_{i}\left(m\right)\\
+\sum_{n}\lambda_{i}x_{i}\left(n\right) & =\sum_{m}x_{i}\left(m\right)\\
+\left(\lambda_{i}-1\right)\sum_{n}x_{i}\left(n\right) & =0
+\end{align*}
+
+Onde usamos que $\sum_{n}Q_{mn}=1$. E evidentemente $\lambda_{i}=1$ satisfaz a igualdade. Além disso quando temos um $\lambda_{i}\neq1$ arbitrário, então precisamos que $\sum_{n}x_{i}\left(n\right)=0$ para garantir a igualdade. Antes de avançar, podemos imaginar ainda um cenário com apenas $N=2$, onde as probabilidades do sistema estar nos estasdos $n=1$ e $n=2$ no instante $s+1$ é dado por:
+
+\begin{align*}
+P\left(1,s+1\right) & =P\left(1,s\right)Q\left(1,1\right)+P\left(2,s\right)Q\left(2,1\right)\\
+P\left(2,s+1\right) & =P\left(1,s\right)Q\left(1,2\right)+P\left(2,s\right)Q\left(2,2\right)
+\end{align*}
+
+Ou podemos então definir de forma matricial:
+
+\begin{align*}
+\left[\begin{array}{cc}
+P\left(1,s+1\right) & P\left(2,s+1\right)\end{array}\right] & =\left[\begin{array}{cc}
+P\left(1,s\right) & P\left(2,s\right)\end{array}\right]\left[\begin{array}{cc}
+Q_{11} & Q_{12}\\
+Q_{21} & Q_{22}
+\end{array}\right]\\
+\boldsymbol{P}\left(s+1\right) & =\boldsymbol{P}\left(s\right)\boldsymbol{Q}
+\end{align*}
+
+Evidentemente este resultado pode ser generalizado para qualquer $N$ e mais útil para as próximas discussões. Se estamos em uma posição de equilíbrio, isto é $\boldsymbol{P}\left(s+1\right)=\boldsymbol{P}\left(s\right)=\boldsymbol{P}^{*}$ então:
+
+\begin{align*}
+\boldsymbol{P}^{*} & =\boldsymbol{P}^{*}\boldsymbol{Q}
+\end{align*}
+
+Este é exatamente o caso $\boldsymbol{x}_{1}\boldsymbol{Q}=\lambda_{1}\boldsymbol{x}_{1}$ com $\lambda_{1}=1$ e $\boldsymbol{x}_{1}=\boldsymbol{P}^{*}$. É neste caso que o livro adota a notação $x_{1}\left(n\right)=P_{st}\left(n\right)$, ou seja $\boldsymbol{x}_{1}=\boldsymbol{P}_{st}.$ Também vale citar que como $\sum_{n}P\left(n,s+1\right)=1$ devido a conservação de probabilidade, então $\sum_{n}x_{1}\left(n\right)=1$ é uma normalização viável. 
+
+Agora queremos entender também que $y_{1}\left(n\right)=1$. Se tivermos:
+
+\[
+\left(\boldsymbol{Q}\boldsymbol{1}\right)_{m}=\sum_{n}Q_{mn}1=\sum_{n}Q_{mn}=1
+\]
+Onde $\boldsymbol{1}$ é um vetor coluna de uns, então de forma matricial:
+
+\[
+\sum_{n}Q_{mn}1=1\rightarrow\boldsymbol{Q}\boldsymbol{1}=\boldsymbol{1}
+\]
+
+Agora isto é equivalente a $\boldsymbol{Q}\boldsymbol{y}_{1}=\lambda_{1}\boldsymbol{y}_{1}$ para $\lambda_{1}=1$ onde $\boldsymbol{y}_{1}=\boldsymbol{1}$. Podemos então escrever:
+
+\begin{align*}
+P\left(n,s+1\right) & =\sum_{m}P\left(m,0\right)\left(\boldsymbol{Q}^{s+1}\right)_{mn}\\
+P\left(n,s\right) & =\sum_{m}P\left(m,0\right)\left(\boldsymbol{Q}^{s}\right)_{mn}\\
+\boldsymbol{P}\left(s\right) & =\boldsymbol{P}\left(0\right)\boldsymbol{Q}^{s}
+\end{align*}
+
+Onde $P\left(n,s\right)$ é a probabilidade do sistema estar no estado $n$ no instante $s$ e $\boldsymbol{P}\left(s\right)=\left[\begin{array}{ccc}
+P\left(1,s\right) & \dots & P\left(N,s\right)\end{array}\right]$é o vetor de probabilidade para cada estado. Assim como podemos escrever $\boldsymbol{r}=\left[\begin{array}{ccc}
+x & y & z\end{array}\right]=x\widehat{x}+y\widehat{y}+z\widehat{z}$ podemos escrever então $\boldsymbol{P}\left(s\right)=\left\langle P_{s}\right|=\sum_{n}P\left(n,s\right)\left\langle n\right|$. Então:
+
+\[
+\left\langle P_{s}\right|=\left\langle P_{0}\right|\boldsymbol{Q}^{s}
+\]
+
+E se sabemos que o sistema esta em um estado inicial, isto é $P\left(n_{0},0\right)=1$ e $P\left(n,0\right)=0$ para $n\neq n_{0}$, então $\left\langle P_{0}\right|=\left\langle n_{0}\right|$ e ficamos apenas com:
+
+\[
+\left\langle P_{s}\right|=\left\langle n_{0}\right|\boldsymbol{Q}^{s}
+\]
+
+Agora vamos usar a decomposição em autovalores e autovetores (\href{https://mathworld.wolfram.com/EigenDecomposition.html}{Wolfram Mathworld}). Vamos considerar que temos uma matriz quadrada $\boldsymbol{A}$ que possui autovalores não-degenerados\footnote{Ou seja, há apenas um autovetor linearmente independente associado a cada autovalor.} e autovetores lineramente independentes $\boldsymbol{X}_{1},\boldsymbol{X}_{2},\dots,\boldsymbol{X}_{k}$. Vamos escrever 
+\[
+P\equiv\left[\begin{array}{cccc}
+\boldsymbol{X}_{1} & \boldsymbol{X}_{2} & \dots & \boldsymbol{X}_{k}\end{array}\right]\quad D=\left[\begin{array}{cccc}
+\lambda_{1} & 0 & \dots & 0\\
+0 & \lambda_{2} & \dots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \dots & \lambda_{k}
+\end{array}\right]
+\]
+
+\[
+Q=\sum_{i}\lambda_{i}\left|\boldsymbol{y}_{i}\right\rangle \left\langle \boldsymbol{x}_{i}\right|,
+\]
+Então: 
+
+\[
+\boldsymbol{A}=\boldsymbol{P}\boldsymbol{D}\boldsymbol{P}^{-1}
+\]
+
+Onde $P^{-1}$são os vetores duais dos autovetores à direita em $P$, ou seja, são os autovetores à esquerda. Considerando apenas $N=2$:
+
+\begin{align*}
+\boldsymbol{Q} & =\boldsymbol{P}\boldsymbol{D}\boldsymbol{P}^{-1}\\
+ & =\left[\begin{array}{cc}
+\boldsymbol{y}_{1} & \boldsymbol{y}_{2}\end{array}\right]\left[\begin{array}{cc}
+\lambda_{1} & 0\\
+0 & \lambda_{2}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{x}_{1}\\
+\boldsymbol{x}_{2}
+\end{array}\right]\\
+ & =\left[\begin{array}{cc}
+\left|y_{1}\right\rangle  & \left|y_{2}\right\rangle \end{array}\right]\left[\begin{array}{cc}
+\lambda_{1} & 0\\
+0 & \lambda_{2}
+\end{array}\right]\left[\begin{array}{c}
+\left\langle x_{1}\right|\\
+\left\langle x_{2}\right|
+\end{array}\right]\\
+ & =\left|y_{1}\right\rangle \lambda_{1}\left\langle x_{1}\right|+\left|y_{2}\right\rangle \lambda_{2}\left\langle x_{2}\right|\\
+ & =\sum_{j}\left|y_{j}\right\rangle \lambda_{j}\left\langle x_{j}\right|
+\end{align*}
+
+\begin{align*}
+\boldsymbol{Q} & =\sum_{j}\left|y_{j}\right\rangle \lambda_{j}\left\langle x_{j}\right|\\
+ & =\left[\begin{array}{cc}
+\boldsymbol{y}_{1} & \boldsymbol{y}_{2}\end{array}\right]\left[\begin{array}{cc}
+\lambda_{1} & 0\\
+0 & \lambda_{2}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{x}_{1}\\
+\boldsymbol{x}_{2}
+\end{array}\right]\\
+ & =\left[\begin{array}{cc}
+\left|y_{1}\right\rangle  & \left|y_{2}\right\rangle \end{array}\right]\left[\begin{array}{cc}
+\lambda_{1} & 0\\
+0 & \lambda_{2}
+\end{array}\right]\left[\begin{array}{c}
+\left\langle x_{1}\right|\\
+\left\langle x_{2}\right|
+\end{array}\right]\\
+ & =\left|y_{1}\right\rangle \lambda_{1}\left\langle x_{1}\right|+\left|y_{2}\right\rangle \lambda_{2}\left\langle x_{2}\right|\\
+ & =\sum_{j}\left|y_{j}\right\rangle \lambda_{j}\left\langle x_{j}\right|
+\end{align*}
+
+Onde mudamos de notação para ficar mais fácil de identificarmos os vetores duais correspondentes a cada autovalor, já que $\boldsymbol{x}_{i}$ são vetores linha e $\boldsymbol{y}_{i}$ vetores coluna. Como tínhamos $\sum_{i}\left|y_{i}\right\rangle \left\langle x_{i}\right|=\boldsymbol{\text{I}}$ podemos verificar que $P^{-1}$correspondente aos autovetores a esquerda:
+
+\begin{align*}
+\boldsymbol{I} & =\boldsymbol{P}\boldsymbol{P}^{-1}\\
+ & =\left[\begin{array}{cc}
+\left|y_{1}\right\rangle  & \left|y_{2}\right\rangle \end{array}\right]\left[\begin{array}{c}
+\left\langle x_{1}\right|\\
+\left\langle x_{2}\right|
+\end{array}\right]\\
+ & =\sum_{i}\left|y_{i}\right\rangle \left\langle x_{i}\right|
+\end{align*}
+
+Conforme tínhamos dito antes\footnote{Na verdade provamos que se \textbf{P} são os autovetores a direita, e $\boldsymbol{P}^{-1}$ os autovetores à esquerda, então $\boldsymbol{P}\boldsymbol{P}^{-1}=\sum_{i}\left|y_{i}\right\rangle \left\langle x_{i}\right|$, talvez um matemático queira uma prova mais rigorosa, mas eu vou me dar por satisfeito, pelo menos, por agora.}. Além disso:
+
+\begin{align*}
+\boldsymbol{Q}^{2} & =\left(\boldsymbol{P}\boldsymbol{D}\boldsymbol{P}^{-1}\right)\left(\boldsymbol{P}\boldsymbol{D}\boldsymbol{P}^{-1}\right)\\
+ & =\boldsymbol{P}\boldsymbol{D}\boldsymbol{P}^{-1}\boldsymbol{P}\boldsymbol{D}\boldsymbol{P}^{-1}\\
+ & =\boldsymbol{P}\boldsymbol{D}^{2}\boldsymbol{P}^{-1}
+\end{align*}
+
+Então podemos generalizar $\boldsymbol{Q}^{n}=\boldsymbol{P}\boldsymbol{D}^{s}\boldsymbol{P}^{-1}$. Além disso:
+
+\begin{align*}
+\boldsymbol{D}^{2} & =\left[\begin{array}{cc}
+\lambda_{1} & 0\\
+0 & \lambda_{2}
+\end{array}\right]\left[\begin{array}{cc}
+\lambda_{1} & 0\\
+0 & \lambda_{2}
+\end{array}\right]\\
+ & =\left[\begin{array}{cc}
+\lambda^{2}_{1} & 0\\
+0 & \lambda^{2}_{2}
+\end{array}\right]\\
+\boldsymbol{D}^{n} & =\left[\begin{array}{ccc}
+\lambda^{n}_{1} & \dots & 0\\
+\vdots & \ddots & \vdots\\
+0 & \dots & \lambda^{n}_{k}
+\end{array}\right]
+\end{align*}
+
+Então:
+
+\[
+\left\langle P_{s}\right|=\left\langle n_{0}\right|\boldsymbol{Q}^{s}=\sum_{j}\left\langle n_{0}|y_{j}\right\rangle \lambda^{s}_{j}\left\langle x_{j}\right|
+\]
+
+E retomando $\boldsymbol{P}\left(s\right)=\left\langle P_{s}\right|=\sum_{n}P\left(n,s\right)\left\langle n\right|$ e , então:
+
+\begin{align*}
+\sum_{n}P\left(k,s\right)\left\langle k\right| & =\sum_{j}\left\langle n_{0}|y_{j}\right\rangle \lambda^{s}_{j}\left\langle x_{j}\right|\\
+\sum_{n}P\left(k,s\right)\left\langle k|n\right\rangle  & =\sum_{j}\left\langle n_{0}|y_{j}\right\rangle \lambda^{s}_{j}\left\langle x_{j}|n\right\rangle \\
+P\left(n,s\right) & =\sum_{j}\left\langle n_{0}|y_{j}\right\rangle \lambda^{s}_{j}\left\langle x_{j}|n\right\rangle 
+\end{align*}
+
+Uma vez que $\left\langle n_{i}|n_{j}\right\rangle =\delta_{ij}$, isto é, seja uma base ortonormal. Agora vale lembrar que da mesma forma: 
+\[
+\left|y_{i}\right\rangle =\left[\begin{array}{c}
+y_{i}\left(1\right)\\
+\vdots\\
+y_{i}\left(N\right)
+\end{array}\right]=\sum_{n}y_{i}\left(n\right)\left|n\right\rangle ,\quad\left\langle x_{i}\right|=\left[\begin{array}{ccc}
+x_{i}\left(1\right) & \dots & x_{i}\left(N\right)\end{array}\right]=\sum_{n}x_{i}\left(n\right)\left\langle n\right|
+\]
+
+\begin{align*}
+P\left(n,s\right) & =\sum_{j}\left[\sum_{k}y_{j}\left(k\right)\left\langle n_{0}|k\right\rangle \right]\lambda^{s}_{j}\left[\sum_{k}x_{j}\left(k\right)\left\langle k|n\right\rangle \right]\\
+ & =\sum_{j}y_{j}\left(n_{0}\right)\lambda^{s}_{j}x_{j}\left(n\right)\\
+ & =y_{1}\left(n_{0}\right)\lambda^{s}_{1}x_{1}\left(n\right)+\sum_{j\neq1}y_{j}\left(n_{0}\right)\lambda^{s}_{j}x_{j}\left(n\right)
+\end{align*}
+
+Como verificamos que pra $\lambda_{1}=1$ temos $x_{1}\left(n\right)=P_{st}\left(n\right)$ e $y_{1}\left(n\right)=1$, então:
+
+\begin{align*}
+P\left(n,s\right) & =P_{st}\left(n\right)+\sum_{j\neq1}y_{j}\left(n_{0}\right)\lambda^{s}_{j}x_{j}\left(n\right)
+\end{align*}
+
+
+\subsubsection*{Balanço detalhado}
+
+O útimo tópico considerado nos processo de Markov é quando a matriz $\boldsymbol{Q}$ satisfaz um balanço, isto é:
+
+\[
+P_{st}\left(n\right)Q_{nm}=P_{st}\left(m\right)Q_{mn}
+\]
+
+Lembrando que por definição, o estado estacionário era quando $\boldsymbol{P}_{st}=\boldsymbol{P}_{st}\boldsymbol{Q}$, ou seja, de certa forma o que temos é que a probabilidade de estar em $n$ após o passo é a probabilidade de já estar em $n$, ou seja, $P\left(n,s+1\right)=P\left(n,s\right)$. O balanço detalhado é um caso específico do estado estacionário.
+
+Se somamos ambos os lados:
+
+\begin{align*}
+P_{st}\left(n\right)Q_{nm} & =P_{st}\left(m\right)Q_{mn}\\
+\sum_{m}P_{st}\left(n\right)Q_{nm} & =\sum_{m}P_{st}\left(m\right)Q_{mn}\\
+P_{st}\left(n\right)\sum_{m}Q_{nm} & =\sum_{m}P_{st}\left(m\right)Q_{mn}\\
+P_{st}\left(n\right) & =\sum_{m}P_{st}\left(m\right)Q_{mn}\\
+\boldsymbol{P}_{st} & =\boldsymbol{P}_{st}\boldsymbol{Q}
+\end{align*}
+
+Se o sistema converge para um estado que satisfaz o balanço detalhado, então ele converge para um estado de equilíbrio. 
+
+\[
+P_{eq}\left(n\right)=P_{st}\left(n\right)=\lim_{t\rightarrow\infty}P\left(n,t\right)
+\]
+
+Porém, ele também pode convergir para um estado estacionário que não satisfaz o balanço detalhado (um estado estacionário fora do equilíbrio), pode não possuir nenhum estado estacionário, ou pode possuir um estado estacionário, mas não convergir para ele.
+
+Se o sistema obedece o balanço detalhado, então podemos descrevê-lo usando uma matriz simétrica \footnote{Uma matriz simétrica é uma matriz quadrada cujos elementos são iguais em relação à diagonal principal, isto é $(\mathbf{A}=\mathbf{A}^{T})$.} usando a seguinte transforação:
+
+\[
+V_{nm}=\frac{\sqrt{P_{st}\left(n\right)}}{\sqrt{P_{st}\left(m\right)}}Q_{nm}
+\]
+
+Lembrando que $P\left(n,s+1\right)=\sum_{m}P\left(m,s\right)Q\left(m,n\right)$ e definindo $P\left(n,s\right)=\sqrt{P_{st}\left(n\right)}\tilde{P}\left(n,s\right)$ então:
+
+\begin{align*}
+P\left(n,s+1\right) & =\sum_{m}P\left(m,s\right)Q\left(m,n\right)\\
+\sqrt{P_{st}\left(n\right)}\tilde{P}\left(n,s+1\right) & =\sum_{m}\sqrt{P_{st}\left(m\right)}\tilde{P}\left(m,s\right)Q\left(m,n\right)\\
+\tilde{P}\left(n,s+1\right) & =\sum_{m}\tilde{P}\left(m,s\right)\sqrt{\frac{P_{st}\left(m\right)}{P_{st}\left(n\right)}}Q\left(m,n\right)\\
+\tilde{P}\left(n,s+1\right) & =\sum_{m}\tilde{P}\left(m,s\right)V_{mn}
+\end{align*}
+
+Então\footnote{Nas notas temos apenas $\frac{d\tilde{P}\left(n,t\right)}{dt}=\sum_{m}\tilde{P}\left(m,t\right)V_{mn}$ mas não encontrei forma de eliminar o $-\tilde{P}\left(n,s\right)$ adicional.}:
+
+\begin{align*}
+\tilde{P}\left(n,s+1\right)-\tilde{P}\left(n,s\right) & =\sum_{m}\tilde{P}\left(m,s\right)V_{mn}-\tilde{P}\left(n,s\right)\\
+\frac{d\tilde{P}\left(n,t\right)}{dt} & =\sum_{m}\tilde{P}\left(m,t\right)V_{mn}-\tilde{P}\left(n,s\right)\\
+\dot{\tilde{\boldsymbol{P}}}\left(t\right) & =\tilde{\boldsymbol{P}}\left(t\right)\left(\boldsymbol{V}-\boldsymbol{I}\right)\\
+\dot{\tilde{\boldsymbol{P}}}\left(t\right) & =\tilde{\boldsymbol{P}}\left(t\right)\boldsymbol{\nu}
+\end{align*}
+
+Porém tenho pra mim que o resultado importante é\footnote{Indo mais além, a própria definição de $\tilde{P}\left(n,s+1\right)-\tilde{P}\left(n,s\right)=\frac{d\tilde{P}\left(n,t\right)}{dt}$ me parece problemática uma vez que não parece que estamos trabalhando com um tempo infinitesimal.}:
+
+\begin{align*}
+\tilde{P}\left(n,s+1\right) & =\sum_{m}\tilde{P}\left(m,s\right)V_{mn}\\
+\tilde{\boldsymbol{P}}\left(t+1\right) & =\tilde{\boldsymbol{P}}\left(t\right)\boldsymbol{V}
+\end{align*}
+
+E etão:
+
+\begin{align*}
+\tilde{\boldsymbol{P}}\left(t+1\right) & =\tilde{\boldsymbol{P}}\left(t-1\right)\boldsymbol{V}^{2}\\
+\tilde{\boldsymbol{P}}\left(t+1\right) & =\tilde{\boldsymbol{P}}\left(t-2\right)\boldsymbol{V}^{3}\\
+\tilde{\boldsymbol{P}}\left(t+1\right) & =\tilde{\boldsymbol{P}}\left(0\right)\boldsymbol{V}^{t+1}\\
+\tilde{\boldsymbol{P}}_{t} & =\tilde{\boldsymbol{P}}_{0}\boldsymbol{V}^{t}
+\end{align*}
+
+Agora podemos analisar o $\boldsymbol{V}$ de forma análoga o $\boldsymbol{Q}$, mas como $\boldsymbol{V}$ é simétrico, agora os autovetores de esquerda e direita $\left\langle \psi_{i}|\psi_{j}\right\rangle =\delta_{ij}$, além disso todos autovalores que não correspondem ao equilibrio são 0 ou negativo, e reais. Os autovetores de $\boldsymbol{V}$ e $\boldsymbol{Q}$ estã relacionados por:
+
+\[
+\left|y_{i}\right\rangle =\frac{1}{\sqrt{P_{st}}}\left|\psi_{i}\right\rangle ,\qquad\left\langle x_{i}\right|=\sqrt{P_{st}}\left\langle \psi_{i}\right|
+\]
+
+
+\subsection{Equações mestre}
+
+Se até aqui trabalhamso com o tempo discreto, a equação metsre trabalha com tempo contínuo (e posteriormente na equação de Fokker-Planck vamos trabalhar com estados contínuos também). Vamos agora denotar que a duração de um passo é $\Delta$ assim $t=s\Delta$ e adaptar a \footnote{Aparentemente $Q_{mn}\left(\Delta\right)\neq Q_{mn}\Delta$, por $Q_{mn}\left(\Delta\right)$ quer dizer que $Q_{mn}$ depende de $\Delta$, não é um produto, sendo que recuperamos o caso anterior com $\Delta=1$.}:
+
+\begin{align*}
+P\left(n,\left(s+1\right)\Delta\right) & =\sum_{m}P\left(m,s\right)Q_{mn}\left(\Delta\right)\\
+P_{n}\left(t+\Delta\right) & =\sum_{m}P_{m}\left(t\right)Q_{mn}\left(\Delta\right)
+\end{align*}
+
+A equação mestre é obtida com o limte para um pequeno $\Delta$, nesse limite podemos tratar a dependência de $Q$ em $\Delta$ como uma dependência linear \footnote{Me parece que a ideia aqui se aproxima de um processo de Poisson. Em poucas palavras, a hipótese de Poisson assume que, em intervalos infinitesimais suficientemente pequenos para que a probabilidade de ocorrerem dois ou mais eventos seja desprezível, a probabilidade de ocorrer um evento é proporcional ao tamanho do intervalo, com uma taxa constante.}, segundo o livro, uma exemplo seria a primeira ordem da expansão em série de Taylor\footnote{Mas me parece que de cada função $Q_{mm}\left(\Delta\right)$, e não de uma função de uma matriz $\boldsymbol{Q}$,essa distinção importa.} com o termo constante zerado uma vez que o termo não evolui sem a passagem do tempo. Vamos considerar então\footnote{Na verdade para $m=n$, no livro temos um somatório sobre todo $k$, mas se estamos separando quando eventos onde $m=n$ de quando $m\neq n$, me parece que é preciso separar também no somatório, uma vez que me parece que nosso objetivo é tratar $m=n$ como um evento complementar do conjunto de eventos onde $m\neq n$.}:
+
+\[
+Q_{mn}\left(\Delta\right)=\begin{cases}
+W_{mn}\Delta & m\neq n\\
+1-\sum_{k\neq m}W_{mk}\Delta & m=n
+\end{cases}
+\]
+
+Evdentementemente, apenas reescrevemos a idea que $\sum_{n}Q_{mn}=1$ separando o termo $m=n$\footnote{A partir dessa definição, percebe-se que $W_{mn}$ possui a interpretação de uma taxa de transição. De fato, para $m\neq n$, $Q_{mn}\left(\Delta\right)=W_{mn}\Delta$ é a probabilidade de o sistema realizar a transição do estado $m$ para o estado $n$ durante um passo com intervalo de tempo $\Delta$. Por exemplo, se para um intervalo de$\Delta=10$ segundos, se essa probabilidade fosse $Q_{mn}(10)=0.1,$ então $W_{mn}=\frac{0.1}{10}=0.01\mathrm{s}^{-1},$ indicando uma taxa de transição de $0.01$por segundo.}:
+
+\begin{align*}
+\sum_{n}Q_{mn} & =\sum_{n\neq m}Q_{mn}+Q_{mm}\\
+ & =\sum_{n\neq m}W_{mn}\Delta+1-\sum_{k\neq m}W_{mk}\Delta\\
+ & =1
+\end{align*}
+
+Então:
+
+\begin{align*}
+P_{n}\left(t+\Delta\right) & =\sum_{m}P_{m}\left(t\right)Q_{mn}\left(\Delta\right)\\
+P_{n}\left(t+\Delta\right) & =P_{n}\left(t\right)Q_{nn}\left(\Delta\right)+\sum_{m\neq n}P_{m}\left(t\right)Q_{mn}\left(\Delta\right)\\
+P_{n}\left(t+\Delta\right) & =P_{n}\left(t\right)\left(1-\sum_{k\neq n}W_{nk}\Delta\right)+\sum_{m\neq n}P_{m}\left(t\right)Q_{mn}\left(\Delta\right)\\
+P_{n}\left(t+\Delta\right)-P_{n}\left(t\right) & =-\sum_{k\neq n}P_{n}\left(t\right)W_{nk}\Delta+\sum_{m\neq n}P_{m}\left(t\right)W_{mn}\Delta\\
+\frac{P_{n}\left(t+\Delta\right)-P_{n}\left(t\right)}{\Delta} & =\sum_{m\neq n}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)\\
+\lim_{\Delta\rightarrow0}\frac{P_{n}\left(t+\Delta\right)-P_{n}\left(t\right)}{\Delta} & =\lim_{\Delta\rightarrow0}\sum_{m\neq n}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)\\
+\frac{dP_{n}\left(t\right)}{dt} & =\sum_{m\neq n}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)
+\end{align*}
+
+Observe que para $m=n$, o termo do somatório fica:
+
+\[
+P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}=0
+\]
+
+Entã podemos escrever apenas:
+
+\[
+\dot{P}_{n}=\sum_{m}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)
+\]
+
+Desta vez acredito que é interessante trabalharmos com um exemplo. Consideramos uma caminhada aleatória em uma malha de uma dinesão infinita. A probabilidade de transição entre um ponto e os ontos adjacentes é $k$, e todas as outras probabilidades são zero, isto é, o sistema não pode saltar por cima de nenhum ponto.
+
+Podemos escrever uma equação metre para descrever o fluxo de probabilidade nos pontos da malha. Para um ponto qualquer $n$ o fluxo pode ir apenas para $n-1$ou $n+1$, ambos com taxa $k$. Então, chamando o somat´rio de $S_{m}$:
+
+\begin{align*}
+\dot{P}_{n} & =\sum_{m}S_{m}=\sum^{n-2}_{m=-\infty}S_{m}+S_{n-1}+S_{n}+S_{n+1}+\sum^{+\infty}_{m=n+2}S_{m}=S_{n-1}+S_{n+1}
+\end{align*}
+
+Afinal $S_{m}=0$ sempre que $m\neq n\pm1$. Então, sendo $\pm j=n\pm1$ e como todas as taxas $W_{mn}=k$:
+
+\begin{align*}
+\dot{P}_{n} & =S_{n-1}+S_{n+1}\\
+ & =P_{-j}\left(t\right)W_{-jn}-P_{n}\left(t\right)W_{n\left(-j\right)}+P_{+j}\left(t\right)W_{+jn}-P_{n}\left(t\right)W_{n\left(-j\right)}\\
+ & =\left(P_{n-1}\left(t\right)-P_{n}\left(t\right)+P_{n+1}\left(t\right)-P_{n}\left(t\right)\right)k\\
+ & =k\left(P_{n-1}+P_{n+1}-2P_{n}\right)
+\end{align*}
+
+Podemos computar computaora ocupação média de tdos os lugares ponderada pela probabilidade de ocupação de cada lugar:
+
+\[
+\overline{n}=\frac{\sum^{\infty}_{n=-\infty}nP_{n}\left(t\right)}{\sum^{\infty}_{n=-\infty}P_{n}\left(t\right)}=\sum^{\infty}_{n=-\infty}nP_{n}\left(t\right)
+\]
+E analisando como essa média varia no tempo:
+
+\begin{align*}
+\dot{\overline{n}} & =\sum^{\infty}_{n=-\infty}n\dot{P_{n}}\left(t\right)\\
+ & =k\sum^{\infty}_{n=-\infty}n\left(P_{n-1}+P_{n+1}-2P_{n}\right)\\
+ & =k\left[\sum^{\infty}_{n=-\infty}nP_{n-1}+\sum^{\infty}_{n=-\infty}nP_{n+1}-2\sum^{\infty}_{n=-\infty}nP_{n}\right]\\
+ & =k\left[\sum^{\infty}_{n=-\infty}\left(1+m\right)P_{m}+\sum^{\infty}_{n=-\infty}\left(m-1\right)P_{m}-2\sum^{\infty}_{m=-\infty}mP_{m}\right]\\
+ & =k\sum^{\infty}_{n=-\infty}\left(1+m+m-1-2m\right)P_{m}\\
+ & =0
+\end{align*}
+
+Ou seja, a ocupação média nãõ varia no tempo nesse modelo. Se escolhermos uma distribuição inicial que satisfaça $\overline{n}=0$, então essa vai ser sempre a posição media de ocupação.
+
+Porém o deslocamento quadrado médio $\overline{n^{2}}$\footnote{Nas notas está $\overline{n}^{2},$mas $\left\langle n\right\rangle ^{2}\neq\left\langle n^{2}\right\rangle ,$e acho que queremos é o primeiro caso, até porque se $\dot{\overline{n}}=0$ obviamente $\dot{\overline{n}}^{2}=0$, então queremos $\dot{\overline{n^{2}}}$.}não é constante:
+
+\[
+\overline{n^{2}}=\sum^{\infty}_{n=-\infty}n^{2}P_{n}\left(t\right)
+\]
+
+E agora:
+
+\begin{align*}
+\dot{\overline{n^{2}}} & =\sum^{\infty}_{n=-\infty}n^{2}\dot{P_{n}}\left(t\right)\\
+ & =k\sum^{\infty}_{n=-\infty}n^{2}\left(P_{n-1}+P_{n+1}-2P_{n}\right)\\
+ & =k\left[\sum^{\infty}_{n=-\infty}n^{2}P_{n-1}+\sum^{\infty}_{n=-\infty}n^{2}P_{n+1}-2\sum^{\infty}_{n=-\infty}nP_{n}\right]\\
+ & =k\left[\sum^{\infty}_{n=-\infty}\left(1+m\right)P_{m}+\sum^{\infty}_{n=-\infty}\left(m-1\right)P_{m}-2\sum^{\infty}_{m=-\infty}m^{2}P_{m}\right]\\
+ & =k\sum^{\infty}_{n=-\infty}\left[\left(1+m\right)^{2}+\left(m-1\right)^{2}-2m^{2}\right]P_{m}
+\end{align*}
+
+Abrindo o termo entre colchetes:
+
+\begin{align*}
+S & =\left[\left(1+m\right)^{2}+\left(m-1\right)^{2}-2m^{2}\right]\\
+ & =1+m^{2}+2m+m^{2}+1-2m-2m^{2}\\
+ & =2
+\end{align*}
+
+Então:
+
+\begin{align*}
+\dot{\overline{n^{2}}} & =2k\sum^{\infty}_{n=-\infty}P_{m}=2k
+\end{align*}
+
+Uma vez que $\sum^{\infty}_{n=-\infty}P_{m}=1$ , isto é, o sistema tem que estar em algum estado. Se a distribuição de probabilidade inicial é $P_{n}\left(0\right)=\delta_{0n}$. Vamos resolver então a seguinte equação:
+
+\begin{align*}
+\frac{dP_{n}}{dt} & =k\left(P_{n-1}+P_{n+1}-2P_{n}\right) & P_{n}\left(0\right) & =\delta_{0n}
+\end{align*}
+
+Para resolver vamos usarA transformar de fourier em tempo discreto, do inglês, abreviado para DTFT (\href{https://ocw.nthu.edu.tw/ocw/upload/130/1582/10410\%25E5\%258A\%2589\%25E5\%25A5\%2595\%25E6\%2596\%2587\%25E6\%2595\%2599\%25E6\%258E\%2588\%25E6\%2595\%25B8\%25E4\%25BD\%258D\%25E6\%2595\%25B8\%25E4\%25BD\%258D\%25E8\%2581\%25B2\%25E8\%25A8\%258A\%25E5\%2588\%2586\%25E6\%259E\%2590\%25E8\%2588\%2587\%25E5\%2590\%2588\%25E6\%2588\%2590L2_Lecture-1-DTFT.pdf}{Yi-Wen Liu}):
+
+\begin{align*}
+X\left(\omega\right)\stackrel{\Delta}{=}=\sum^{\infty}_{n=-\infty}x_{n}e^{-j\omega n},\quad & x_{n}=\frac{1}{2\pi}\int^{+\pi}_{-\pi}X\left(\omega\right)e^{j\omega n}d\omega\\
+P\left(\omega\right)=\sum^{\infty}_{n=-\infty}P_{n}e^{-j\omega n},\quad & P_{n}=\frac{1}{2\pi}\int^{+\pi}_{-\pi}P\left(\omega\right)e^{j\omega n}d\omega
+\end{align*}
+
+Mnipulando então: no lado esquerdo tempos\footnote{A troca entre a derivada e o somatório infinito não é válida em geral, diferente de um somatório finito, que é sempre válido. Para o caso infinito, é requerido hipóteses adicionais sobre a convergência da série. No presente caso, assume-se que $\sum_{n}P_{n}=1$ e que a série das derivadas $\sum_{n}\dot{P}_{n}$ converge absolutamente, justificando a derivação termo a termo. Outra alternativa, presumo eu, seja truncar a série.}:
+
+\begin{align*}
+\frac{dP_{n}}{dt} & =k\left(P_{n-1}+P_{n+1}-2P_{n}\right)\\
+\frac{d}{dt}\left[\sum^{\infty}_{n=-\infty}P_{n}e^{-j\omega n},\right] & =k\sum^{\infty}_{n=-\infty}\left(P_{n-1}+P_{n+1}-2P_{n}\right)e^{-j\omega n},\\
+\frac{dP\left(\omega\right)}{dt} & =k\sum^{\infty}_{k=-\infty}\left(P_{n-1}+P_{n+1}-2P_{n}\right)e^{-j\omega n},
+\end{align*}
+
+Agora nos três termos vamos ter:
+
+\begin{align*}
+\sum^{\infty}_{n=-\infty}P_{n-1}e^{-j\omega n} & =\sum^{\infty}_{m=-\infty}P_{m}e^{-j\omega\left(m+1\right)}=e^{-j\omega}\sum^{\infty}_{m=-\infty}P_{m}e^{-j\omega m}=e^{-j\omega}P\\
+\sum^{\infty}_{n=-\infty}P_{n+1}e^{-j\omega n} & =\sum^{\infty}_{m=-\infty}P_{m}e^{-j\omega\left(m-1\right)}=e^{j\omega}P\\
+\sum^{\infty}_{n=-\infty}P_{n}e^{-j\omega n} & =P
+\end{align*}
+
+Onde por convenção denotamos P$\left(\omega,t\right)=$$P\left(\omega\right)=P$ e $P\left(n,t\right)=P_{n}$. Então:
+
+\begin{align*}
+\frac{dP}{dt} & =k\left(e^{-j\omega}P+e^{j\omega}P-2P\right)\\
+ & =k\left(e^{-j\omega}+e^{j\omega}-2\right)P
+\end{align*}
+
+Por identidade trigonométrica como $\cos x=\frac{e^{jx}+e^{-jx}}{2}$, então:
+
+\begin{align*}
+\frac{dP}{dt} & =k\left(2\cos\left(\omega\right)-2\right)P\\
+ & =-2k\left(1-\cos\left(\omega\right)\right)P\\
+ & =\alpha P
+\end{align*}
+
+Onde $-2k\left(1-\cos\left(\omega\right)\right)=\alpha$. Essa é uma EDO simples onde uma solução é $P=Ce^{\alpha t}$. Usando a ondição inicial $P_{n}\left(0\right)=\delta_{0n}$:
+
+\[
+P\left(\omega,0\right)=\sum^{\infty}_{n=-\infty}P_{n}\left(0\right)e^{-j\omega n}=\sum^{\infty}_{n=-\infty}\delta_{0n}e^{-j\omega n}=1
+\]
+
+Então:
+
+\[
+Ce^{\alpha0}=1\rightarrow C=1
+\]
+
+Logo:
+
+\[
+P=P\left(\omega\right)=P\left(\omega,t\right)=e^{-2k\left(1-\cos\omega\right)t}
+\]
+
+Aplicando a transformação inversa:
+
+\begin{align*}
+P_{n} & =\frac{1}{2\pi}\int^{+\pi}_{-\pi}P\left(\omega\right)e^{j\omega n}d\omega\\
+ & =\frac{1}{2\pi}\int^{+\pi}_{-\pi}e^{-2k\left(1-\cos\omega\right)t}e^{j\omega n}d\omega
+\end{align*}
+
+Que é basicamente o resultado do livro\footnote{Como estamos integrando uma função periódica de período $2\pi$ ao longo de um período completo, o resultado é o mesmo independentemente de começarmos a integração em $0$ ou em $-\pi$. É apenas uma mudança de variável do tipo $\theta=\omega-2\pi$, tendo que $P\left(\theta+2\pi\right)=P\left(\theta\right)$, isso é explicito pois a dependênci de $P$ em $\omega$ está em $\cos\omega$ e $\cos\left(\theta+2\pi\right)=\cos\theta$, assim como $\exp\left(j\left[\theta+2\pi\right]n\right)=\exp\left(j\theta n\right)$.}. Agora queremos uma expressão para $P_{n}$ a longo prazo, quando $t\rightarrow\infty$, isto é queremos uma aproximação assintótica válida para tempos grandes. Vamos aplicar o ``método de Laplace'' ou (``método da fase estacinária''). Analisando o comportamento assintótico do integrando:
+\[
+\lim_{t\rightarrow\infty}I=\lim_{t\rightarrow\infty}e^{-2k\left(1-\cos\omega\right)t}e^{j\omega n}=0
+\]
+
+Porém se $\omega=0$ temos $\cos\left(0\right)=1$ e consequentemente $\lim_{t\rightarrow\infty}I=1$ apenas. Então conforme mais longo for o tempo a unica região da integral que contribui é cada vez mais próxima de $\omega=0$. Fazendo uma expansão em série de Taylor em torno da origem:
+
+\begin{align*}
+f\left(x\right) & =\sum^{\infty}_{n=0}\frac{f^{\left(n\right)}\left(a\right)}{n!}\left(x-a\right)^{n}\\
+\cos x & =\frac{f\left(0\right)}{0!}\left(x-0\right)^{0}+\frac{f^{'}\left(0\right)}{1!}\left(x-0\right)^{1}+\frac{f^{''}\left(0\right)}{2!}\left(x-0\right)^{2}+\dots\\
+ & =\cos\left(0\right)-\sin\left(0\right)x-\frac{\cos\left(0\right)}{2}x^{2}+\dots\\
+ & \approx1-\frac{x^{2}}{2}
+\end{align*}
+
+Substituindo $k=D$ ficamos com a seguinte aproximação assintótica
+\[
+P_{n}\underset{t\rightarrow\infty}{\sim}P_{na}=\frac{1}{2\pi}\int^{+\pi}_{-\pi}e^{-D\omega^{2}t}e^{j\omega n}d\omega
+\]
+
+Então como a integral só vale próxima a $z=0$ podemos trocar os limites para $-\infty$ e $+\infty$ e agra vamos vmos fazer umas manipulações para resolver a seguinte integral:
+
+\[
+P_{na}=\frac{1}{2\pi}\int^{+\infty}_{-\infty}\exp\left(-D\omega^{2}t+j\omega n\right)d\omega
+\]
+
+Sendo $a=Dt$ e $b=jn$, então:
+
+\[
+-a\left(\omega-\frac{b}{2a}\right)^{2}+\frac{b^{2}}{4a}=-a\omega^{2}+2\frac{\omega b}{2}+\frac{b^{2}}{4a}+\frac{b^{2}}{4a}=-a\omega^{2}+\omega b
+\]
+
+Ficamos então com:
+
+\begin{align*}
+P_{na} & =\frac{1}{2\pi}\int^{+\infty}_{-\infty}\exp\left(-a\left(\omega-\frac{b}{2a}\right)^{2}+\frac{b^{2}}{4a}\right)d\omega\\
+ & =\frac{1}{2\pi}e^{\frac{b^{2}}{4a}}\int^{+\infty}_{-\infty}e^{-au^{2}}du
+\end{align*}
+
+Onde fizemos $u=\omega-\frac{b}{2a}$. Agor essa é uma integral gaussiana. Essa é uma integral gaussiana de resultado bastante conhecido, mas vamos resolver uma vez (\href{https://github.com/jonasmaziero/mecanica_quantica/blob/main/notas_de_aula/02_Probabilidades.ipynb}{Jonas Maziero}) pelo menos. Definimos então uma integral:
+
+\[
+G=\int^{+\infty}_{-\infty}e^{-ax^{2}}dx
+\]
+
+Então:
+
+\[
+G^{2}=\left(\int^{+\infty}_{-\infty}e^{-ax^{2}}dx\right)^{2}=\left(\int^{+\infty}_{-\infty}e^{-ax^{2}}dx\right)\left(\int^{+\infty}_{-\infty}e^{-ax^{2}}dx\right)
+\]
+
+Ou como $x$ é a variável de integração em cada uma das integrais, ou seja, apenas um rótulo, podemos substituir $x\rightarrow y$ na segunda, e ficamos então com:
+
+\[
+G^{2}=\left(\int^{+\infty}_{-\infty}e^{-ax^{2}}dx\right)\left(\int^{+\infty}_{-\infty}e^{-ay^{2}}dx\right)=\left(\int^{+\infty}_{-\infty}\int^{+\infty}_{-\infty}e^{-a\left(x^{2}+y^{2}\right)}dxdy\right)
+\]
+
+Agora podemos fazer uma mudança no sistema de coordenadas, obviamente, mudando também o elemento de área. Usando o sistema de coordenadas polares (\href{https://en.wikipedia.org/wiki/Polar_coordinate_system}{definição}): 
+
+\begin{align*}
+x & =r\cos\theta\\
+y & =r\sin\theta\\
+da & =rdrd\theta
+\end{align*}
+
+Para cobrir todo o espaço, nossos limites são $0\leq r<\infty$ e $0\leq\theta<2\pi$. Substituindo:
+
+\begin{align*}
+G^{2} & =\left(\int^{2\pi}_{0}\int^{\infty}_{0}e^{-ar^{2}}rdrd\theta\right)\\
+ & =\left(\int^{2\pi}_{0}d\theta\right)\left(\int^{\infty}_{0}e^{-ar^{2}}rdr\right)\\
+ & =2\pi\left(\int^{\infty}_{0}e^{-ar^{2}}rdr\right)
+\end{align*}
+
+Substituindo $u=-ar^{2}$ então $\frac{du}{dr}=-a2r\rightarrow-\frac{du}{a}=2rdr$ e os limites de integração agora são $u=-a0^{2}=0$ e $u=-ar\infty^{2}=-\infty$
+
+\begin{align*}
+G^{2} & =\pi\left(\int^{-\infty}_{0}e^{-ar^{2}}2rdr\right)\\
+ & =-\frac{\pi}{a}\left(\int^{-\infty}_{0}e^{u}du\right)\\
+ & =-\frac{\pi}{a}\left[e^{u}\right]^{-\infty}_{0}\\
+ & =-\frac{\pi}{a}\left[\frac{1}{e^{u}}-e^{0}\right]^{-\infty}_{0}\\
+ & =\frac{\pi}{a}
+\end{align*}
+
+Logo se $G^{2}=\pi/a$ então $G=\sqrt{\pi/a}$ e:
+
+\[
+\int^{+\infty}_{-\infty}e^{-ax^{2}}dx=G=\sqrt{\frac{\pi}{a}}
+\]
+
+Então:
+
+\begin{align*}
+P_{na} & =\frac{1}{2\pi}e^{\frac{b^{2}}{4a}}\int^{+\infty}_{-\infty}e^{-au^{2}}d\\
+ & =\frac{1}{2\pi}e^{\frac{b^{2}}{4a}}\sqrt{\frac{\pi}{a}}\\
+ & =\frac{1}{2\sqrt{\pi}}e^{\frac{\left(jn\right)^{2}}{4Dt}}\frac{1}{\sqrt{Dt}}\\
+ & =\frac{1}{\sqrt{4\pi Dt}}e^{-\frac{n^{2}}{4Dt}}
+\end{align*}
+
+
+\subsubsection*{Tempo Médio de Primeira Passagem}
+
+Vamos calcular o tempo médio que a caminhada aleatória leva para chegar em uma determinada posição $n_{s}$ pela primeira vez. Para isso vamos por uma condição de absorção na fronteira em $n_{s}$: $P_{ns}\left(t\right)=0$\footnote{Acho a notação confusa pois parece que estamos dizendo que é nula a chance do caminhante estar em $n_{s}$ no tempo t, prefiro apenas dizer que estamos literalmente removendo o estado $n_{s}$ da análise. O que queremos é saber a probabilidade do sistema estar em outros estados, considerando que quando ele chegue na fronteira ($n_{s}$) o sistema para de evoluir, então estamos sempre interessados na probabilidade de não estar em $n_{s}$.}, isso é, vamos eliminar o estado $n_{s}$ da distribuição, assim vamos ficar com:
+
+\[
+S\left(t\right)=\sum_{n\neq n_{s}}P_{n}\left(t\right)\leq1
+\]
+
+A ideia é imaginar como se quando o caminhante chega em $n_{s}$ ele permanece ali e o sistema para de evoluir. Então a probabilidde de sobrevivência $S\left(t\right)$, isto é, a probabilidade que o camihante ainda não atingiu $n_{s}$no instante $t$\footnote{Embora $S\left(t\right)$ represente a probabilidade instantânea de o caminhante ainda não estar no estado absorvente $n_{s}$, essa quantidade incorpora indiretamente a história do processo. Como $n_{s}$ é absorvente, toda trajetória que o atinge permanece nele para todos os tempos posteriores, deixando definitivamente de contribuir para a soma. Assim, $S(t)$ diminui monotonicamente (isto é, nunca aumenta) com o tempo e representa a probabilidade de o caminhante ainda não ter visitado $n_{s}$ até o instante $t$, isto é, a probabilidade de sobrevivência.} é:
+
+\[
+S\left(t\right)=\sum_{n\neq n_{s}}P_{n}\left(t\right)
+\]
+
+Então:
+
+\[
+\dot{S}\left(t\right)=\sum_{n\neq n_{s}}\dot{P}_{n}\left(t\right)
+\]
+
+E sendo a equação mestra do sistema com a remoção de $P_{n_{s}}$:
+
+\begin{align*}
+\dot{P}_{n} & =\sum_{m}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)\\
+ & =\sum_{m\neq n_{s}}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)+P_{n_{s}}\left(t\right)W_{n_{s}n}-P_{n}\left(t\right)W_{nn_{s}}\\
+ & =\sum_{m\neq n_{s}}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)-P_{n}\left(t\right)W_{nn_{s}}
+\end{align*}
+
+Veja que no livro foi escrito $P_{n_{s}}\left(t\right)=0$ mas acho mais adequado pensar $W_{n_{s}n}=0$, pois a taxa de transição pra sair de estado $n_{s}$ é zero, de toda forma, precisamos ter em mente que $P_{ns}\left(t\right)=0$ é uma forma matemática de representar a eliminação. Da mesma forma em $S\left(t\right)$ apenas removemos $P_{ns}\left(t\right)$, se $P_{n}\left(t\right)=0$, poderíamos somar sobre todos valores de $n$. Retomando o calculo, agora somando tofos estados, exceto $n_{s}$:
+
+\begin{align*}
+\dot{P}_{n} & =\sum_{m\neq n_{s}}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)-P_{n}\left(t\right)W_{nn_{s}}\\
+\sum_{n\neq n_{s}}\dot{P}_{n} & =\sum_{m\neq n_{s}}\sum_{n\neq n_{s}}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right)-\sum_{n\neq n_{s}}P_{n}\left(t\right)W_{nn_{s}}
+\end{align*}
+
+como $m$ e $n$ são indices mudo, isto é, sem significados e podem ser renomeados podemos inverter $n$ e $n$, então:
+
+\[
+\sum_{m,n\neq n_{s}}P_{m}W_{mn}=\sum_{n,m\neq n_{s}}P_{n}W_{nm}
+\]
+
+Logo:
+
+\begin{align*}
+\dot{S} & =-\sum_{n\neq n_{s}}P_{n}\left(t\right)W_{nn_{s}}
+\end{align*}
+
+Agra precisamos entender o que é $S(t)$. $S(t)$ nos dá a probabilidade de que o caminhante não tenha chegado em $n_{s}$ até o tempo $t$, ou seja, a probabilidade de que o tempo de chegada $T$ seja maior que $t$:
+
+\[
+S(t)=P(T>t).
+\]
+
+Ela é uma função de distribuição cumulativa complementar, isto é, uma função que nos dá a probabilidade de que o tempo de chegada $T$ seja maior que $t$.
+
+A probabilidade do primeiro encontro ocorrer entre $t$e $t+dt$ é então:
+
+\[
+P\left(t<T\leq t+dt\right)=S\left(t\right)-S\left(t+dt\right)
+\]
+
+Se $f\left(t\right)$ é a densidade de probabilidade e $f\left(t\right)dt$ é a probabilidade do primeiro encontro ocorrer entre $t$e $t+dt$ é então:
+
+\[
+f\left(t\right)dt=P\left(t<T\leq t+dt\right)=S\left(t\right)-S\left(t+dt\right)
+\]
+
+Então no limite:
+
+\[
+f\left(t\right)=-\lim_{dt\rightarrow0}\frac{S\left(t+dt\right)-S\left(t\right)}{dt}=-\dot{S}
+\]
+
+Se expandirmos $S\left(t+dt\right)$ com $x=t+dt$ em série de taylor em torno de $t$ ,temos:
+
+\begin{align*}
+f\left(x\right) & =\sum^{\infty}_{n=0}\frac{f^{\left(n\right)}\left(a\right)}{n!}\left(x-a\right)^{n}\\
+S\left(x\right) & =S\left(t\right)+S'\left(t\right)\left(x-t\right)+\dots\\
+S\left(t+dt\right) & \approx S\left(t\right)+S'\left(t\right)\left(t+dt-t\right)\\
+ & \approx S\left(t\right)+S'\left(t\right)dt
+\end{align*}
+
+Então:
+
+\begin{align*}
+f\left(t\right)dt & =S\left(t\right)-S\left(t+dt\right)\\
+ & \approx S\left(t\right)-\left(S\left(t\right)+\dot{S}\left(t\right)dt\right)\\
+ & =-\dot{S}\left(t\right)dt
+\end{align*}
+
+Ou seja:
+
+\[
+f\left(t\right)=-\dot{S}\left(t\right)
+\]
+
+Agora uma vez que $f\left(t\right)$ é a densidade de probabilidade do primeiro encontro ocorrer entre $t$ e $t+dt$ é então:
+
+\begin{align*}
+\left\langle t\right\rangle  & =\int^{\infty}_{0}tf\left(t\right)dt\\
+ & =-\int^{\infty}_{0}t\frac{dS\left(t\right)}{dt}dt
+\end{align*}
+
+Fazendo integração por partes onde $u=t$ ($du=dt$) e $dv=\frac{dS\left(t\right)}{dt}dt=dS\left(t\right)$ ($v=S$):
+
+\begin{align*}
+\int udv & =uv-\int vdu\\
+-\int^{\infty}_{0}t\frac{dS\left(t\right)}{dt}dt & =-\left[tS\right]^{\infty}_{0}+\int^{\infty}_{0}Sdt\\
+ & =
+\end{align*}
+
+Vamos analisar os limites nos extremos do intervalo. Para $(t=0)$, temos: $tS(t)=0\cdot S(0)=0$, pois apesar de não sabermos $S\left(0\right)$ assumimos que é finito por definição. Para $(t\rightarrow\infty)$, temos uma forma indeterminada: $tS(t)\rightarrow\infty\cdot0$. 
+
+Fisicamente temos que para tempos muito longos, a probabilidade de o caminhante ainda não ter atingido o sítio $n_{s}$ torna-se cada vez menor, ou seja $S(t)\rightarrow0$. Porém para além disso, é necessário decaia suficientemente rápido para que $\lim_{t\rightarrow\infty}tS(t)=0$. Uma vez que $S(t)$ é uma função monotonicamente decrescente, assumimos como hipótese adicional que a probabilidade decai suficientemente rápido no tempo de modo que $\lim_{t\rightarrow\infty}tS(t)=0$.
+
+Ficamos então com:
+
+\[
+\left\langle t\right\rangle =\int^{\infty}_{0}S\left(t\right)dt
+\]
+
+\textbf{Exemplo: }Vamos considerar um sistema com três estados e e descrito pela seguinte matriz de probabilidade $\boldsymbol{Q}$:
+
+\[
+Q=\left(\begin{array}{ccc}
+0 & p & q\\
+q & 0 & p\\
+p & q & 0
+\end{array}\right)
+\]
+
+Podemos começar calculando o auto valor fazendo:
+
+\begin{align*}
+\det\left(\boldsymbol{Q}-\lambda\boldsymbol{I}\right) & =0
+\end{align*}
+
+Isto nos leva a seguinte equação características:
+
+\[
+\lambda^{3}-3pq\lambda-\left(p^{3}+q^{3}\right)=0
+\]
+
+Onde os autovalores são as raízes deste sistema. Segundo o Wolfram\footnote{Poderíamos perceber, por inspeção, que $\lambda_{1}=p+q$ é uma raiz do polinômio característico. Aplicando a regra de Ruffini e utilizando a condição $p+q=1$, podemos reescrever o polinomio caracteristico como $\left(\lambda-1\right)\left(\lambda^{2}+\lambda+1-3pq\right).$}:
+
+\begin{align*}
+\lambda_{1} & =p+q\\
+\lambda_{\pm} & =\frac{1}{2}\left(-\left(p+q\right)\pm\sqrt{-\left(p-q\right)^{2}3}\right)
+\end{align*}
+
+Como $\sum_{n}Q_{mn}=p+q=1$, então $\lambda_{1}=1$ e como:
+
+\[
+\left(p+q\right)^{2}=p^{2}+q^{2}+2pq=\left(p-q\right)^{2}+4pq
+\]
+
+E sendo $\left(p+q\right)^{2}=1^{2}=1$, então $\left(p-q\right)^{2}=1-4pq$, logo:
+
+\begin{align*}
+\lambda_{1} & =1\\
+\lambda_{\pm} & =-\frac{1}{2}-\frac{1}{2}\pm\sqrt{3\left(4pq-1\right)}
+\end{align*}
+
+Os autovetores sao calculodados fazendo $\boldsymbol{Q}\boldsymbol{y}=\lambda\boldsymbol{y}$ ou então:
+
+\[
+\left(\boldsymbol{Q}-\lambda\boldsymbol{I}\right)\boldsymbol{y}=0
+\]
+
+E resolvemos o sistema. Se $p=q=\frac{1}{2}$, para $\lambda=1$
+
+\begin{align*}
+\left(\begin{array}{ccc}
+-\lambda & \frac{1}{2} & \frac{1}{2}\\
+\frac{1}{2} & -\lambda & \frac{1}{2}\\
+\frac{1}{2} & \frac{1}{2} & -\lambda
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}
+\end{array}\right) & =0\\
+\left(\begin{array}{ccc}
+-1 & \frac{1}{2} & \frac{1}{2}\\
+\frac{1}{2} & -1 & \frac{1}{2}\\
+\frac{1}{2} & \frac{1}{2} & -1
+\end{array}\right)\left(\begin{array}{c}
+x_{1}\\
+x_{2}\\
+x_{3}
+\end{array}\right) & =0
+\end{align*}
+
+Resolvendo esse sistema temos $\boldsymbol{y}^{T}_{1}=\frac{1}{\sqrt{3}}\left(\begin{array}{ccc}
+1 & 1 & 1\end{array}\right)$. Fazendo o mesmo para os outros autovalores temos ($\lambda_{1}=1$, $\lambda_{\pm}=-\frac{1}{2}$):
+
+\begin{align*}
+\boldsymbol{x}_{1} & =\boldsymbol{y}^{T}_{1}=\frac{1}{\sqrt{3}}\left(\begin{array}{ccc}
+1 & 1 & 1\end{array}\right)\\
+\boldsymbol{x}_{2} & =\boldsymbol{y}^{T}_{2}=\frac{1}{\sqrt{6}}\left(\begin{array}{ccc}
+1 & 1 & -2\end{array}\right)\\
+\boldsymbol{x}_{3} & =\boldsymbol{y}^{T}_{3}=\frac{1}{\sqrt{2}}\left(\begin{array}{ccc}
+1 & -1 & 0\end{array}\right)
+\end{align*}
+
+Onde temos $\boldsymbol{x}_{1}=\boldsymbol{y}^{T}_{1}$ devido a simetirza da matriz. Então por exemplo, se o sistema está no estado $1$ :
+
+\begin{align*}
+\left\langle n_{0}|y_{1}\right\rangle  & =\frac{1}{\sqrt{3}}\left(\begin{array}{ccc}
+1 & 0 & 0\end{array}\right)\left(\begin{array}{c}
+1\\
+1\\
+1
+\end{array}\right)=\frac{1}{\sqrt{3}}\\
+\left\langle n_{0}|y_{2}\right\rangle  & =\frac{1}{\sqrt{6}}\left(\begin{array}{ccc}
+1 & 0 & 0\end{array}\right)\left(\begin{array}{c}
+1\\
+1\\
+-2
+\end{array}\right)=\frac{1}{\sqrt{6}}\\
+\left\langle n_{0}|y_{3}\right\rangle  & =\frac{1}{\sqrt{2}}\left(\begin{array}{ccc}
+1 & 0 & 0\end{array}\right)\left(\begin{array}{c}
+1\\
+-1\\
+0
+\end{array}\right)=\frac{1}{\sqrt{2}}
+\end{align*}
+
+Então:
+
+\begin{align*}
+\left\langle P_{s}\right|= & \sum_{j}\left\langle n_{0}|y_{j}\right\rangle \lambda^{s}_{j}\left\langle x_{j}\right|\\
+= & \left\langle n_{0}|y_{1}\right\rangle \lambda^{s}_{1}\left\langle x_{1}\right|+\left\langle n_{0}|y_{2}\right\rangle \lambda^{s}_{2}\left\langle x_{2}\right|+\left\langle n_{0}|y_{3}\right\rangle \lambda^{s}_{3}\left\langle x_{3}\right|\\
+= & \frac{1}{\sqrt{3}}1^{s}\left(\begin{array}{c}
+1\\
+1\\
+1
+\end{array}\right)^{T}\frac{1}{\sqrt{3}}+\frac{1}{\sqrt{6}}\left(-\frac{1}{2}\right)^{s}\left(\begin{array}{c}
+1\\
+1\\
+-2
+\end{array}\right)^{T}\frac{1}{\sqrt{6}}+\frac{1}{\sqrt{2}}\left(-\frac{1}{2}\right)^{s}\left(\begin{array}{c}
+1\\
+-1\\
+0
+\end{array}\right)^{T}\frac{1}{\sqrt{2}}\\
+= & \frac{1}{3}\left(\begin{array}{c}
+1\\
+1\\
+1
+\end{array}\right)^{T}+\frac{1}{6}\left(-\frac{1}{2}\right)^{s}\left(\begin{array}{c}
+1\\
+1\\
+-2
+\end{array}\right)^{T}+\frac{3}{6}\left(-\frac{1}{2}\right)^{s}\left(\begin{array}{c}
+1\\
+-1\\
+0
+\end{array}\right)^{T}\\
+= & \left(\begin{array}{c}
+\frac{1}{3}+\frac{1}{6}\left(-\frac{1}{2}\right)^{s}+\frac{3}{6}\left(-\frac{1}{2}\right)^{s}\\
+\frac{1}{3}+\frac{1}{6}\left(-\frac{1}{2}\right)^{s}-\frac{3}{6}\left(-\frac{1}{2}\right)^{s}\\
+\frac{1}{3}-\frac{2}{6}\left(-\frac{1}{2}\right)^{s}
+\end{array}\right)^{T}\\
+= & \left(\begin{array}{c}
+\frac{1}{3}+\frac{2}{3}\left(-\frac{1}{2}\right)^{s}\\
+\frac{1}{3}-\frac{1}{3}\left(-\frac{1}{2}\right)^{s}\\
+\frac{1}{3}-\frac{1}{3}\left(-\frac{1}{2}\right)^{s}
+\end{array}\right)^{T}
+\end{align*}
+
+E somando tudo:
+
+\[
+\sum\left\langle P_{s}\right|_{s}=\frac{1}{3}+\frac{2}{3}\left(-\frac{1}{2}\right)^{s}+\frac{1}{3}-\frac{1}{3}\left(-\frac{1}{2}\right)^{s}+\frac{1}{3}-\frac{1}{3}\left(-\frac{1}{2}\right)^{s}=\frac{3}{3}=1
+\]
+
+Podemos notar a conservação de probabilidade. Agora queremos calcular o tempo médio de primeira passagem pela posição $3$, sendo o sistema tendo sido preparado no estado $1$. Então todas taxas de transição são $k$, exceto as de saida do estado $3$ ($W_{n3}=0$), Lembrando que é semelhante a uma rede infinita mas só com 3 locais onde o $1$ comunica com o $3$. Então de
+
+\[
+\dot{P}_{n}=\sum_{m}\left(P_{m}\left(t\right)W_{mn}-P_{n}\left(t\right)W_{nm}\right),\quad\boldsymbol{W}=\left(\begin{array}{ccc}
+0 & k & k\\
+k & 0 & k\\
+0 & 0 & 0
+\end{array}\right)
+\]
+
+Vamos ter:
+
+\begin{align*}
+\dot{P}_{1} & =\left[P_{2}\left(t\right)W_{21}-P_{1}\left(t\right)W_{12}\right]+\left[-P_{1}\left(t\right)W_{13}\right]\\
+\dot{P}_{2} & =\left[P_{1}\left(t\right)W_{12}-P_{2}\left(t\right)W_{21}\right]+\left[-P_{2}\left(t\right)W_{23}\right]\\
+\dot{P}_{3} & =P_{1}\left(t\right)W_{13}+P_{2}\left(t\right)W_{23}
+\end{align*}
+
+Então:
+
+\begin{align*}
+\dot{P}_{1} & =-2kP_{1}+kP_{2}\\
+\dot{P}_{2} & =kP_{1}-2kP_{2}\\
+\dot{P}_{3} & =kP_{1}+kP_{2}
+\end{align*}
+
+Nesse sistema:
+
+\begin{align*}
+\left(\begin{array}{c}
+\dot{P}_{1}\\
+\dot{P}_{2}\\
+\dot{P}_{3}
+\end{array}\right) & =\left(\begin{array}{ccc}
+-2k & k & 0\\
+k & -2k & 0\\
+k & k & 0
+\end{array}\right)\left(\begin{array}{c}
+P_{1}\\
+P_{2}\\
+P_{3}
+\end{array}\right)\\
+\dot{\boldsymbol{P}} & =\boldsymbol{W}\boldsymbol{P}
+\end{align*}
+
+Os autovalores são $\lambda_{i}=\left(\begin{array}{ccc}
+-3k & -k & 0\end{array}\right)$e os autovetores \footnote{Como uma coluna de $\boldsymbol{W}$ é nula, temos determinante igual a zero. Como o determinante de uma matriz é igual ao produto de seus autovalores, segue que pelo menos um dos autovalores é zero. Além disso, podemos calcular o polinômio característico $\det(\boldsymbol{W}-\lambda\boldsymbol{I})$ utilizando a expansão em cofatores pela última coluna. Como os dois primeiros elementos
+
+dessa coluna são nulos, apenas o último termo permanece, reduzindo o problema ao cálculo de um determinante $2\times2$ associado às primeiras linhas e colunas.}.
+
+\[
+\left|y_{1}\right\rangle =\frac{1}{\sqrt{2}}\left(\begin{array}{c}
+-1\\
+1\\
+0
+\end{array}\right),\quad\left|y_{2}\right\rangle =\frac{1}{\sqrt{6}}\left(\begin{array}{c}
+-1\\
+-1\\
+2
+\end{array}\right),\quad\left|y_{3}\right\rangle =\left(\begin{array}{c}
+0\\
+0\\
+1
+\end{array}\right)
+\]
+
+Verificamos que quando o sistema chega no estado $\left|x_{3}\right\rangle $ ele não sai mais. E temos os autvetores à esquerda:
+
+\[
+\left\langle x_{1}\right|=\frac{1}{\sqrt{6}}\left(\begin{array}{c}
+2\\
+1\\
+-1
+\end{array}\right),\quad\left\langle x_{2}\right|=\left(\begin{array}{c}
+1\\
+0\\
+0
+\end{array}\right),\quad\left\langle x_{3}\right|=\frac{1}{\sqrt{6}}\left(\begin{array}{c}
+2\\
+-1\\
+-1
+\end{array}\right)
+\]
+
+Podemos verificar se temos $3$ autvetores linearmente $\left\{ \left|y_{i}\right\rangle \right\} $ independentes(\href{https://textbooks.math.gatech.edu/ila/linear-independence.html}{Dan Margalit e Joseph Rabinoff}). São independentes se:
+
+\[
+a\left|y_{1}\right\rangle +b\left|y_{2}\right\rangle +c\left|y_{3}\right\rangle =0
+\]
+
+Tiver uma única solução trivial. Podemos reescrever na forma matricial, onde absoervemos os valores multiplicando cada vetor na constante:
+\[
+\left(\begin{array}{ccc}
+-1 & -1 & 0\\
+1 & -1 & 0\\
+0 & 2 & 1
+\end{array}\right)\left(\begin{array}{c}
+a\\
+b\\
+c
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+0\\
+0
+\end{array}\right)
+\]
+
+Resolvendo o sistema, temos $a=b$ na primeira linha e $a=-b$ na segunda. Somando ficamos $2a=0$, então $a=b=0$. E na terceira $2b=-c$ logo $c=0$. Sendo as únicas soluções triviais, então são LI. Dessa forma, como $\left\{ \left|y_{i}\right\rangle \right\} $ são um conjunto de 3 vetores LI em 3 dimensões, constituem uma base (\href{https://textbooks.math.gatech.edu/ila/dimension.html}{Dan Margalit e Joseph Rabinoff}). Assim podemos escrever:
+
+\begin{align*}
+\left|P\left(t\right)\right\rangle  & =\sum^{3}_{i=1}c_{i}\left(t\right)\left|y_{i}\right\rangle \\
+\boldsymbol{W}\left|P\left(t\right)\right\rangle  & =\sum^{3}_{i=1}c_{i}\left(t\right)\boldsymbol{W}\left|y_{i}\right\rangle \\
+\boldsymbol{W}\left|P\left(t\right)\right\rangle  & =\sum^{3}_{i=1}c_{i}\left(t\right)\lambda_{i}\left|y_{i}\right\rangle 
+\end{align*}
+
+Uma vez que $\boldsymbol{W}\left|y_{i}\right\rangle =\lambda\left|y_{i}\right\rangle $. Como então $\dot{\boldsymbol{P}}=\sum^{3}_{i=1}\dot{c}_{i}\left|y_{i}\right\rangle $\footnote{Isto é, a derivada de uma função vetorial é dada pela derivada de cada uma de suas componentes, desde que os versores da base permaneçam constantes (\href{https://math.libretexts.org/Bookshelves/Calculus/Map\%253A_Calculus__Early_Transcendentals_(Stewart)/13\%253A_Vector_Functions/13.02\%253A_Derivatives_and_Integrals_of_Vector_Functions}{Math LibreTexts}).}. Logo:
+
+\begin{align*}
+\dot{\boldsymbol{P}} & =\boldsymbol{W}\boldsymbol{P}\\
+\sum^{3}_{i=1}\dot{c}_{i}\left|y_{i}\right\rangle  & =\sum^{3}_{i=1}c_{i}\left(t\right)\lambda_{i}\left|y_{i}\right\rangle 
+\end{align*}
+
+Ou seja, como as componentes de cada vetor da base ``naõ se misturam'':
+
+\begin{align*}
+\dot{c}_{i} & =\lambda_{i}c_{i}\\
+\dot{c}_{i} & =\lambda_{i}c_{i}
+\end{align*}
+
+Então: $c_{i}\left(t\right)=A_{i}e^{\lambda_{i}t}$. Logo $\left|P\left(t\right)\right\rangle =\sum^{3}_{i=1}A_{i}e^{-\lambda_{i}t}\left|y_{i}\right\rangle $, e evidentemente $\left|P\left(0\right)\right\rangle =\sum^{3}_{i=1}A_{i}e^{\lambda_{i}0}\left|y_{i}\right\rangle =\sum^{3}_{i=1}A_{i}\left|y_{i}\right\rangle $. Como consideramos que o sistema foi preparado no estado $i=1$, e como:
+\[
+\left(\begin{array}{c}
+1\\
+0\\
+0
+\end{array}\right)=-\frac{\sqrt{2}}{2}\left|y_{1}\right\rangle -\frac{\sqrt{6}}{2}\left|y_{2}\right\rangle -\left|y_{3}\right\rangle 
+\]
+
+Então:
+
+\begin{align*}
+\left|P\left(0\right)\right\rangle  & =-\frac{\sqrt{2}}{2}\left|y_{1}\right\rangle -\frac{\sqrt{6}}{2}\left|y_{2}\right\rangle +\left|y_{3}\right\rangle \\
+ & =A_{1}\left|y_{1}\right\rangle +A_{2}\left|y_{2}\right\rangle +A_{3}\left|y_{3}\right\rangle 
+\end{align*}
+
+Logo $A_{1}=-\frac{\sqrt{2}}{2}$, $A_{2}=-\frac{\sqrt{6}}{2}$ e $A_{3}=1$. Então:
+
+\begin{align*}
+\left|P\left(t\right)\right\rangle  & =\sum^{3}_{i=1}A_{i}e^{-\lambda_{i}t}\left|y_{y}\right\rangle \\
+ & =-\frac{\sqrt{2}}{2}e^{-3kt}\left|y_{1}\right\rangle -\frac{\sqrt{6}}{2}e^{-kt}\left|y_{2}\right\rangle +\left|y_{3}\right\rangle \\
+ & =-\frac{e^{-3kt}}{2}\left(\begin{array}{c}
+-1\\
+1\\
+0
+\end{array}\right)-\frac{e^{kt}}{2}\left(\begin{array}{c}
+-1\\
+-1\\
+2
+\end{array}\right)+\left(\begin{array}{c}
+0\\
+0\\
+1
+\end{array}\right)\\
+ & =\left(\begin{array}{c}
+\frac{e^{-3kt}+e^{-kt}}{2}\\
+\frac{e^{-kt}-e^{-3kt}}{2}\\
+1-e^{-kt}
+\end{array}\right)
+\end{align*}
+
+Somando as duas primeiras componentes:
+
+\[
+S=\sum_{n\neq n_{s}}P\left(t\right)=\frac{e^{-3kt}+e^{-kt}}{2}+\frac{-e^{-3kt}+e^{-kt}}{2}=e^{-kt}
+\]
+
+Observe que se se somarmos a terceira componente $e^{-kt}+1-e^{-kt}=1$. Para obter a equação do livro podemos avançar de forma um pouco diferente, como $S=\sum_{n\neq n_{s}}P_{n}\left(t\right)$ podemos escrever então um vetor $\boldsymbol{P}_{-}$ modificado: 
+
+\begin{align*}
+\left(\begin{array}{c}
+\dot{P}_{1}\\
+\dot{P}_{2}
+\end{array}\right) & =\left(\begin{array}{cc}
+-2k & k\\
+k & -2k
+\end{array}\right)\left(\begin{array}{c}
+P_{1}\\
+P_{2}
+\end{array}\right)\\
+\dot{\boldsymbol{p}} & =\boldsymbol{w}\boldsymbol{p}
+\end{align*}
+
+Evidentemente agora $\sum p_{n}<1$ uma vez que não inclui $P_{3}.$ Como $w$ é simétrico e as probabilidades são sempre valores reais, agora $\left|x_{i}\right\rangle ^{T}=\left\langle y_{i}\right|$. E os autovalores são apenas $\left\{ -3k,-k\right\} $. Sendo agora:
+
+\[
+\left|p\left(t\right)\right\rangle =\sum^{2}_{i=1}A_{i}e^{\lambda_{i}t}\left|y_{i}\right\rangle 
+\]
+
+Então:
+
+\[
+\left\langle y_{i}|p\left(0\right)\right\rangle =A_{i}
+\]
+
+E tendo por base $\left\{ \left|1\right\rangle =\left(\begin{array}{cc}
+1 & 0\end{array}\right)^{T},\left|2\right\rangle =\left(\begin{array}{cc}
+0 & 1\end{array}\right)^{T}\right\} $, então se o sisema tem por estado inicial o $1$ então $\left|p\left(0\right)\right\rangle =\left|1\right\rangle $ logo $\left\langle y_{i}|1\right\rangle =A_{i}$. Além disso $\left\langle y_{i}|1\right\rangle =\left\langle 1|y_{i}\right\rangle $. Sendo $\left|P\left(t\right)\right\rangle =\sum^{2}_{i=1}A_{i}e^{\lambda_{i}t}\left|y_{i}\right\rangle $, então:
+
+\[
+\left|p\left(t\right)\right\rangle =\sum^{2}_{i=1}e^{\lambda_{i}t}\left\langle 1|y_{i}\right\rangle \left|y_{i}\right\rangle 
+\]
+
+Agora como $\left(\begin{array}{cc}
+1 & 1\end{array}\right)=\sum_{n}\left\langle n\right|$ então:
+
+\begin{align*}
+S & =\sum_{n\neq n_{s}}P_{n}\left(t\right)\\
+ & =\sum^{2}_{n}\left\langle n|p\left(t\right)\right\rangle \\
+ & =\sum^{2}_{n,i=1}e^{\lambda_{i}t}\left\langle 1|y_{i}\right\rangle \left\langle n|y_{i}\right\rangle 
+\end{align*}
+
+De modo análogo $\left\langle n|y_{i}\right\rangle =\left\langle y_{i}|n\right\rangle $ então:
+
+\begin{align*}
+S & =\sum^{2}_{n,i=1}\left\langle 1|y_{i}\right\rangle e^{\lambda_{i}t}\left\langle y_{i}|n\right\rangle 
+\end{align*}
+
+Alé disso:
+
+\begin{align*}
+\left\langle t\right\rangle = & \int^{\infty}_{0}S\left(t\right)dt=\int^{\infty}_{0}e^{-kt}dt=\frac{1}{k}\\
+f\left(t\right)= & -\dot{S}\left(t\right)=-\frac{d}{dt}e^{-kt}=ke^{-kt}
+\end{align*}
+
+
+\subsection{Equação de Focker-Planck}
+
+Já generalizamos as equações governando os processos de Markov pra dar conta de sistemas que evoluem de forma contínua no tempo (equação mestre), agora vamos também descrever com estados contínuos. DE forma geral tínhamos:
+
+\[
+P\left(n,s+1\right)=\sum_{m}p\left(m,s\right)Q\left(m,n\right)
+\]
+
+Vamos retomar o exemplo da malha unidimensional onde o caminhante sempre precisa saltar pra esquerda ou direita, com igual probabulidade ou seja, para estar na posição $n$ em $s+1$, no instante $s$ caminhante só pode estar em $n-1$ ou $n+1$:
+
+\[
+P\left(n,s+1\right)=P\left(n-1,s\right)\frac{1}{2}+P\left(n+1,s\right)\frac{1}{2}
+\]
+
+Em termos de $\Delta x$ e $\Delta t$
+
+\begin{align*}
+P\left(x,t+\Delta t\right) & =P\left(x-\Delta x,t\right)\frac{1}{2}+P\left(x+\Delta x,t\right)\frac{1}{2}\\
+P\left(x,t+\Delta t\right)-P\left(x,t\right) & =P\left(x-\Delta x,t\right)\frac{1}{2}+P\left(x+\Delta x,t\right)\frac{1}{2}-P\left(x,t\right)\\
+\frac{P\left(x,t+\Delta t\right)-P\left(x,t\right)}{\Delta t} & =\left[\frac{\Delta x^{2}}{2\Delta t}\right]\frac{P\left(x-\Delta x,t\right)+P\left(x+\Delta x,t\right)-2P\left(x,t\right)}{\Delta x^{2}}
+\end{align*}
+
+Tirando o lmite pra $\Delta t\rightarrow0$ e $\Delta x\rightarrow0$ e definido $D=\lim_{\Delta x,\Delta t\rightarrow0}\frac{\Delta x^{2}}{2\Delta t}$\footnote{Acredito que isso é mais preciso que a notação do livro $D=\frac{\Delta x^{2}}{2\Delta t}$, uma vez que pra obtermos a notação de derivadas precisamos considerar o limite quando os intervalos vão a zero.}:
+
+\[
+\frac{\partial P}{\partial t}=D\frac{\partial^{2}P}{\partial x^{2}}
+\]
+
+Usando a Transformada de Fourier do dominio do espaço (\href{https://pt.wikipedia.org/wiki/Transformada_de_Fourier}{Wikipedia}):
+
+\[
+\tilde{P}\left(k,t\right)=\int^{+\infty}_{-\infty}P\left(x,t\right)e^{-ikx}dx
+\]
+
+Então:
+
+\begin{align*}
+\frac{\partial P}{\partial t} & =D\frac{\partial^{2}P}{\partial x^{2}}\\
+\int^{+\infty}_{-\infty}\frac{\partial P}{\partial t}e^{-ikx}dx & =D\int^{+\infty}_{-\infty}\frac{\partial^{2}P}{\partial x^{2}}e^{-ikx}dx
+\end{align*}
+
+Do lad esquerdo temos apenas que $\int^{+\infty}_{-\infty}\frac{\partial P}{\partial t}e^{-ikx}dx=\frac{\partial P}{\partial t}\int^{+\infty}_{-\infty}Pe^{-ikx}dx=\frac{\partial\tilde{P}}{\partial t}$. E do lado direito, usando integração por partes, fazendo $u=e^{-ikx}$ ($du=-ike^{-ikx}$) e $dv=\frac{\partial^{2}P}{\partial x^{2}}$ ($\frac{dv}{dx}=\frac{\partial}{\partial x}\left(\frac{\partial P}{\partial x}\right)$, então $v=\frac{\partial P}{\partial x}$), então:
+
+\begin{align*}
+\int udv & =vu-\int vdu\\
+\int^{+\infty}_{-\infty}\frac{\partial^{2}P}{\partial x^{2}}e^{-ikx}dx & =\left[e^{-ikx}\frac{\partial P}{\partial x}\right]^{+\infty}_{-\infty}+ik\int^{+\infty}_{-\infty}\frac{\partial P}{\partial x}e^{-ikx}dx
+\end{align*}
+
+Onde precisamos considerar que $P$e sua derivada decai suficientemente rápido a zero pra $\left|x\right|\rightarrow\pm\infty$, podemos justificar a hipótese lembrando que $P$ deve ser finit e a probabilidade total deve ser $1$, assim pro valores infinitos de $x$ esperamos que seja $0$ a probabilidade, o sistema tem que estar em alguma posição de $x$. Repetindo o processo mas agora $dv=\frac{\partial P}{\partial x}$ ($v=P$) , então:
+
+\begin{align*}
+\int^{+\infty}_{-\infty}\frac{\partial^{2}P}{\partial x^{2}}e^{-ikx}dx & =ik\left[\left[e^{-ikx}P\right]^{+\infty}_{-\infty}+ik\int^{+\infty}_{-\infty}Pe^{-ikx}dx\right]\\
+ & =-k^{2}\tilde{P}
+\end{align*}
+
+Então:
+
+\[
+\frac{\partial\tilde{P}\left(k,t\right)}{\partial t}=-k^{2}D\tilde{P}\left(k,t\right)
+\]
+
+O que nos leva a $\tilde{P}\left(k,t\right)=Ae^{-Dk^{2}t}$ ou ainda como $\tilde{P}\left(k,0\right)=A$ então apenas
+
+\[
+\tilde{P}\left(k,t\right)=\tilde{P}\left(k,0\right)e^{-Dk^{2}t}
+\]
+
+Se a condição inicial é $P\left(0,t\right)=\delta\left(x-x_{0}\right)$ vamos calcular a transformada usando a propriedade da filtragem, insto é $\int^{+\infty}_{-\infty}\delta\left(x-a\right)f\left(x\right)dx=f\left(a\right)$ (\href{https://pt.wikipedia.org/wiki/Delta_de_Dirac}{Wikipedia}) :
+
+\[
+\tilde{P}\left(0,t\right)=\int^{+\infty}_{-\infty}\delta\left(x-x_{0}\right)e^{-ikx}dx=e^{-ikx_{0}}
+\]
+
+Então $\tilde{P}\left(k,t\right)=e^{-ikx_{0}}e^{-Dk^{2}t}$, e para obtermos $P\left(x,t\right)$, deveos aplicar a transformada inversa:
+
+\begin{align*}
+P\left(x,t\right) & =\frac{1}{2\pi}\int^{+\infty}_{-\infty}\tilde{P}\left(k,t\right)e^{ikx}dk\\
+P\left(x,t\right) & =\frac{1}{2\pi}\int^{+\infty}_{-\infty}e^{-ikx_{0}}e^{-Dk^{2}t}e^{ikx}dk\\
+ & =\frac{1}{2\pi}\int^{+\infty}_{-\infty}\exp\left(-Dk^{2}t+ik\left(x-x_{0}\right)\right)dk
+\end{align*}
+
+Podemos reescrever o expoencial como:
+
+\[
+-Dk^{2}t+ik\left(x-x_{0}\right)=-Dt\left(k-\frac{i\Delta x}{2Dt}\right)^{2}-\frac{\Delta x^{2}}{4Dt}
+\]
+
+Onde $\Delta x=x-x_{0}$. Com isso dividimos a exponencial em duas, podendo retirar $e^{-\frac{\Delta x^{2}}{4Dt}}$ da integral. Além disso podemos fazer $u=k-\frac{i\Delta x}{2Dt}$, sendo apenas $du=dk$ para que expnencial no tegrando seja apenas $e^{-Dtu}$. E se $Dt=\alpha$, então:
+
+\begin{align*}
+P\left(x,t\right) & =\frac{e^{-\frac{\Delta x^{2}}{4Dt}}}{2\pi}\int^{+\infty}_{-\infty}e^{-\alpha u}du
+\end{align*}
+
+Onde o inetgrando é a integral gaussiana que já vimos e vale $\sqrt{\frac{\pi}{\alpha}}$. Então:
+
+\begin{align*}
+P\left(x,t\right) & =\frac{e^{-\frac{\Delta x^{2}}{4Dt}}}{2\pi}\sqrt{\frac{\pi}{\alpha}}\\
+ & =\frac{1}{\sqrt{4\pi Dt}}e^{-\frac{\left(x-x_{0}\right)^{2}}{4Dt}}
+\end{align*}
+
+Que é o resultado do livro. Agora podemos generalizar a equação de difusão. Até este ponto estudamos a equação de difusão,
+
+\[
+\frac{\partial P(x,t)}{\partial t}=D\nabla^{2}P(x,t)
+\]
+
+que descreve a evolução temporal de uma distribuição de probabilidade sujeita apenas a movimentos aleatórios. Nesse modelo não existe nenhuma direção privilegiada para o movimento das partículas e, consequentemente, o centro da distribuição permanece fixo, enquanto sua largura cresce com o tempo.
+
+Entretanto, em muitos problemas físicos, além do movimento aleatório existe também uma força externa atuando sobre as partículas. Por exemplo, uma partícula pode mover-se sob a ação de um potencial de energia $U(x)$. Nesse caso, além da difusão, ocorre um movimento médio em direção às regiões de menor energia potencial. Esse movimento recebe o nome de drift.
+
+Para incorporar esse efeito, o ponto de partida é a conservação da probabilidade. A probabilidade apenas pode variar em uma determinada região do espaço devido ao fluxo de probabilidade que atravessa sua fronteira. Essa ideia é expressa pela equação da continuidade (\href{https://pt.wikipedia.org/wiki/Equa\%25C3\%25A7\%25C3\%25A3o_de_continuidade}{Wikipedia}), em três dimensões:
+
+\[
+\frac{\partial P(\mathbf{r},t)}{\partial t}=-\nabla\cdot\mathbf{J}
+\]
+
+onde $\mathbf{J}$ representa a corrente de probabilidade. Equação podemos encontrar em diversas áreas da física, por exemplo, no eletromagnetismo onde $\boldsymbol{J}$ é uma corrente elétrica. A corrente pode ser decomposta em duas contribuições. A primeira corresponde ao processo puramente difusivo, enquanto a segunda representa a contribuição produzida pelo potencial externo,
+
+\[
+\mathbf{J}=-D\nabla P+\mathbf{J}_{U}
+\]
+.
+
+O primeiro termo afirma que a corrente difusiva aponta na direção oposta ao gradiente da densidade de probabilidade, isto é, a probabilidade tende naturalmente a fluir das regiões onde é maior para aquelas onde é menor. O segundo termo, $\mathbf{J}_{U}$, representa a corrente produzida pela presença do potencial$U(\mathbf{r})$, cuja forma ainda é desconhecida.
+
+Para determinar essa corrente adicional, considera-se a situação de equilíbrio termodinâmico. Nesse regime, a distribuição de probabilidade deixa de variar no tempo e, portanto, não existe corrente líquida, $\mathbf{J}=0$. Além disso, a Mecânica Estatística estabelece que a distribuição de equilíbrio deve obedecer à distribuição de Boltzmann, $P_{\mathrm{eq}}(\mathbf{r})\propto e^{-\beta U(\mathbf{r})},$onde $\beta=\frac{1}{k_{B}T}$, sendo que $k_{B}$ é a constante de Boltzmann e $T$ é a temperatura absoluta.
+
+Calculando o gradiente da distribuição de equilíbrio, usando uma constante de proporcionalidade em $P_{eq}=Ae^{-\beta U}$ obtemos:
+
+\[
+\nabla P_{\mathrm{eq}}=\nabla\left(Ae^{-\beta U}\right)=-\beta Ae^{-\beta U}(\nabla U)=-\beta(\nabla U)P_{\mathrm{eq}}
+\]
+
+Substituindo esse resultado e impondo a condição de equilíbrio, segue que:
+
+\[
+0=\mathbf{J}=-D\nabla P_{\mathrm{eq}}+\mathbf{J}_{U}=-D\left[-\beta(\nabla U)P_{\mathrm{eq}}\right]+\mathbf{J}_{U}
+\]
+
+de onde concluímos que:
+
+\[
+\mathbf{J}_{U}=-D\beta(\nabla U)P
+\]
+
+Substituindo esse resultado novamente na expressão geral para a corrente, obtemos
+
+\[
+\mathbf{J}=-D\nabla P+\mathbf{J}_{U}=-D\nabla P-D\beta(\nabla U)P=-D\left[\nabla P+\beta(\nabla U)P\right]
+\]
+.
+
+Finalmente, inserindo essa expressão na equação da continuidade, resulta
+
+\[
+\frac{\partial P}{\partial t}=-\nabla\cdot\mathbf{J}=-\nabla\cdot\left(-D\left[\nabla P+\beta(\nabla U)P\right]\right)
+\]
+
+que é precisamente a equação de Fokker-Planck\footnote{Vale notar que assumimos que a corrente de probabilidade associada ao potencial deve ser tal que, no equilíbrio, a distribuição estacionária seja a distribuição de Boltzmann. A forma obtida para essa corrente é então adotada como uma relação constitutiva, válida também durante a evolução fora do equilíbrio. Dessa forma, obtém-se uma forma particular da equação de Fokker-Planck cuja distribuição estacionária é a distribuição de Boltzmann. Em problemas mais gerais, nos quais o estado estacionário não é boltzmanniano, deve-se utilizar uma forma mais geral da equação de Fokker-Planck.},
+
+\[
+\dot{P}(\mathbf{r},t)=D\nabla\cdot\left[\nabla P\left(\mathbf{r},t\right)+\beta\nabla U\left(\mathbf{r}\right))P\left(\mathbf{r},t\right)\right]
+\]
+
+Observa-se que a equação de Fokker-Planck generaliza naturalmente a equação de difusão. Na ausência de um potencial externo, isto é, quando $U(\mathbf{r})$ é constante, temos $\nabla U=0$, fazendo desaparecer o termo de drift. Nesse caso recupera-se imediatamente a equação de difusão,
+
+\[
+\frac{\partial P}{\partial t}=D\nabla^{2}P
+\]
+
+
+\subsubsection*{Propriedades das equações de Fokker-Planck}
+
+Considerando a equação de Fokker-Planck apenas em uam dimensão $x$:
+\begin{itemize}
+\item A equação de Fokker-Planck fornece os resultados esperados no limite para longos prazos
+\[
+\lim_{t\rightarrow\infty}P=P_{eq},\text{ with }\dot{P}=0
+\]
+\end{itemize}
+Ou seja, a medida que o tempo passa, a distribuição de probabilidade converge para uma distribuição estacionária e neste caso, ela deixa de variar no tempo.
+\begin{itemize}
+\item Se definirmos a posição média como $\overline{x}=\int^{+\infty}_{-\infty}xP\left(x\right)dx$, então a forma diferencial de Fokker-PLnack pode ser usado para verificar que:
+\end{itemize}
+\[
+\dot{\overline{x}}=D\beta\left(-\frac{\partial}{\partial x}\overline{U\left(x\right)}\right)=D\beta\overline{F}\left(x\right)
+\]
+
+\begin{itemize}
+\item A equação de Fokker-Planck é linear nas derivadas de primeira e de segunda ordem de $P$ em relação a $x$; verifica-se que qualquer operador espacial que possa ser escrito como uma combinação linear de $\frac{\partial}{\partial x}$,$x\frac{\partial}{\partial x}$ e $\frac{\partial^{2}}{\partial x^{2}}$, define um processo Gaussiano quando utilizado para descrever a evolução temporal de uma densidade de probabilidade. Assim, tanto a equação de difusão quanto a forma mais geral da equação de Fokker-Planck descrevem, em geral, um processo Gaussiano.
+\item Uma observação final sobre a equação de Fokker-Planck é que ela só pode ser resolvida analiticamente em um pequeno número de casos especiais. Essa dificuldade é agravada pelo fato de que ela não possui forma Hermitiana (auto-adjunta)\footnote{Na literatura é comum dizer que a equação de difusão ou a equação de Fokker-Planck é ``Hermitiana''' ou ```não Hermitiana'''. Entretanto, essa é apenas uma forma abreviada de linguagem, pois a propriedade de hermiticidade pertence ao operador diferencial, e não à equação em si. Escrevendo genericamente uma equação de evolução como $\frac{\partial P}{\partial t}=LP,$ o operador associado à equação de difusão é $L=D\nabla^{2}$, que é Hermitiano (sob condições apropriadas de contorno). Já para a equação de Fokker-Planck, $L=D\nabla\cdot\left(\nabla+\beta\nabla U\right)$, o termo de primeira derivada contido nesse operador faz com que, em geral, ele não seja Hermitiano.}. Entretanto, podemos introduzir a mudança de variável $P=e^{-\frac{\beta U}{2}}\Phi$, então em termos de $\Phi$, a equação de Fokker-Planck é Hermitiana:
+\end{itemize}
+\[
+\frac{\partial\Phi}{\partial t}=D\left[\nabla^{2}\Phi-U_{eff}\Phi\right]
+\]
+
+Onde $U_{eff}=\frac{\left(\beta\nabla U\right)^{2}}{4}-\frac{\beta\nabla^{2}U}{2}$. Essa equação de Fokker-Planck transformada passa a ter a mesma forma funcional da equação de Schrödinger dependente do tempo, de modo que todas as técnicas associadas à solução desta também podem ser aplicadas à ela.
+
+\textbf{Exemplo: }Um dos exemplos mais simples e úteis da aplicação da equação de Fokker-Planck é a descrião de um oscilador harmônico difusivo. A equação diferencial pra uma dimensão é:
+
+\begin{align*}
+\dot{P}(\mathbf{r},t) & =D\nabla\cdot\left[\nabla P\left(\mathbf{r},t\right)+\beta\nabla U\left(\mathbf{r}\right))P\left(\mathbf{r},t\right)\right]\\
+\frac{\partial P\left(x\right)}{\partial t} & =D\frac{\partial}{\partial x}\left[\frac{\partial P\left(x\right)}{\partial x}+\beta\frac{\partial U\left(x\right)}{\partial x}P\left(x,t\right)\right]\\
+\frac{\partial P}{\partial t} & =D\frac{\partial^{2}P}{\partial x^{2}}+D\beta\frac{\partial}{\partial x}\left(\frac{\partial U}{\partial x}P\right)
+\end{align*}
+
+Então se $\beta=\frac{\gamma}{Dm\omega^{2}}$ e $U=\frac{1}{2}m\omega^{2}x^{2}$ é o potencial do oscilador harmônico, então $\frac{\partial U}{\partial x}=m\omega^{2}x$ e ficamos com:
+
+\[
+\frac{\partial P}{\partial t}=D\frac{\partial^{2}P}{\partial x^{2}}+\gamma\frac{\partial}{\partial x}\left(xP\right)
+\]
+
+Usando então 
+\[
+\dot{\overline{x}}=D\beta\left(-\frac{\partial\overline{U}}{\partial x}\right)=-D\beta\overline{\left(m\omega^{2}x\right)}=-\gamma\overline{x}
+\]
+
+Então $\overline{x}=Ae^{-\gamma t}$ e dada a condição inicial pela delta de dirac $P\left(x,0\right)=\delta\left(x-x_{0}\right)$, então 
+\[
+\overline{x}\left(0\right)=\int^{+\infty}_{-\infty}xP\left(x,0\right)dx=\int^{+\infty}_{-\infty}x\delta\left(x-x_{0}\right)dx=x_{0}
+\]
+
+Então como $\overline{x}\left(0\right)=Ae^{-\gamma\cdot0}=A$ então $A=x_{0}$, temos então $\overline{x}=x_{0}e^{-\gamma t}$. Como sabemos que descreve um processo gaussiano, então a função de distribuição dep robabilidade gaussiana é:
+
+\begin{align*}
+P\left(x_{0},x,t\right) & =\frac{1}{\sqrt{2\pi\sigma\left(t\right)^{2}}}\exp\left[-\frac{\left(x-\overline{x}\left(t\right)\right)^{2}}{2\sigma\left(t\right)^{2}}\right]\\
+ & =\frac{1}{\sqrt{2\pi\sigma\left(t\right)^{2}}}\exp\left[-\frac{\left(x-x_{0}e^{-\gamma t}\right)^{2}}{2\sigma\left(t\right)^{2}}\right]
+\end{align*}
+
+Agora queremos calcular $\sigma\left(t\right)^{2}$. Vamos calcular:
+
+\[
+P_{eq}\left(x\right)=\int^{+\infty}_{-\infty}P\left(x_{0},x,t\right)P_{eq}\left(x_{0}\right)dx_{0}
+\]
+
+Então eu to calculando a probabilidade de, no equilíbrio, a partícula estar em $x$ em um instante $t$ ($P_{eq}\left(x\right)$), considerando que no início da evolução do sistema ele já estava em equilíbrio em qualquer posição $x_{0}$, então integrando sobre todos os $x_{0}$.
+
+Pegamos todos os valores possíveis da posição inicial $x_{0}$ . Para cada um deles, ponderamos a probabilidade de a partícula estar inicialmente em $x_{0}$, dada por $P_{eq}\left(x_{0}\right)$ , pela probabilidade condicional de ela evoluir de $x_{0}$ para $x$ em um tempo $t$, dada por $P\left(x_{0},x,t\right)$. Integrando sobre todas as posições iniciais possíveis obtemos a probabilidade total de encontrar a partícula em $x$ no instante $t$.
+
+Esse resultado tem que ser exatamente $P_{eq}\left(x\right)$ porque a equação está afirmando algo profundo: Se você começa com a distribuição de equilíbrio, você termina com a mesma distribuição de equilíbrio. Não importa quanto tempo $t$ passe. A forma do ``sino'' da Gaussiana não se altera.
+
+Agora nós sabemos que no equilibrio:
+
+\[
+P_{eq}\left(x_{0}\right)=Ae^{-\beta U}=Ae^{-\beta\left(\frac{1}{2}m\omega^{2}x^{2}_{0}\right)}=Ae^{-\left(\frac{x^{2}_{0}}{2\sigma^{2}}\right)}
+\]
+
+Onde então $\sigma^{2}=\frac{1}{m\omega^{2}\beta}$. Se aplicamos a condição de normalização $\int^{+\infty}_{-\infty}P_{eq}\left(x_{0}\right)=1$, então obtemos que $A=\frac{1}{\sqrt{2\pi\sigma^{2}}}$. Logo $P_{eq}\left(x_{0}\right)=\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\left(\frac{x^{2}_{0}}{2\sigma^{2}}\right)}$. Isto é importante pois a lógica é que:
+
+\[
+\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\left(\frac{x^{2}}{2\sigma^{2}}\right)}=P_{eq}\left(x\right)=\int^{+\infty}_{-\infty}P\left(x_{0},x,t\right)P_{eq}\left(x_{0}\right)dx_{0}
+\]
+
+Afinal a distribuição de probabilidade no equilibrio não muda nao importa o tempo que passe, portanto é a mesma para $x$ tanto quanto para qualquer $x_{0}$. Portanto agora podemos resolver a integral\footnote{Para isso vamos essencialmente completar quadrado até obter uma integral de Gauss.} e comparar com o resultado conhecido no equilibrio. É partir disso que podemos obter que:
+
+\[
+\alpha\left(t\right)=\sigma\left(t\right)^{2}=\frac{1-e^{-2\gamma t}}{m\omega^{2}\beta}
+\]
+
+Ou seja:
+
+\begin{align*}
+P\left(x_{0},x,t\right) & =\frac{1}{\sqrt{2\pi\left(\frac{1-e^{-2\gamma t}}{m\omega^{2}\beta}\right)}}\exp\left[-\frac{\left(x-x_{0}e^{-\gamma t}\right)^{2}}{2\left(\frac{1-e^{-2\gamma t}}{m\omega^{2}\beta}\right)}\right]\\
+ & =\sqrt{\frac{m\omega^{2}\beta}{2\pi\left(1-e^{-2\gamma t}\right)}}\exp\left[-\frac{m\omega^{2}\beta\left(x-x_{0}e^{-\gamma t}\right)^{2}}{2\left(1-e^{-2\gamma t}\right)}\right]\\
+ & =\sqrt{\frac{m\omega^{2}\beta}{2\pi\left(1-e^{-2\gamma t}\right)}}\exp\left[-\frac{m\omega^{2}\beta\left(x-x_{0}e^{-\gamma t}\right)^{2}}{2\left(1-e^{-2\gamma t}\right)}\right]
+\end{align*}
+
+Então a forma assintótica quando $t\rightarrow0$, sendo que expandindo o exponencial temos $e^{-x}=1-x+O\left(x^{2}\right)\approx1-x$ e lembrando que $\beta=\frac{\gamma}{Dm\omega^{2}}\rightarrow\frac{m\omega^{2}\beta}{\gamma}=\frac{1}{D}$:
+
+\[
+\alpha\left(t\right)=\frac{1-e^{-2\gamma t}}{m\omega^{2}\beta}\approx\frac{2\gamma t}{m\omega^{2}\beta}=2Dt
+\]
+
+E sendo:
+
+\[
+\left(x-x_{0}e^{-\gamma t}\right)\approx\left(x-x_{0}\left(1-\gamma t\right)\right)\approx\left(x-x_{0}+x_{0}\gamma t\right)\approx x-x_{0}
+\]
+
+Observe que utilizamos ordens diferentes da expansão de Taylor nas duas expressões. Para calcular $\alpha(t)$, é necessário manter o primeiro termo não nulo da expansão, $e^{-x}=1-x+O(x^{2})$ pois o termo constante se cancela em $1-e^{-2\gamma t}$. Já em $x-x_{0}e^{-\gamma t}$, basta manter o termo constante da expansão,$e^{-\gamma t}=1+O(t),$ uma vez que ele já fornece a aproximação dominante. Em outras palavras, em uma expansão assintótica mantém-se, em cada expressão, o primeiro termo não nulo que contribui para a ordem de aproximação desejada. Com essas aproximações temos:
+\begin{align*}
+P & \underset{t\rightarrow0}{\sim}\frac{1}{\sqrt{4\pi Dt}}\exp\left[-\frac{\left(x-x_{0}\right)^{2}}{4Dt}\right]
+\end{align*}
+
+E a forma assintótica para $t\rightarrow\infty$, sendo:
+
+\begin{align*}
+\alpha\left(t\right) & =\frac{1-e^{-2\gamma t}}{m\omega^{2}\beta}\approx\frac{1}{m\omega^{2}\beta}\\
+\left(x-x_{0}e^{-\gamma t}\right) & \approx x
+\end{align*}
+
+Então:
+
+\begin{align*}
+P & \underset{t\rightarrow\infty}{\sim}\sqrt{\frac{m\omega^{2}\beta}{2\pi}}\exp\left[-\frac{1}{2}m\omega^{2}\beta x^{2}\right]
+\end{align*}
+
+Para além dos cálculos é importante interpretar o que esta equação diferencial que resolvemos descreve. Temos uma partícula submetida a um potencial harmônico, que tende a mantê-la próxima da posição de equilíbrio. Entretanto sua trajetória nao é determinística, mas sim estocástica. Assim, em vez de calcularmos a posição exata da partícula em cada instante, calculamos a distribuição de probabilidade $P\left(x,t\right)$, que fornece a probabilidade de encontrá-la em diferentes posições ao longo do tempo.
+
+A equação de Fokker--Planck para um potencial harmônico descreve a evolução temporal da distribuição de probabilidade da posição de uma partícula submetida simultaneamente a uma força restauradora linear e a flutuações aleatórias provenientes do meio, como as colisões com as moléculas de um fluido. O potencial harmônico $U\left(x\right)=\frac{1}{2}m\omega^{2}x^{2}$ faz com que a partícula tenda a retornar à posição de equilíbrio $x=0$, enquanto o termo difusivo representa o espalhamento causado pelo movimento browniano. Como consequência, a distribuição de probabilidade inicialmente concentrada em uma posição $x_{0}$ se alarga com o tempo devido à difusão, ao mesmo tempo em que sua posição média aproxima-se da posição de equilíbrio.
+
+Em resumo:
+\begin{itemize}
+\item \textbf{Cadeia de Markov:} descreve processos estocásticos nos quais tanto o tempo quanto o espaço de estados são discretos. A evolução do sistema ocorre por meio de probabilidades de transição, de modo que a distribuição em um instante é obtida a partir do instante imediatamente anterior. Essa formulação constitui a essência de um processo markoviano, em que a dinâmica futura depende exclusivamente do estado presente.
+\item \textbf{Equação mestra:} atua como a versão em tempo contínuo da cadeia de Markov. Nela, os estados permanecem discretos, mas a evolução temporal é regida por uma equação diferencial para as probabilidades. Sua estrutura expressa explicitamente o fluxo de probabilidade, balanceando as taxas de entrada e saída de cada estado para garantir a conservação da probabilidade total.
+\item \textbf{Equação de Fokker-Planck}: estende essa descrição para sistemas com espaço de estados contínuo. Escrita na forma de uma equação de continuidade, ela descreve o fluxo da densidade de probabilidade ao longo de uma variável contínua. Sua dinâmica é ditada pela competição entre o termo de deriva, responsável pelo transporte sistemático, e o termo de difusão, associado às flutuações aleatórias. Dessa forma, ela atua como o análogo contínuo da equação mestra.
+\item \textbf{Equação de Langevin:} aborda a dinâmica estocástica sob uma perspectiva complementar: em vez de acompanhar a evolução da probabilidade (visão macroscópica), ela descreve diretamente a trajetória individual do sistema. Para isso, combina uma evolução determinística com um termo de ruído aleatório, fornecendo a base microscópica cuja descrição estatística correspondente é dada justamente pela equação de Fokker-Planck.
+\end{itemize}
+\bibliographystyle{plain}
+\bibliography{tese,Artigo1/references,Artigo2/referencias,Artigo3/referencias}
+
+\end{document}

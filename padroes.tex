@@ -1,0 +1,661 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[brazil]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=2.5cm}
+\usepackage[]
+ {hyperref}
+\begin{document}
+\title{Padrões universais na distribuição de renda}
+
+\maketitle
+
+
+\subsection{Introdução}
+
+Baseado no artigo ``Some universal patterns in income distribution: An econophysics approach''\cite{shaikh}vamos trabalhar com a aproximação de ``duas classes'' da econofísica (chamado de EPTC, do inglês ``\textit{EconoPhysics Two Class}''). O artigo original visa demonstrar que a renda de salário segue uma distribuição exponencial (aproximadamente 97\%\textasciitilde 99\% da população) e a renda patrimonial\footnote{\textit{Property income} (renda patrimonial) refere-se aos rendimentos obtidos pela posse de ativos, e não pela prestação direta de trabalho. Nessa categoria incluem-se, por exemplo, juros, dividendos, aluguéis, royalties e outros rendimentos provenientes da propriedade de ativos financeiros, imobiliários ou intelectuais. Em contraste, a renda do trabalho (labor income) corresponde aos rendimentos recebidos em troca da força de trabalho, como salários, honorários e comissões.} segue uma distribuição de pareto.
+
+A ideia é modelar a renda percapita de vários subgrupos da população de forma proporcional ao produto de duas variáveis:
+\begin{itemize}
+\item PIB per capita
+\item O inverso do Gini, isto é, se $G$ é Gini, então proporcional a $g=1-G$.
+\end{itemize}
+Vamos denotar a população e renda da $i-\acute{e}sima$ fração como $X_{i}$ e $Y_{i}$, então para a população total temos:
+
+\[
+X=\sum^{n}_{i}X_{i},\quad Y=\sum^{n}_{i}Y_{i}
+\]
+
+A renda per capita então é apenas $\overline{y}=Y/X$. E os valores cumulativos são:
+
+\[
+X\left(x\right)=\sum^{x}_{i=1}X_{i},\quad Y\left(x\right)=\sum^{x}_{i}Y_{i},\quad\overline{y}\left(x\right)=\frac{Y\left(x\right)}{X\left(x\right)}
+\]
+
+Por analogia podemos calcular também que a média nacional total é $\overline{y}=X/Y$. Já a proporção acumulada é apenas:
+
+\[
+x=\sum^{x}_{i=1}\frac{X_{i}}{X}=\frac{X\left(x\right)}{X},\quad y\left(x\right)=\sum^{x}_{i}\frac{Y_{i}}{Y}=\frac{Y\left(x\right)}{Y}
+\]
+
+Então a razão entre renda per capita da base em relação a renda média nacional é igual a razão entre a proporção renda acumulada da desta base e a correspondente fração da população total. Isto é:
+
+\begin{align*}
+IR\left(x\right) & =\frac{\overline{y}\left(x\right)}{\overline{y}}\\
+ & =\frac{\frac{Y\left(x\right)}{X\left(x\right)}}{\frac{Y}{X}}\\
+ & =\frac{Y\left(x\right)}{Y}\frac{X}{X\left(x\right)}\\
+ & =y\left(x\right)\frac{1}{x}
+\end{align*}
+
+Ou simplesmente:
+
+\[
+IR\left(x\right)=\frac{y\left(x\right)}{x}
+\]
+
+Esta medida também serve como uma medida da desigualdade, porém diferene de um coeficiente de Gini que captura a curva de Lorenz como um todo, aqui capturamos um único ponto. Agora vamos considerar a curva de Lorenz como uma combinação de duas distribuições. Vamos definir:
+\begin{itemize}
+\item $y'\left(x\right)\rightarrow$ é a fração na renda acumulada que vem da seção exponencial da curva de Lorenz;
+\begin{itemize}
+\item $G'\rightarrow$ é o coeficiente de Gini desta mesma seção.
+\end{itemize}
+\item $f\rightarrow$ é a proporção da renda total na seção de Pareto, ou seja, a fração da renda total que correspode a renda patrimonial.
+\begin{itemize}
+\item Uma aproximaçao na forma de função degrau $\theta\left(x-1\right)=\begin{cases}
+0 & x<1,\text{seção exponencial}\\
+1 & x=1
+\end{cases}$. \footnote{Como discutirei adiante, não me parece claro o significado exato de ``seções'' neste contexto. Não está explícito se elas representam uma partição da população em grupos distintos ou uma decomposição da renda segundo sua origem. Nesta segunda interpretação, uma mesma parcela da população, especialmente aquela situada na região de maior renda, pode receber simultaneamente uma componente de renda associada ao trabalho, modelada pela distribuição exponencial, e outra associada à renda patrimonial, modelada pela distribuição de Pareto. Nesse caso, a renda total de um determinado grupo da população seria dada pela soma dessas duas componentes, e não pela atribuição exclusiva de apenas uma delas.}
+\end{itemize}
+\end{itemize}
+Então a curva de Lorenz é dada por:
+
+\[
+y\left(x\right)=y'\left(x\right)\left(1-f\right)+\theta\left(x-1\right)
+\]
+
+Para $x<1$ temos apenas:
+
+\[
+y\left(x\right)=y'\left(x\right)F
+\]
+
+ode $F=1-f$ é a proporção da renda total na seção exponencial. Como $0\leq y'\left(x\right)\leq1$ então multiplicar por $G$ reescala para a quantidade correta. E evidentemente teremos $y'\left(1\right)=1$, isto é, para quando consideramos a população total, estamos considerando a totalidade da renda na seção exponencial. Porém esta totalidade da renda exponencial é apenas uma fração $F$ da renda total.
+
+Agora então para $x=1$:
+
+\[
+y\left(x\right)=g+1=2-f
+\]
+
+Por isso, acredito o ideal seria escrever $y\left(x\right)=y'\left(x\right)\left(1-f\right)+f\theta\left(x-1\right)$. Como $\theta\left(x<1\right)=0$ nada é alterado para $x<1$, porém para $x=1,$ ficamos com $y\left(x\right)=1-f+f=1$.
+
+Já o Gini é escrito como:
+
+\[
+1-G=\left(1-G'\right)\left(1-f\right)
+\]
+
+Ou:
+
+\begin{align*}
+G & =-\left(1-G'\right)\left(1-f\right)\\
+ & =1-\left(1-f-G'+G'f\right)\\
+ & =G'+f\left(1-G'\right)
+\end{align*}
+
+Para entender isso devemo lembrar que Gini geometricamente é $G=\frac{A}{A+B}$, onde $A$ é a área entre a reta de perfeita igualdade e a curva de Lorenz, enquanto $B$ é a área sob a curva de Lorenz.
+
+Se normalizarmos $y$ e $x$, a área abaixo da reta de igualdade é $A+B=\frac{1}{2}$ então $G=2A$, ou como $2A=1-2B$ entao $G=1-2B$. Ainda podemos reescrever como $\frac{1-G}{2}=B$ . Mas como $B$ é a area abaixo da curva de Lorenz, podemos obter o Gini integrando a curva de lorenz entre $0$ e $1$. Assim:
+
+\[
+\frac{1-G}{2}=\int^{1}_{0}y\left(x\right)dx
+\]
+
+Ou então:
+
+\[
+G=1-2\int^{1}_{0}y\left(x\right)dx
+\]
+
+Usando $y\left(x\right)=y'\left(x\right)\left(1-f\right)+f\theta\left(x-1\right)$. Aqui há uma questão que merece ser discutida antes de avançarmos. Definimos $y'(x)$ como a fração da renda acumulada proveniente da seção exponencial da curva de Lorenz e $G'$ como o coeficiente de Gini dessa mesma seção. Entretanto, não fica claro o que exatamente se entende por ``seção exponencial''. 
+
+Uma possibilidade é interpretá-la como a parcela da população descrita pela distribuição exponencial, correspondente ao intervalo $x\in[0,1)$. Outra é interpretá-la como a componente exponencial da renda acumulada de toda a população, definida em $x\in[0,1]$, sendo que, no ponto $x=1$, a renda acumulada é composta simultaneamente pela contribuição exponencial e pela contribuição da cauda de Pareto. Essa distinção, contudo, não afeta o cálculo de $G'$, pois não há diferença matemática entre integrar em $[0,1)$ e em $[0,1]$, já que um único ponto possui medida nula. 
+
+Além disso, observa-se que $y'(x)$ já é uma curva de Lorenz normalizada, enquanto a curva total é obtida por meio da renormalização em $y(x)$. Como não há qualquer renormalização da variável $x$, essa construção sugere que a expressão ``seção exponencial'' não se refere a uma subpopulação, mas à componente exponencial da distribuição de renda da população como um todo. Nessa interpretação, para $x=1$, a renda acumulada contém simultaneamente a contribuição exponencial e a contribuição da cauda de Pareto introduzida pelo termo da função degrau. Isso é reforçado pela forma que optamos por escrever:
+
+\[
+y\left(x\right)=\underset{\text{\{seção exponencial\}}}{y'\left(x\right)\left(1-f\right)}+\underset{\text{\{seção de Pareto\}}}{f\theta\left(x-1\right)}
+\]
+
+Para $x<1$ temos apenas a seçaõ de Pareto, mas para $x=1$:
+
+\[
+y\left(x\right)=\underset{\text{\{seção exponencial\}}}{\left(1-f\right)}+\underset{\text{\{seção de Pareto\}}}{f}
+\]
+
+Temos contribuição proveniente das duas seções. Com isso em mente, podemos avançar o cálculo do Gini:
+
+\begin{align*}
+G & =1-2\int^{1}_{0}y\left(x\right)dx\\
+ & =1-2\int^{1}_{0}\left[y'\left(x\right)\left(1-f\right)+f\theta\left(x-1\right)\right]dx\\
+ & =\left(1-2\left(1-f\right)\int^{1}_{0}y'\left(x\right)dx\right)-2f\int^{1}_{0}\theta\left(x-1\right)dx\\
+ & =\left(1-2\left(1-f\right)\left(\frac{1-G'}{2}\right)\right)-2f\int^{1}_{0}\theta\left(x-1\right)dx\\
+ & =\left(1-\left(1-G'-f+fG'\right)\right)-2f\int^{1}_{0}\theta\left(x-1\right)dx\\
+ & =\left(G'+f\left(1-G'\right)\right)-2f\int^{1}_{0}\theta\left(x-1\right)dx
+\end{align*}
+
+Onde usamos que $\frac{1-G'}{2}=\int^{1}_{0}y'\left(x\right)dx$. Fazendo ainda uma troca devariável $u=x-1$, etão $du=dx$, e trocando os limites de $u=0-1=-1$ até $u=1-1=0$, temos então $\int^{0}_{-1}\theta\left(u\right)du$. A função degrau é por convenção definida como:
+
+\[
+\theta\left(x\right)\coloneqq\begin{cases}
+1, & x\geq0\\
+0, & x<0
+\end{cases}
+\]
+
+Que é exatamente o nosso caso agora. E a sua integral indefinida (ou anti-derivada) é:
+
+\[
+\int^{x}_{-\infty}\theta\left(u\right)du=x\theta\left(x\right)=\max\left\{ 0,x\right\} 
+\]
+
+Como $\theta\left(u\right)$ é 0 durante todo intervalo $\left[-\infty,-1\right)$, podemos escrever:
+\[
+\int^{0}_{-1}\theta\left(u\right)du=\int^{0}_{-\infty}\theta\left(u\right)du=\max\left\{ 0,0\right\} =0
+\]
+
+Ou pra ser mais detalhado, podemos escrever:
+
+\begin{align*}
+\int^{0}_{-\infty}\theta\left(u\right)du & =\int^{-1}_{-\infty}\theta\left(u\right)du+\int^{0}_{-1}\theta\left(u\right)du\\
+\int^{0}_{-\infty}\theta\left(u\right)du-\int^{-1}_{-\infty}\theta\left(u\right)du & =\int^{0}_{-1}\theta\left(u\right)du\\
+\max\left\{ 0,0\right\} -\max\left\{ 0,-1\right\}  & =\int^{0}_{-1}\theta\left(u\right)du\\
+0 & =\int^{0}_{-1}\theta\left(u\right)du
+\end{align*}
+
+Ficamos então apenas com:
+
+\begin{align}
+G & =G'+f\left(1-G'\right)
+\end{align}
+
+Então se estamos olhando apenas para a seção exponencial, então temos apenas $y\left(x\right)=y'\left(x\right)\left(1-f\right)$, dividindo então por $\left(1-G\right)$, temos então:
+
+\begin{align*}
+y\left(x\right) & =y'\left(x\right)\left(1-f\right)\\
+\frac{y\left(x\right)}{\left(1-G\right)} & =\frac{y'\left(x\right)\left(1-f\right)}{\left(1-G'\right)\left(1-f\right)}\\
+\frac{y\left(x\right)/x}{\left(1-G\right)} & =\frac{y'\left(x\right)/x}{\left(1-G'\right)}
+\end{align*}
+
+E se definimos $a\left(x\right)\equiv\frac{y'\left(x\right)/x}{\left(1-G'\right)}$ e cmo $IR\left(x\right)=\frac{\overline{y}\left(x\right)}{\overline{y}}=\frac{y\left(x\right)}{x}$ então:
+
+\begin{align*}
+\frac{y\left(x\right)/x}{\left(1-G\right)} & =\frac{y'\left(x\right)/x}{\left(1-G'\right)}\\
+\frac{\overline{y}\left(x\right)/\overline{y}}{\left(1-G\right)} & =a\left(x\right)
+\end{align*}
+
+Então a renda per capita de qualquer porcentagem cumulativa da população $x$ dentro da seção exponencial é:
+
+\[
+\overline{y}\left(x\right)=a\left(x\right)\left(1-G\right)\overline{y}
+\]
+
+
+\subsection{Distribuição Exponencial}
+
+Como o artigo do Shaikh discute alguns resultados encontrados no artigo ``Evolução temporal das classes de renda “térmica” e “supertérmica” nos EUA entre 1983 e 2001''\cite{SilvaYakovenko2005}, pode ser interessante aqui que discutamos alguns de seus resultados. Neste artigo os autores demonstram que a sociedade norte-americana possui uma estrutura de duas classes bem definida: 
+\begin{itemize}
+\item A maioria da população (97--99\%) pertence à classe baixa e apresenta uma distribuição de renda exponencial muito estável ao longo do tempo. 
+\item A classe alta (1--3\% da população) apresenta uma distribuição do tipo lei de potência cujos parâmetros variam significativamente com o tempo, acompanhando a ascensão e a queda do mercado de ações.
+\end{itemize}
+Vamos introduzir a densidade de probabilidade $P\left(r\right)$ que nos fornece a probabilidade $P\left(r\right)dr$ de obter uma renda no intervalo $\left(r,r+dr\right)$. Então a probabilidade acumulada complementar , isto é, a probabilidade de ter uma renda maior que $r$ é:
+
+\[
+C\left(r\right)=\int^{\infty}_{r}dr'P\left(r'\right)
+\]
+
+Onde $C\left(0\right)=1$, isto é, todo mundo tem renda $r>0$.
+\begin{itemize}
+\item Podemos considerar uma distribuição exponencial (Boltzmann-Gibbs):
+\end{itemize}
+\[
+P\left(r\right)\propto\exp\left(-\frac{r}{T}\right),\qquad T=\left\langle r\right\rangle =\int^{\infty}_{0}r'P\left(r'\right)dr'
+\]
+
+Onde $T$ é um parâmetro igual a renda média e chamamos de ``temperatura da renda''. Quando temos uma distribuição exponencial, então o acumulado também é exponencial $C\left(r\right)=\propto\exp\left(-\frac{r}{T}\right)$.
+\begin{itemize}
+\item Podemos considerar também uma distribuição de lei de potência (lei de Pareto):
+\end{itemize}
+\[
+P\left(r\right)\propto\frac{1}{r^{\alpha+1}},\qquad C\left(r\right)\propto\frac{1}{r^{\alpha}}
+\]
+
+A curva de lorenz é defininida parametricamente em termos das coordenadas $x\left(r\right)$ e $y\left(r\right)$:
+\begin{itemize}
+\item $x\left(r\right)=\int^{r}_{0}dr'P\left(r'\right)\rightarrow$ é a fraçao da população com renda abaixo de $r$
+\item $y\left(r\right)=\frac{\int^{r}_{0}dr'r'P\left(r'\right)}{\int^{\infty}_{0}dr'r'P\left(r'\right)}\rightarrow$ é a renda total dessa fração da população, dada como uma fração da renda do sistema como um todo.
+\end{itemize}
+Para uma distribuição puramente exponencial $P\left(r\right)=k\exp\left(-\frac{r}{T}\right)$ vamos ter, começando com $T$:
+
+\begin{align*}
+1= & \int^{\infty}_{0}P\left(r'\right)dr'\\
+= & \int^{\infty}_{0}k\exp\left(-\frac{r}{T}\right)dr'\\
+= & -Tk\left[\exp\left(-\frac{r}{T}\right)\right]^{\infty}_{0}\\
+= & Tk
+\end{align*}
+
+Onde substituidmos $-\frac{r'}{T}=u$ ou seja $dr'=-Tdu$, então $T=k^{-1}$. E se calculamos $\left\langle r\right\rangle =\int^{\infty}_{0}r'P\left(r'\right)dr'$:
+
+\[
+\left\langle r\right\rangle =\int^{\infty}_{0}r'P\left(r'\right)dr'=k\int^{\infty}_{0}r'\exp\left(-\frac{r'}{T}\right)dr'
+\]
+
+Fazendo integração por partes $\int udv=uv-\int vdu$, escolhendo $u=r'$ e $dv=\exp\left(-\frac{r'}{T}\right)$ então $du=dr'$ e $v=-T\exp\left(-\frac{r}{T}\right)$ .
+
+\begin{align*}
+\left\langle r\right\rangle = & -kT\left[r'\exp\left(-\frac{r'}{T}\right)\right]^{\infty}_{0}-Tk\int^{\infty}_{0}\exp\left(-\frac{r'}{T}\right)dr'\\
+= & -kT\left[r'\exp\left(-\frac{r'}{T}\right)\right]^{\infty}_{0}+T^{2}k
+\end{align*}
+
+No primeiro termo:
+
+\begin{align*}
+\left[r'\exp\left(-\frac{r'}{T}\right)\right]^{\infty}_{0} & =\lim_{r'\rightarrow\infty}\left[r'\exp\left(-\frac{r'}{T}\right)\right]-\lim_{r'\rightarrow0}\left[r'\exp\left(-\frac{r'}{T}\right)\right]\\
+ & =\lim_{r'\rightarrow\infty}\left[\frac{r'}{\exp\left(\frac{r'}{T}\right)}\right]-0\cdot1\\
+ & =\lim_{r'\rightarrow\infty}\left[\frac{1}{\frac{1}{t}\exp\left(\frac{r'}{T}\right)}\right]\\
+ & =0
+\end{align*}
+
+Onde, como tínhamos $\frac{\infty}{\infty}$, aplicamos a regra de L'Hôpital $\lim_{r\rightarrow a}\left[f\left(x\right)/g\left(x\right)\right]=\lim_{r\rightarrow a}\left[f'\left(x\right)/g'\left(x\right)\right]$. Logo:
+
+\begin{align*}
+\left\langle r\right\rangle = & T^{2}k=\frac{T^{2}}{T}=T
+\end{align*}
+
+Conforme previsto, então:
+
+\[
+x\left(r\right)=\int^{r}_{0}dr'P\left(r'\right)=k\int^{r}_{0}\exp\left(-\frac{r'}{T}\right)dr'=-Tk\left[\exp\left(-\frac{r'}{T}\right)\right]^{r}_{0}=-Tk\left[\exp\left(-\frac{r}{T}\right)-1\right]
+\]
+
+E:
+
+\begin{align*}
+\int^{r}_{0}dr'r'P\left(r'\right) & =-kT\left[r'\exp\left(-\frac{r'}{T}\right)\right]^{r}_{0}-Tk\int^{r}_{0}\exp\left(-\frac{r'}{T}\right)dr'\\
+ & =-kT\left[r\exp\left(-\frac{r}{T}\right)\right]-T^{2}k\left[\exp\left(-\frac{r'}{T}\right)-1\right]'
+\end{align*}
+
+Então:
+
+\[
+y\left(r\right)=\frac{\int^{r}_{0}dr'r'P\left(r'\right)}{\int^{\infty}_{0}dr'r'P\left(r'\right)}=\frac{-kT\left[r\exp\left(-\frac{r}{T}\right)\right]-Tk\left[\exp\left(-\frac{r'}{T}\right)-1\right]}{T}
+\]
+
+Então:
+
+\[
+y\left(r\right)=-k\left[r\exp\left(-\frac{r}{T}\right)\right]-Tk\left[\exp\left(-\frac{r'}{T}\right)-1\right]
+\]
+
+Isolando o $r$ em x:
+
+\begin{align*}
+x= & -Tk\left[\exp\left(-\frac{r}{T}\right)-1\right]\\
+\frac{x}{-Tk}+1= & \exp\left(-\frac{r}{T}\right)\\
+\ln\left(\frac{x}{-Tk}+1\right)= & -\frac{r}{T}\\
+-T\ln\left(\frac{x}{-Tk}+1\right)= & r
+\end{align*}
+
+Substituindo em $y\left(x\right)$:
+
+\begin{align*}
+y\left(r\right) & =-k\left[r\exp\left(-\frac{r}{T}\right)\right]-kT\left[\exp\left(-\frac{r'}{T}\right)-1\right]\\
+ & =-k\left[-T\ln\left(\frac{x}{-Tk}+1\right)\exp\left(\ln\left(\frac{x}{-Tk}+1\right)\right)\right]-Tk\left[\exp\left(\ln\left(\frac{x}{-Tk}+1\right)\right)-1\right]\\
+ & =-k\left[-T\ln\left(1-x\right)\left(1-x\right)\right]-kT\left[\left(1-x\right)-1\right]
+\end{align*}
+
+Então:
+
+\[
+y=\ln\left(1-x\right)\left(1-x\right)+x
+\]
+
+Esse resultado foi obtido também no artigo ``Evidence for the exponential distribution of income in the USA''\cite{Dragulescu2001EPJB}. Podemos notar que:
+
+\begin{align*}
+y\left(x=0\right) & =\ln\left(1\right)\left(1\right)+0=0\\
+\lim_{x\rightarrow1^{-}}y\left(x\right) & =1
+\end{align*}
+
+Pois:
+
+\[
+\lim_{x\rightarrow1^{-}}\ln\left(1-x\right)\left(1-x\right)=\lim_{x\rightarrow1^{-}}\frac{\ln\left(1-x\right)}{\frac{1}{\left(1-x\right)}}=\lim_{x\rightarrow1^{-}}\frac{\frac{1}{\left(1-x\right)}}{-\frac{1}{\left(1-x\right)^{2}}}=-\lim_{x\rightarrow1^{-}}\frac{\left(1-x\right)^{2}}{\left(1-x\right)}=-\lim_{x\rightarrow1^{-}}\left(1-x\right)=0
+\]
+
+Onde calculamos o limite pela esquerda uma vez que $x\in\left[0,1\right]$, e usamos L'Hôpital, já que temos $\frac{\infty}{\infty}$. E de acordo com ``Statistical Mechanics of Money, Income, and Wealth: A Short Survey''\cite{DragulescuYakovenko2003} , como a função de densidade de probabilidade em dados reais (EUA - 1997) é uma combinação de funções exponencial e de lei de potência, é sugerida uma modificação na curva de Lorenz da seguinte forma:
+
+\begin{align*}
+y\left(x\right) & =\underset{\text{\{seção exponencial\}}}{\left(1-f\right)y'\left(x\right)}+\underset{\text{\{seção de Pareto\}}}{f\Theta\left(x-1\right)}\\
+ & =\left(1-f\right)\left[\ln\left(1-x\right)\left(1-x\right)+x\right]+f\Theta\left(x-1\right)
+\end{align*}
+
+Onde $\Theta\left(x-1\right)=\begin{cases}
+0 & x<1\\
+1 & x\geq1
+\end{cases}$, e o fator $\left(1-f\right)$ é necessário para garantir a normalização:
+
+\begin{align*}
+y\left(x=0\right) & =\left(1-f\right)\left[\ln\left(1\right)\left(1\right)+0\right]+0=0\\
+y\left(x=1\right) & =\left(1-f\right)\left[\ln\left(0\right)\left(0\right)+f\right]+f\approx1-f+f=1
+\end{align*}
+
+O fator $(1-f)$ representa a fração da renda total correspondente à parte exponencial da distribuição. De fato, para todo $x<1$, tem-se $\Theta(x-1)=0$, de modo que a curva de Lorenz reduz-se à expressão exponencial multiplicada por $(1-f)$. No limite $x\rightarrow1^{-}$, essa seção acumula exatamente a fração $(1-f)$ da renda total. A fração restante, $f$, corresponde à renda concentrada na cauda de lei de potência (Pareto) e é incorporada pelo termo $f\Theta(x-1)$, produzindo o salto da curva em $x=1$.
+
+\subsection{Gini individual}
+
+Então para a seção exponencial\footnote{Reforço que por seção exponencial estamos nos referindo a componente expnencial de $y\left(x\right)$, ou seja $y'\left(x\right)$.} o Gini é:
+
+\begin{align*}
+G & =1-2\int^{1}_{0}y\left(x\right)dx\\
+G & =1-2\int^{1}_{0}\left[\ln\left(1-x\right)\left(1-x\right)+x\right]dx\\
+ & =1-2\int^{1}_{0}\ln\left(1-x\right)\left(1-x\right)dx-2\int^{1}_{0}xdx\\
+ & =1-2\int^{0}_{1}u\ln udu-2\left[\frac{x^{2}}{2}\right]^{1}_{0}
+\end{align*}
+
+Onde substituímos $1-x=u$ então $du=-dx$ e os limites ficam entre $1$ e $0$. Agora aplicando a integral por partes $\int ydv=yv-\int vdy$, sendo $y=\ln u$ ($dy=\frac{1}{u}du$) e $dv=u$ ($v=\frac{u^{2}}{2}$), então:
+
+\begin{align*}
+G & =1-2\left(\left[\ln u\frac{u^{2}}{2}\right]^{0}_{1}-\int^{0}_{1}\frac{u^{2}}{2}\frac{1}{u}du\right)-2\left[\frac{x^{2}}{2}\right]^{1}_{0}\\
+ & =1-\left(\lim_{u\rightarrow0^{+}}\ln uu^{2}-\int^{0}_{1}udu\right)-1\\
+0 & =\left(\lim_{u\rightarrow0^{+}}\ln uu^{2}-\left[\frac{u^{2}}{2}\right]^{0}_{1}\right)\\
+ & =\lim_{u\rightarrow0^{+}}\ln uu^{2}+\frac{1}{2}
+\end{align*}
+
+Pelo artigo já podemos esperar que $\lim_{u\rightarrow0^{+}}\ln uu^{2}$. Mas podemos calcular, novamente aplicando L'Hôpital:
+
+\[
+\lim_{u\rightarrow0^{+}}\frac{\ln u}{\frac{1}{u^{2}}}=\lim_{u\rightarrow0^{+}}\frac{u^{-1}}{-2u^{-3}}=-\frac{1}{2}\lim_{u\rightarrow0^{+}}u^{2}=0
+\]
+
+Vale observar que vindo pelo lado positivo em $u=1-x$ significa que temos um número cada vez menor, ou seja, um $x$ cada vez mais próximo de $1$, o que implica vir pelo lado negativo de $x$. Obteríamos o mesmo resultado fazendo $\lim_{x\rightarrow1^{-}}\ln\left(1-x\right)\left(1-x\right)^{2}$. Então temos $G=\frac{1}{2}$ para a parte puramente exponencial. 
+
+\subsection{Gini familiar}
+
+O artigo também trabalha com a distribuição de renda da família, para isso ele vai calcular $P_{2}\left(r\right)$, considerando que os ambos os cônjuges tem renda dada por $P_{1}\left(r\right)\propto\exp\left(-\frac{r}{T}\right)$. Vamos parar para entender isso melhor. Temos:
+
+\[
+P_{2}\left(r\right)=\int^{r}_{0}dr'P_{1}\left(r'\right)P_{1}\left(r-r'\right)=\frac{r}{T^{2}}e^{-r/T}
+\]
+
+A distribuição de probabilidade da soma de duas ou mais variáveis aleatórias independentes é a convolução de suas distribuições individuais. O termo é motivado pelo fato de que a função de densidade de probabilidade de uma soma de variáveis aleatórias independentes é a convolução de suas respectivas funções de densidade de probabilidade. 
+
+A fórmula geral para a distribuição da soma $Z=X+Y$ de duas variáveis aleatórias independentes com valores inteiros (e, portanto, discretas) é:
+
+\[
+P\left(Z=z\right)=\sum^{\infty}_{k=-\infty}P\left(X=k\right)P\left(Y=z-k\right)
+\]
+
+A ideia é calcular a probabilidade de que a soma das variáveis aleatórias $X$ e $Y$ seja igual a um determinado valor $z$. Como $X$ e $Y$ são independentes, para cada valor possível $x=k$ de $X$, a probabilidade de ocorrer simultaneamente $X=k$ e $Y=z-k$ é dada pelo produto $P\left(k\right)P\left(z-k\right)$. O valor $z-k$ é justamente aquele que $Y=y$ deve assumir para que a soma satisfaça $x+y=z$. Como existem diversos valores possíveis para $k$, somamos essas probabilidades sobre todos os valores inteiros.
+
+Se $X$ e $Y$ são independentes e variáveis contínuas e $P_{1}\left(x\right)$ é a função densidade de probabilidade, então podemos escrever:
+
+\[
+P_{2}\left(r\right)=\int^{+\infty}_{-\infty}P_{1}\left(r'\right)P_{1}\left(r-r'\right)dr'
+\]
+
+Considerando que $P_{1}(x)=0$ para $x<0$, ou seja, que a função densidade possui suporte apenas para valores não negativos, ou seja, são apenas valores não negativos que a variável aleatória pode assumir dentro do modelo, podemos ajustar os limites da convolução. Para que o integrando $P_{1}(r')P_{1}(r-r')$ seja diferente de zero, é necessário que$r'\geq0$e $r-r'\geq0$, o que implica em $0\leq r'\leq r$. Portanto, a expressão pode ser simplificada para
+
+\[
+P_{2}\left(r\right)=\int^{r}_{0}P_{1}\left(r'\right)P_{1}\left(r-r'\right)dr'
+\]
+
+Agora tendo $P\left(r\right)=T^{-1}\exp\left(-\frac{r}{T}\right)$ vamos calcular novamente todo o necessário para obter o Gini para $P_{2}\left(r\right)$, isto é, $y\left(r\right)$ e $x\left(r\right)$, $y\left(x\right)$ e a curva de lorenz. Para $P_{2}\left(r\right)$:
+
+\begin{align*}
+P_{2}\left(r\right) & =\int^{r}_{0}P_{1}\left(r'\right)P_{1}\left(r-r'\right)dr'\\
+ & =\frac{1}{T^{2}}\int^{r}_{0}\exp\left(-\frac{r'}{T}\right)\exp\left(-\frac{r-r'}{T}\right)dr'\\
+ & =\frac{1}{T^{2}}\int^{r}_{0}\exp\left(-\frac{r'}{T}-\frac{r-r'}{T}\right)dr'\\
+ & =\frac{\exp\left(-\frac{r}{T}\right)}{T^{2}}\int^{r}_{0}dr
+\end{align*}
+
+Então como tínhamos dito:
+
+\[
+P_{2}\left(r\right)=\frac{r}{T^{2}}e^{-r/T}
+\]
+
+Vamos calcular então primeiro $x\left(r\right)$, já vimos que:
+
+\begin{align*}
+\int^{r}_{0}\frac{r'}{T}\exp\left(-\frac{r'}{T}\right)dr' & =-\left[r\exp\left(-\frac{r}{T}\right)\right]-T\left[\exp\left(-\frac{r}{T}\right)-1\right]
+\end{align*}
+
+Então:
+
+\begin{align*}
+x\left(r\right) & =\int^{r}_{0}dr'_{2}P\left(r'\right)\\
+ & =\frac{1}{T}\int^{r}_{0}\frac{r'}{T}e^{-r'/T}dr'\\
+ & =-\left[\frac{r}{T}\exp\left(-\frac{r}{T}\right)\right]-\left[\exp\left(-\frac{r'}{T}\right)-1\right]\\
+ & =-\left(\frac{r}{T}+1\right)\exp\left(-\frac{r}{T}\right)+1
+\end{align*}
+
+E para $y$:
+
+\begin{align*}
+\int^{r}_{0}dr'r'P_{2}\left(r'\right) & =\frac{1}{T^{2}}\int^{r}_{0}r'^{2}e^{-r'/T}dr'
+\end{align*}
+
+Recorremos uma vez mais a $\int ydv=yv-\int vdy$, onde fizemos $y=r^{2}$ ($dy=2drr'$) e $dv=e^{-r'/T}$ ($v=-Te^{-r'/T}$).
+
+\begin{align*}
+\int^{r}_{0}dr'r'P_{2}\left(r'\right) & =-\frac{1}{T}\left[e^{-r'/T}r'^{2}\right]^{r}_{0}+2\int^{r}_{0}\frac{r'}{T}e^{-r'/T}dr'\\
+ & =-\frac{e^{-r/T}r{}^{2}}{T}+2\left(-\left[r\exp\left(-\frac{r}{T}\right)\right]-T\left[\exp\left(-\frac{r}{T}\right)-1\right]\right)\\
+ & =-\frac{e^{-r/T}r{}^{2}}{T}-2r\exp\left(-\frac{r}{T}\right)-2T\exp\left(-\frac{r}{T}\right)+2T\\
+ & =-\left(\frac{r^{2}}{T}+2r+2T\right)e^{-r/T}+2T
+\end{align*}
+
+Então mudando o limite superior para $\infty$:
+
+\begin{align*}
+\int^{\infty}_{0}dr'r'P_{2}\left(r'\right) & =\lim_{r\rightarrow\infty}\left[-\left(\frac{r^{2}}{T}+2r+2T\right)e^{-r/T}+2T\right]\\
+ & =\lim_{r\rightarrow\infty}\left[-\left(\frac{r^{2}}{e^{r/T}}+2T\frac{r}{e^{r/T}}\right)\frac{1}{T}\right]+2T\\
+ & =\lim_{r\rightarrow\infty}\left[-\left(2\frac{r}{Te^{r/T}}+2T\frac{1}{Te^{r/T}}\right)\frac{1}{T}\right]+2T\\
+ & =\lim_{r\rightarrow\infty}\left[-\left(2\frac{1}{T^{2}e^{r/T}}\right)\frac{1}{T}\right]+2T\\
+ & =2T
+\end{align*}
+
+Então $y\left(x\right)$ é:
+
+\begin{align*}
+y\left(r\right) & =\frac{\int^{r}_{0}dr'r'P\left(r'\right)}{\int^{\infty}_{0}dr'r'P\left(r'\right)}\\
+ & =\frac{-\left(\frac{r^{2}}{T}+2r+2T\right)e^{-r/T}+2T}{2T}\\
+ & =-\left(\frac{r^{2}}{2T^{2}}+\frac{r}{T}+1\right)e^{-r/T}+1
+\end{align*}
+
+Ficamos então com:
+
+\begin{align*}
+x & =-\left(\frac{r}{T}+1\right)\exp\left(-\frac{r}{T}\right)+1\\
+y & =-\left(\frac{r^{2}}{2T^{2}}+\frac{r}{T}+1\right)e^{-r/T}+1
+\end{align*}
+
+O gini então é dado por $G=1-2\int^{1}_{0}y\left(x\right)dx$, mas temos uma integral de uma função parametrizada. Se temos uma curva definida pelas equações paramétricas $x=x\left(t\right)$ e $y=y\left(t\right)$ com $a\leq t\leq b$, então a área sob a curva é dada por\footnote{A ideia da integral da curva parametrizada é relativamente simples. Para um retângulo de tamanho infinitesimal com altura $y\left(t_{i}\right)$ e largura $x\left(t_{i}\right)-x\left(t_{i-1}\right)$, então a área desse retângulo é $A_{i}=y\left(t_{i}\right)x\left(t_{i}\right)-x\left(t_{i-1}\right)$, e a área total sob a curva é $A\approx\sum_{i}y\left(t_{i}\right)\left[x\left(t_{i}\right)-x\left(t_{i-1}\right)\right]$. Podemos multiplicar e dividir por $\Delta t=t_{i}-t_{i}$ de forma que $A\approx\sum_{i}y\left(t_{i}\right)\frac{\left[x\left(t_{i}\right)-x\left(t_{i-1}\right)\right]}{\Delta t}\Delta t$, tomando o limite conforme $\Delta t\rightarrow dt$ então: $A=\int y\left(t\right)x'\left(t\right)dt$ (\href{https://query.libretexts.org/Idioma_Portugues/Livro\%253A_Calculus_\%2528OpenStax\%2529/11\%253A_Equa\%25C3\%25A7\%25C3\%25B5es_param\%25C3\%25A9tricas_e_coordenadas_polares/11.02\%253A_C\%25C3\%25A1lculo_de_curvas_param\%25C3\%25A9tricas?utm_source=chatgpt.com}{LibtreTexts}).}:
+
+\[
+A\int^{b}_{a}y\left(t\right)x'\left(t\right)dt
+\]
+
+Então vamos calcular o Gini fazendo:
+
+\begin{align*}
+G & =1-2\int^{1}_{0}y\left(x\right)dx\\
+ & =1-2\int^{\infty}_{0}y\left(r\right)\frac{dx\left(r\right)}{dr}dr
+\end{align*}
+
+Observe que realizamos uma troca de limites, pois antes tínhamos os limites de $x$ entre $0$ e $1$, e precisamos de limites em $r$ que recuperem esses valores:
+
+\begin{align*}
+\lim_{r\rightarrow0}x & =0 & \lim_{r\rightarrow\infty}x & =1
+\end{align*}
+
+Como:
+
+\begin{align*}
+\frac{dx}{dr} & =\left[-\frac{1}{T}\exp\left(-\frac{r}{T}\right)\right]+\left[\left(\frac{r}{T^{2}}+\frac{1}{T}\right)\exp\left(-\frac{r}{T}\right)\right]=\\
+ & =\left(\frac{r}{T^{2}}+\frac{1}{T}-\frac{1}{T}\right)\exp\left(-\frac{r}{T}\right)=\\
+ & =\frac{r}{T^{2}}\exp\left(-\frac{r}{T}\right)
+\end{align*}
+
+Então:
+
+\begin{align*}
+y\left(r\right)x'\left(r\right) & =\left[-\left(\frac{r^{2}}{2T^{2}}+\frac{r}{T}+1\right)e^{-r/T}+1\right]\frac{r}{T^{2}}\exp\left(-\frac{r}{T}\right)\\
+ & =\frac{1}{T^{2}}\left[-\left(\frac{r^{3}}{2T^{2}}+\frac{r^{2}}{T}+r\right)e^{-2r/T}+re^{-\frac{r}{T}}\right]
+\end{align*}
+
+Fazendo $t=\frac{T}{2}$, temos então 4 integrais para resolver:
+
+\[
+\int^{\infty}_{0}y\left(r\right)\frac{dx\left(r\right)}{dr}dr=\frac{1}{T^{2}}\left[-\left(\frac{1}{2T^{2}}\int^{\infty}_{0}r^{3}e^{-r/t}dr+\frac{1}{T}\int^{\infty}_{0}r^{2}e^{-r/t}dr+\int^{\infty}_{0}re^{-r/t}dr\right)+\int^{\infty}_{0}re^{-\frac{r}{T}}dr\right]
+\]
+
+Já calculamos a integral de $re^{-\frac{r}{T}}$ e $r^{2}e^{-\frac{r}{T}}$. 
+
+\begin{align*}
+\int^{\infty}_{0}re^{-\frac{r}{T}}dr & =\left(-T\left[r\exp\left(-\frac{r}{T}\right)\right]-T^{2}\left[\exp\left(-\frac{r}{T}\right)-1\right]\right)^{\infty}_{0}=T^{2}\\
+\int^{\infty}_{0}re^{-\frac{r}{t}}dr & =t^{2}=\left(\frac{T}{2}\right)^{2}=\frac{T^{2}}{4}\\
+\int^{\infty}_{0}r{}^{2}e^{-r/T}dr' & =2T^{3}\\
+\int^{\infty}_{0}r{}^{2}e^{-r/t}dr' & =2t^{3}=2\left(\frac{T}{2}\right)^{3}=\frac{T^{3}}{2^{2}}=\frac{T^{3}}{4}
+\end{align*}
+
+Temos então:
+
+\begin{align*}
+\int^{\infty}_{0}y\left(r\right)\frac{dx\left(r\right)}{dr}dr & =\frac{1}{T^{2}}\left[-\left(\frac{1}{2T^{2}}\int^{\infty}_{0}r^{3}e^{-r/t}dr+\frac{1}{T}\frac{T^{3}}{4}+\frac{T^{2}}{4}\right)+T^{2}\right]\\
+ & =-\frac{1}{2T^{4}}\int^{\infty}_{0}r^{3}e^{-r/t}dr-\frac{1}{4}-\frac{1}{4}+1\\
+ & =-\frac{1}{2T^{4}}\int^{\infty}_{0}r^{3}e^{-r/t}dr+\frac{1}{2}
+\end{align*}
+
+Agora para a integral restante, recorremos uma vez mais a $\int ydv=yv-\int vdy$, onde fizemos $y=r^{3}$ ($dy=3r^{2}dr'$) e $dv=e^{-r'/t}$ ($v=-te^{-r'/t}$). Então:
+
+\begin{align*}
+\int^{\infty}_{0}r^{3}e^{-r/t}dr & =\left[-r^{3}te^{-r'/t}\right]^{\infty}_{0}+3t\int^{\infty}_{0}r^{2}e^{-r'/t}dr'\\
+ & =3t\left(2t^{3}\right)=6t^{4}=6\frac{T^{4}}{2^{4}}=\frac{3}{8}T^{4}
+\end{align*}
+
+Então:
+
+\begin{align*}
+\int^{\infty}_{0}y\left(r\right)\frac{dx\left(r\right)}{dr}dr & =-\frac{1}{2T^{4}}\left(\frac{3}{8}T^{4}\right)+\frac{1}{2}\\
+ & =-\frac{3}{16}+\frac{1}{2}\\
+ & =-\frac{3}{16}+\frac{8}{16}=\frac{5}{16}
+\end{align*}
+
+E o gini para a família é então:
+
+\[
+G=1-2\int^{1}_{0}y\left(x\right)dx=1-2\frac{5}{16}=1-\frac{5}{8}=\frac{8-5}{8}=\frac{3}{8}
+\]
+
+Então os ginis para para o indivíduo e para a família, são respectivamente:
+
+\[
+G_{1}=\frac{1}{2},\qquad G_{2}=\frac{3}{8}
+\]
+
+
+\subsection{Implicações}
+
+Duas regras universais são afirmadas ao longo do artigo. A primeira diz que a renda per capita dos 70\% mais pobres é igual ao PIB per capita ajustado pela desigualdade. Trata-se, de fato, da medida de bem-estar de Sen:.
+
+\[
+\overline{y}\left(0.7\right)=a\left(0.7\right)\left(1-G\right)\overline{y}=\left(1-G\right)\overline{y}
+\]
+
+Então $(1-G)$ representa a renda disponível per capita relativa aos primeiros 70\% da população, ou seja, $G$ representa a diferença percentual entre o PIB per capita (renda nacional per capita) e a renda per capita dos primeiros 70\%. Agora olhando a renda acumulada na seção exponencial:
+\[
+a\left(0.7\right)=\frac{y'\left(x\right)/x}{\left(1-G'\right)}=1,\rightarrow y'=\left(1-G'\right)0.7
+\]
+
+Temos que $G'$ nos dá a diferença em porcentam da 'igualdade plena', isto é, se $G'=0$, na igualdade perfeita, em outras palavras, para $G'=0$, temos $y'=0.7$, isto é, 70\% da população mais pobre acumula 70\% da renda total. 
+
+A segunda regra universal estabelece que a renda média dos 80\% da base é igual a $1,1$ vez o PIB per capita ajustado pela desigualdade:
+
+\[
+\overline{y}\left(0.8\right)=a\left(0.8\right)\left(1-G\right)\overline{y}=1.1\left(1-G\right)\overline{y}
+\]
+
+Vamos agora tentar entender a variação que a renda per capita sofre quando varia $G$ e/ou $\overline{y}$. Considerando $a\left(x\right)=a_{x}$:
+
+\begin{align*}
+\overline{y}_{x} & =a_{x}\left(1-G\right)\overline{y}\\
+\ln\left(\overline{y}_{x}\right) & =\ln\left(a_{x}\left(1-G\right)\overline{y}\right)\\
+\ln\left(\overline{y}_{x}\right) & =\ln\left(a_{x}\right)+\ln\left(1-G\right)+\ln\left(\overline{y}\right)\\
+\frac{d}{dt}\ln\left(\overline{y}_{x}\right) & =\frac{d}{dt}\left[\ln\left(a_{x}\right)+\ln\left(1-G\right)+\ln\left(\overline{y}\right)\right]\\
+\frac{\dot{\overline{y}_{x}}}{\overline{y}_{x}} & =\frac{\dot{a_{x}}}{a_{x}}-\frac{\dot{G}}{1-G}+\frac{\dot{\overline{y}}}{\overline{y}}\\
+\frac{\dot{\overline{y}_{x}}}{\overline{y}_{x}} & =\frac{\dot{a_{x}}}{a_{x}}-\left(\frac{G}{1-G}\right)\frac{\dot{G}}{G}+\frac{\dot{\overline{y}}}{\overline{y}}
+\end{align*}
+
+Onde usamos a regra da cadeia. Se denotarmos $\frac{1}{x}\frac{dx}{dt}=\frac{\dot{x}}{x}=\tilde{x}$\footnote{No artigo se considera $a_{x}$ constante de forma que $\tilde{a_{x}}=0$.}:
+
+\[
+\tilde{\overline{y}_{x}}=\tilde{a_{x}}-\left(\frac{G}{1-G}\right)\tilde{G}+\tilde{\overline{y}}
+\]
+
+Agora, sobre que condiçoes $\left(\frac{G}{1-G}\right)$ amplifica o efeito da variação percentual do Gini na variação do $\tilde{\overline{y}_{x}}$ ? Quando $\left(\frac{G}{1-G}\right)>1$ \footnote{Evidente $\left(\frac{G}{1-G}\right)<1$ o efeito contrário é produzido, amortecendo.}, pois ele multiplica a variação no Gini. Podemos calcular precisamente qual é o valor que o Gini precisa assumir para que esse fenômeno ocorra:
+
+\begin{align*}
+\left(\frac{G}{1-G}\right) & >1\\
+G & >1-G\\
+2G & >1\\
+G & >\frac{1}{2}
+\end{align*}
+
+Vemos que, embora tanto queda no Gini quanto aumento da renda per capita nacional elevem a renda per capita da maioria da população, um aumento percentual do PIB (renda nacional) per capita sempre elevará a renda per capita da maioria na mesma proporção. 
+
+Já uma dada redução percentual da desigualdade, medida pela variação do coeficiente de Gini, terá um impacto positivo maior nos países com $G>0,50$.
+
+Em outras palavras, a elasticidade parcial da renda per capita da maioria em relação a uma variação de $1\%$ do PIB per capita será sempre igual a um, enquanto o valor absoluto da elasticidade em relação a uma variação de $1\%$ do coeficiente de Gini será maior que um quando $G>0,50$ e menor que um quando $G<0,50$.
+
+Além disso, se retomamos:
+
+\[
+G=G'+\left(1-G'\right)f
+\]
+
+Tendo por $G'$ como um número fixo, isso implica diretamente que o coeficiente de Gini é uma função positiva linear da fração da renda patrimonial $f$.
+
+\subsection{Conclusão}
+
+Neste artigo foi apresentadoa a abordagem de “duas classes” da econofísica (EPTC) para a distribuição de renda, que postula e testa a hipótese de que a distribuição geral de renda é composta por duas funções de distribuição de probabilidade: a distribuição exponencial (Boltzmann-Gibman) que caracteriza a distribuição de salários e a distribuição de Pareto (lei de potências) que caracteriza a distribuição da renda patrimonial.
+
+A abordagem deriva uma aproximação exponencial simples para a curva de Lorenz global correspondente, a qual utilizamos então para demonstrar que a renda per capita de qualquer fração $x$ da base da população será proporcional à renda nacional per capita ``descontada pela desigualdade'' por meio de um coeficiente de proporcionalidade $a(x)$ que é função exclusiva de $x$.
+
+\[
+\overline{y}\left(x\right)=a\left(x\right)\left(1-G\right)\overline{y}
+\]
+
+O artigo testa esse resultado teórico utilizando uma ampla amostra de países da base de dados WIID e demonstra que ele é extremamente robusto, tanto entre países quanto ao longo do tempo. Essas constatações levam a duas regras universais:
+\begin{enumerate}
+\item A ``Regra 1,1'' estabelece que a renda per capita dos 80\% mais pobres da população de um país pode ser calculado multiplicando-se por $1,1$ o PIB per capita ajustado pela desigualdade: $\overline{y}\left(0.8\right)=1.1\left(1-G\right)\overline{y}$
+\item Para os 70\% mais pobres da população, o coeficiente correspondente é 1: $\overline{y}\left(0.8\right)=1.1\left(1-G\right)\overline{y}$
+\begin{enumerate}
+\item o que implica que o PIB per capita ajustado pela desigualdade equivale à renda per capita dessa parcela da população. Esse último resultado oferece uma alternativa à abordagem de Sen (1976) como medida de bem-estar social.
+\end{enumerate}
+\end{enumerate}
+Três implicações principais podem ser extraídas de nossas conclusões. 
+\begin{enumerate}
+\item Para comparações internacionais, uma medida como o VMI\footnote{Chamamos de Renda da Vasta Maioria (\textit{Vast Majority Income - VMI}) a renda per capita dos 80\% da base ($\overline{y}\left(0.8\right)$ ).} é preferível ao PIB, pois o VMI combina níveis de renda e desigualdade em uma estatística simples e intuitivamente monetária: a renda per capita dos 80\% mais pobres da população. 
+\item Demonstramos que, embora tanto o crescimento da renda média per capita quanto a redução da desigualdade elevem o VMI, a redução da desigualdade tem um efeito proporcionalmente menor sobre o VMI em países com coeficientes de Gini inferiores a 0,50. 
+\item Mostramos que a abordagem EPTC implica que o coeficiente de Gini é uma função simples da participação da renda da propriedade na renda nacional total\footnote{Considerando que o gini da seção exponencial $G'$ é constante, algo visto empiricamente.}. Na prática, isso significa que o Gini será sensível a alterações na distribuição entre renda do trabalho e renda patrimonial, mas insensível a mudanças na distribuição interna de qualquer uma dessas classes. Visto que a renda dos 97\% mais pobres da população é composta predominantemente por renda do trabalho, esse resultado é consistente com a conhecida insensibilidade do Gini a alterações distributivas na faixa intermediária da distribuição
+\end{enumerate}
+\bibliographystyle{plain}
+\bibliography{tese,Artigo1/references,Artigo2/referencias,Artigo3/referencias}
+
+\end{document}

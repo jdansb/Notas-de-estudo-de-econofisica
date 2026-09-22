@@ -1,0 +1,261 @@
+%% LyX 2.5.1 created this file.  For more info, see https://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[brazil]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=2.5cm}
+\usepackage[]
+ {hyperref}
+\begin{document}
+\title{Sobre as regras do SAC}
+
+\maketitle
+Em boa parte do meu doutorado eu trabalhei com o modelo de Arquitetura Social do Capitalismo conforme proposto por Wright. Alguns códigos relacionados ao modelo exposto aqui podem ser encontrados no \href{https://github.com/jdansb/Econophysics/blob/main/files/social_architecture.ipynb}{meu GitHub}. Em nenhum outro espaço eu trouxe uma discussão mais aprofundada sobre as regras que ele escolheu para o modelo conforme exposto por ele mesmo, por isso decidi criar um capítulo separado, mas por ser uma sessão tão pequena, eu optei por deixar nos apêndices. Sobre este modelo, além dos meus próprios artigos, é recomendável ler:
+\begin{itemize}
+\item The social architecture of capitalism\cite{Wright_2005}: o artigo original no qual o modelo foi proposto (também incluído no capítulo 13 do livro Classical Econophysics\cite{cockshott2012classical}).
+\item Agent-Based Models, Macroeconomic Scaling Laws and Sentiment Dynamics\cite{diss_mods_00007721}: uma tese que discute o modelo e algumas modificações.
+\item Implicit Microfoundations for Macroeconomics\cite{wright2008implicit}: uma modificação proposta pelo próprio Ian Wright.
+\begin{itemize}
+\item Exploring the Social-Architecture Model\cite{ISAAC2019}: um debate sobre com uma correção no modelo do Wright.
+\end{itemize}
+\end{itemize}
+Em geral, o resultado central desse modelo é que a estrutura desigual da distribuição de riqueza que emerge nas sociedades capitalistas é uma característica intrínseca da forma como o capitalismo organiza a produção e a distribuição de mercadorias, e não uma falha pontual causada por algum fator externo ao próprio capitalismo. Dado esse fato, temos apenas três opções:
+\begin{enumerate}
+\item aceitá-la;
+\item tentar mitigá-la por meio de reformas (por exemplo, impostos sobre a riqueza);
+\item substituí-la por um novo modo de produção.
+\end{enumerate}
+
+\subsection{Resumo}
+
+Como não tenho interesse em produzir um texto muito longo, aproveitarei a oportunidade para utilizar o resumo criado automaticamente pelo \href{https://www.alphaxiv.org/}{alphaXiv} para relembrar meus principais achados sobre este:
+
+\textbf{Problema:}
+\begin{itemize}
+\item Muitos modelos baseados em agentes (ABMs, Agent-Based Models) têm dificuldade em gerar distribuições de riqueza realistas, frequentemente resultando em condensação de riqueza ou exigindo intervenções externas, como impostos, para evitá-la.
+\item Os ABMs existentes frequentemente dependem de mecanismos impostos exogenamente (por exemplo, estruturas tributárias ou propensões à poupança) para reproduzir padrões econômicos observados, tornando seus resultados dependentes dessas hipóteses.
+\item Enquanto isso, o modelo de Arquitetura Social (Social Architecture, SA) de Ian Wright reproduz naturalmente distribuições de riqueza em dois regimes e estruturas de classe.
+\end{itemize}
+\textbf{Resultados}
+\begin{itemize}
+\item O modelo de Arquitetura Social se auto-organiza naturalmente em uma sociedade distinta de duas classes (trabalhadores e capitalistas) e reproduz de forma robusta distribuições duais de riqueza e renda (exponencial e lei de potência) sem intervenções externas.
+\item A dinâmica da desigualdade dentro do modelo é governada principalmente por uma única razão adimensional, $R=\overline{w}/\overline{p}$ (riqueza por pessoa dividida pelo salário médio).
+\item Um aumento da riqueza per capita (análogo ao crescimento econômico), enquanto os salários médios permanecem fixos, leva intrinsicamente a um aumento da desigualdade econômica ao ampliar a concentração de riqueza entre os capitalistas, desafiando a hipótese de que o crescimento econômico beneficia todas as classes de forma igual.
+\end{itemize}
+\textbf{Implicações críticas para políticas públicas}
+
+A contribuição mais significativa do artigo está em sua descoberta contraintuitiva sobre crescimento econômico e desigualdade. A análise demonstra que: ``em uma economia onde a riqueza total é conservada e com um salário médio fixo, o aumento da riqueza per capita vem acompanhado de maior desigualdade.'' Isso desafia a visão convencional de que o crescimento econômico geral (análogo ao aumento de $\overline{w}$ ) beneficia naturalmente todas as classes. Em vez disso, o modelo mostra que o crescimento sem aumentos correspondentes nos salários tende a ampliar a concentração de riqueza entre os capitalistas, enquanto reduz a posição econômica relativa dos trabalhadores.
+
+Essa descoberta possui implicações profundas para os debates sobre políticas públicas, sugerindo que indicadores econômicos agregados, como o PIB, podem ser enganosos quando não consideram os efeitos distributivos. A pesquisa apoia argumentos teóricos de que o capitalismo não regulado possui tendências inerentes ao aumento da desigualdade, exigindo intervenções políticas ativas para alcançar resultados mais equitativos.
+
+\subsection{Modelo}
+
+O modelo implementado neste artigo é o SA original proposto por Ian Wright, e precisamos começar relembrando o mesmo. Escolhemos uma notação e uma terminologia ligeiramente diferentes, a fim de alinhá-las com aquelas comumente utilizadas em econofísica e em modelos baseados em agentes.
+
+A sociedade consiste em $N$ agentes (indexados por $i=1,\dots,N$), onde cada agente $i$ possui uma quantidade inteira positiva $w_{i}(t)$, representando dinheiro, que varia ao longo do tempo. Um agente não necessariamente representa um indivíduo, mas pode representar outras entidades econômicas.
+
+O tamanho da população $N$ e a riqueza total do sistema $W=\sum^{N}_{i=1}w_{i}(t)$ são conservados, de modo que a riqueza per capita $\overline{w}=W/N$ é constante. Os agentes podem pertencer a uma de três classes: empregados (classe trabalhadora), empregadores (classe capitalista) ou desempregados.
+
+Então, cada agente é caracterizado por um índice $e_{i}\neq i$, que identifica seu empregador: $e_{i}=j$ se o agente $j$ é o empregador do agente $i$, e $e_{i}=0$ se o agente $i$ está desempregado ou é empregador. Portanto, em qualquer instante $t$, o estado de toda a economia é definido pelo conjunto de pares $S(t)=\left\{ \left(w_{i}(t),e_{i}(t)\right):1\leq i\leq N\right\} $.
+
+Uma firma consiste em um conjunto de empregados e um empregador, que é o único proprietário da firma. Além do tamanho do sistema $N$ e da riqueza per capita $\overline{w}$, existem dois outros parâmetros: Os salários mínimo e máximo, $p_{a}$ e $p_{b}$, que cada empregado pode receber. Esses quatro são os únicos parâmetros do modelo.
+
+Seleções aleatórias (de agentes, alíquotas de riqueza, salários etc.) são feitas uniformemente, salvo indicação contrária. No estado inicial, todos os agentes possuem a mesma riqueza ($w_{i}(0)={W}/N$) e estão todos desempregados ($e_{i}(0)=0$).
+
+A cada passo de tempo (que definimos como um mês, assim como no artigo original), as seis etapas seguintes são executadas $N$ vezes, de modo a dar a cada agente a oportunidade de estar ativo, em média, uma vez por mês.
+
+\textbf{1. Seleção do agente:}
+\begin{itemize}
+\item Um agente $i$ é selecionado aleatoriamente.
+\end{itemize}
+Em seguida, as seguintes regras são aplicadas, sendo que as regras 3, 4 e 6 estão relacionadas às trocas de riqueza, enquanto as regras 2 e 5 estão relacionadas às mudanças de status.
+
+\textbf{2. Contratação}
+
+Somente se $i$ estiver desempregado:
+\begin{itemize}
+\item Um potencial empregador $j$ é selecionado a partir do conjunto $H$ de todos os agentes exceto os empregados, com probabilidade $P(j)=w_{j}/\sum_{n\in H}w_{n}.$
+\item Se $w_{j}\ge\overline{p}$ (média da distribuição da qual o salário é extraído), então o agente $i$ é contratado por $j$. Dessa forma, $j$ torna-se um empregador caso estivesse anteriormente desempregado.
+\end{itemize}
+\textbf{3. Gastos (em bens e serviços):}
+\begin{itemize}
+\item Um número inteiro aleatório $w$ no intervalo $\left[0,w_{k}\right]$ é selecionado para um agente aleatório $k\neq i$. Então, ocorre a seguinte transferência para o valor de mercado $V$:
+\end{itemize}
+\[
+w_{k}\to w_{k}-w,\quad V\to V+w.
+\]
+
+\textbf{4. Receita de mercado (proveniente da venda de bens e serviços):}
+\begin{itemize}
+\item Somente se $i$ não estiver desempregado, ocorre a seguinte transferência a partir do valor de mercado:
+\end{itemize}
+\[
+\begin{array}{c}
+V\rightarrow V-w\\
+\begin{cases}
+w_{i}\rightarrow w_{i}+w & \text{se i é empregador}\\
+w_{e_{i}}\rightarrow w_{e_{i}}+w & \text{se i é empregado}
+\end{cases}
+\end{array}
+\]
+
+onde $w$ é um número inteiro aleatório tal que $w\in\left[0,V\right]$. Em todos os casos, a quantidade $w$ é contabilizada como receita da firma \textbf{\$r\_i\$}.
+
+\textbf{5. Demissão}
+
+Somente se $i$ for um empregador:
+\begin{itemize}
+\item O número $m$ de empregados a serem demitidos é definido de acordo com a fórmula $m=max(n_{i}-\frac{w_{i}}{\overline{p}},0),$ onde $n_{i}$ é o número de empregados do agente $i$.
+\item Um número$m$ de agentes da lista de empregados de $i$ é selecionado aleatoriamente para serem demitidos.
+\item Além disso, se todos os trabalhadores forem demitidos, então o empregador $i$ torna-se desempregado.
+\end{itemize}
+\textbf{6. Pagamento de salários}
+
+Aplicado somente quando o agente $i$ é um empregador. Para cada agente $j$ empregado por $i$, ocorre a seguinte transferência:
+
+\[
+w_{i}\to w_{i}-p,\quad w_{j}\to w_{j}+p.
+\]
+
+onde $p$ é uma quantidade discreta selecionada aleatoriamente no intervalo $[p_{a},p_{b}]$. Entretanto, se $p>w_{i}$, então um novo salário $p$ é selecionado a partir do intervalo $[0,w_{i}]$.
+
+Quero aprofundar um pouco mais a discussão sobre este modelo e seus resultados, com base no Capítulo 10 do livro Classical Econophysics\cite{cockshott2012classical}, que foi o primeiro lugar onde tive acesso ao modelo de Wright sobre a arquitetura social do capitalismo. No livro, ele também é referido como o “modelo probabilístico das relações sociais do capitalismo”.
+
+As relações sociais de produção dominantes no capitalismo são aquelas entre capitalistas e trabalhadores. Uma pequena classe de capitalistas emprega um grande número de trabalhadores organizados em firmas de diferentes tamanhos para produzir bens e serviços que serão vendidos no mercado. Sob circunstâncias normais, o capitalista recebe a receita obtida, enquanto os trabalhadores recebem uma parcela dela na forma de salários.
+
+Ao longo do último século ou mais, o número e o tipo de bens e serviços oferecidos pelas economias capitalistas mudaram, mas as relações sociais de produção não mudaram. A existência de relações sociais entre a classe capitalista e a classe trabalhadora, mediadas por salários e lucros, é uma característica invariável do capitalismo.
+
+Muitos modelos econômicos descrevem relações de utilidade entre agentes econômicos e os tipos de mercadorias escassas, ou teorizam sobre as dependências técnico-materiais entre insumos e produtos no processo produtivo. Entretanto, o que queremos examinar são as relações sociais de dependência mediadas pelo dinheiro. Dessa forma, o modelo é construído exclusivamente a partir de dinheiro e agentes. A ideia é focar, tanto quanto possível, nas consequências econômicas das relações sociais de produção --- isto é, na arquitetura social --- em vez de qualquer mecanismo particular ou mesmo transitório, como um mercado ou uma mercadoria específica. Como a relação trabalhador-capitalista é a principal relação social no capitalismo, o modelo abstrai elementos como terra, Estado, bancos e outros fatores.
+
+Assim, construímos um modelo computacional da arquitetura social do capitalismo. Embora utilizemos um pequeno e simples conjunto de hipóteses sobre as relações no capitalismo, quando realizamos a simulação, observamos que ele reproduz algumas das características mais importantes do capitalismo moderno. O computador serve, portanto, como um ambiente de teste lógico, e a simulação permite explorar as consequências complexas de nossas hipóteses simples. Ela nos permite determinar se características importantes em larga escala de uma economia capitalista surgem necessariamente a partir de suas relações sociais mais fundamentais.
+
+As características do capitalismo que o modelo original buscou reproduzir são:
+\begin{itemize}
+\item A divisão estrutural da sociedade, com um pequeno número de empregadores e um grande número de empregados.
+\item A distribuição da renda por classe e por indivíduo.
+\item A distribuição das firmas em um pequeno número de grandes empresas (tanto em tamanho quanto em capital) e um grande número de pequenas empresas.
+\item A forma como o crescimento das firmas se concentra em torno do crescimento médio.
+\item A forma como as firmas desaparecem.
+\item A distribuição das taxas de crescimento do PIB e das recessões.
+\end{itemize}
+Para cada um desses critérios, o objetivo é examinar as estruturas estatísticas previstas obtidas a partir do modelo computacional e compará-las com o que se conhece sobre as propriedades estatísticas dos dados correspondentes do mundo real. O objetivo é verificar se um modelo formal das relações sociais do capitalismo é capaz de prever aquilo que conhecemos sobre as propriedades estatísticas das economias capitalistas.
+
+Dessa forma, podemos começar a compreender quais características do capitalismo são necessariamente consequências da maneira como a economia é socialmente organizada. Por exemplo, podemos observar que a desigualdade extrema de renda e riqueza parece ser uma característica necessária das relações sociais capitalistas.
+
+Isso não implica que devamos aceitá-la; existem diversas respostas políticas possíveis diante desse fato científico: aceitar sua necessidade (pró-capitalismo), tentar reduzi-la dentro das atuais relações sociais (reformismo) ou aceitar a necessidade de modificar as relações sociais (anticapitalismo). Entretanto, independentemente da resposta política preferida, o modelo econômico que desenvolvemos indica que existem forças de mercado poderosas e persistentes que geram continuamente desigualdade, independentemente das intenções subjetivas dos agentes políticos.
+
+Um aviso: como o modelo considera uma economia puramente capitalista, com a suposição de um conjunto finito de agentes, ele propõe uma situação que difere da hipótese de Marx sobre a existência de um exército industrial de reserva latente de trabalhadores potenciais em setores não capitalistas, que poderiam ingressar no setor capitalista e regular os salários.
+
+Deve-se observar, entretanto, que o número de agentes é fixo. Isso pode ser interpretado como uma força de trabalho estável, na qual entradas e saídas ocorrem à mesma taxa.
+
+\subsubsection*{Mercado de Trabalho}
+
+O mercado de trabalho é modelado de maneira simples: todos os agentes desempregados desejam estar empregados, e os empregadores contratam caso possuam recursos suficientes para pagar o salário médio. Qualquer pessoa que não seja um trabalhador pode se tornar um empregador, mas as probabilidades favorecem aqueles que possuem maior riqueza.
+
+\subsubsection*{Gastos com Bens e Serviços}
+
+Cada agente gasta sua renda em bens e serviços. Os gastos, em particular, não são modelados em detalhes, mas agregados em uma única quantidade que representa o gasto total do agente. O gasto total pode representar múltiplas pequenas compras, uma grande compra ou parcelas de uma compra; a interpretação é intencionalmente bastante flexível. Sem introduzir uma teoria dos padrões de consumo, a única informação relevante é que o gasto de um agente é limitado pela quantidade de dinheiro que possui.
+
+Essa regra governa os gastos de todos os consumidores, sejam eles capitalistas, trabalhadores ou desempregados. Naturalmente, os indivíduos mais ricos possuem maior probabilidade de gastar mais. Diferentes classes possuem diferentes padrões de gasto: enquanto os trabalhadores geralmente gastam sua renda em bens, os capitalistas também investem. Os salários são tratados separadamente, portanto, os pagamentos salariais não são considerados despesas. Assume-se que existe uma regra implícita de poupança, pois a probabilidade de um agente gastar todo o seu dinheiro de uma só vez é baixa.
+
+\subsubsection*{Interação entre Firmas e Mercado}
+
+Para simplificar, assumimos que todos os meios de produção pertencem aos capitalistas e que agentes individuais são incapazes de produzir. O modelo também ignora o trabalho autônomo. O trabalho produtivo resulta em bens e serviços que podem ser vendidos, sendo realizado apenas por agentes pertencentes a firmas.
+
+Os tipos de mercadorias e as vendas individuais não são modelados; em vez disso, apenas a transferência de dinheiro do mercado para o vendedor é modelada, representando várias transações separadas ou frações de uma única transação de grande escala.
+
+Em circunstâncias normais, espera-se que uma firma considere que o valor agregado por um trabalhador ao produto seja pelo menos igual ao salário do trabalhador. Afinal, se o valor agregado pelo trabalhador for menor que o salário pago, a firma teria prejuízo; seria mais vantajoso vender o produto sem qualquer valor agregado. A margem de lucro de uma firma sobre seus custos reflete essa expectativa, que pode ou não ser confirmada pelo mercado. Naturalmente, diversos fatores podem fazer com que um trabalhador agregue mais ou menos valor ao produto final, algo difícil de medir e parcialmente refletido na ampla faixa de remunerações negociáveis.
+
+Modelamos a relação concreta entre trabalho e valor agregado assumindo que a firma sorteia aleatoriamente uma amostra do valor de mercado uma vez por mês para cada empregado. As amostras por empregado refletem o fato de que cada trabalhador potencialmente agrega valor, enquanto a aleatoriedade de cada amostra representa a variedade de possibilidades, desde estrelas de cinema insubstituíveis até administradores facilmente substituíveis. Essa é uma formulação fraca da teoria do valor-trabalho, que implica que, na ausência de um mecanismo de equalização dos lucros, existe uma tendência estatística de que o valor do produto de uma firma seja linearmente relacionado à quantidade de tempo de trabalho socialmente necessário empregado e, consequentemente, quanto maior o número de empregados de uma firma, maior tende a ser seu lucro.
+
+Assim, cada firma extrai uma amostra do mercado para obter receita referente a cada trabalhador empregado. Em uma economia competitiva idealizada, existe uma tendência para que produções com vantagens específicas sejam adotadas por firmas concorrentes, incluindo a eliminação da escassez decorrente do uso de trabalho especializado em tarefas específicas. Podemos então assumir que o valor agregado por trabalhador é estatisticamente uniforme entre as firmas. A variação estatística pode ser interpretada como representando diferenças transitórias na produtividade de diferentes trabalhos concretos.
+
+Embora diferentes trabalhadores possam ser mais ou menos produtivos, o valor obtido de seu trabalho é limitado pelo nível médio da demanda de mercado. O valor agregado por um trabalhador ativo ao produto de uma firma é representado por uma transferência de dinheiro proveniente do mercado corrente.
+
+O valor efetivamente recebido em forma monetária depende das condições do mercado; a relação entre custos e receita determina se as firmas são recompensadas com lucro pela realização de trabalho socialmente necessário. O lucro recebido do mercado é propriedade legal do capitalista que possui a firma. Dessa forma, os proprietários das firmas acumulam receita por meio das vendas no mercado, que representam a utilidade social dos esforços de seus trabalhadores.
+
+Modelamos de modo que as contribuições do empregado e do empregador sejam iguais. Naturalmente, estamos falando apenas do valor esperado; as contribuições individuais dos agentes variam aleatoriamente. Em uma economia real, uma alta motivação poderia permitir que empregadores contribuíssem mais por dia do que empregados, mas ignoramos esse aspecto por simplicidade.
+
+O dinheiro recebido pode representar o valor incorporado de diversos tipos de produtos e serviços vendidos em quantidades arbitrárias para números arbitrários de compradores. A regra de amostragem do mercado abstrai esses detalhes individuais das transações e pode ser interpretada como a modelagem do efeito agregado da dinâmica de um grafo aleatório conectando compradores e vendedores em cada período.
+
+\subsubsection*{Trabalho e Salários}
+
+Neste modelo, não existem diferenças de habilidade entre os agentes. Portanto, não importa qual agente é empregado, mas apenas a quantidade de empregados. Uma nova firma é formada quando dois agentes estabelecem uma relação empregador-empregado, e firmas existentes podem deixar de existir caso todos os empregados sejam demitidos e o proprietário fique desempregado.
+
+Também não há diferenças entre os salários dos agentes; eles são extraídos de uma distribuição uniforme. Na realidade, os salários não estão sujeitos a flutuações estocásticas; um modelo mais elaborado poderia introduzir contratos salariais entre agentes que fixassem o salário por determinada duração. Entretanto, no somatório total, em termos das despesas totais das empresas ou da distribuição da renda nacional, a existência de flutuações salariais individuais não é significativa e permite uma simplificação considerável.
+
+A "regra mensal'' implica que, a cada mês, um conjunto de regras é executado N vezes para permitir que os N agentes tenham a oportunidade de agir. Naturalmente, isso não garante que todos os agentes necessariamente atuarão durante o mês; alguns podem agir mais de uma vez, enquanto outros podem não agir nenhuma vez. Isso introduz um nível intencional de aleatoriedade no modelo para representar o fato de que, nas economias reais, os eventos não ocorrem com regularidade estrita. Logicamente, um ano é definido como 12 aplicações da regra mensal. Assim, o modelo fornece uma escala temporal vinculada ao tempo real pelo fato de que, em média, os salários são pagos mensalmente.
+
+\subsection{Resultados}
+
+Nos últimos 20 anos, tornou-se claro que modelos computacionais muito simples podem gerar comportamentos complexos. Alguns resultados principais:
+\begin{itemize}
+\item A quantidade atual de dinheiro M e o número de agentes N atuam como parâmetros de escala e não afetam a dinâmica.
+\item O tamanho do intervalo salarial não afeta a dinâmica.
+\item Se aumentarmos M e N proporcionalmente, a riqueza por agente permanece a mesma.
+\item Se aumentarmos apenas M, a riqueza média $\overline{w}$ aumenta. Assim, o parâmetro definido como $R=\overline{w}/\overline{p}$ aumenta, e a desigualdade também cresce.
+\item Se o número de agentes for muito pequeno, o modelo apresenta um comportamento qualitativamente diferente. Entretanto, economias reais são compostas por milhões de pessoas.
+\item Alterar o salário médio $\overline{p}$ afeta a dinâmica emergente. Mantendo a riqueza per capita constante, reduzimos R e diminuímos a desigualdade.
+\end{itemize}
+Entre os principais resultados, como mencionado anteriormente, está a divisão da riqueza nacional em duas classes --- um resultado que parece estar de acordo com as previsões de Farjoun e Machover.
+
+No início da simulação, o sistema rapidamente se organiza em um equilíbrio estático. Nesse equilíbrio, a riqueza dos agentes individuais flutua, mas a distribuição de probabilidade não apresenta flutuações ao longo do tempo. A simulação não alcança um equilíbrio imóvel, mas converge para um equilíbrio dinâmico, caracterizado por movimento e mudanças contínuas.
+
+Além disso, a estratificação gerada nas economias capitalistas é um fenômeno complexo relacionado às relações sociais de produção dominantes. Na realidade, as relações sociais de produção são muito mais complexas do que aquelas apresentadas neste modelo, mas é evidente que a classe capitalista é numericamente pequena em comparação com a classe trabalhadora. Em outras palavras, aqueles que dependem de salários para sua subsistência constituem a grande maioria da população; este modelo também reproduz esse fato com sucesso.
+
+Os resultados completos obtidos por meio deste modelo podem ser encontrados nos artigos apresentados no início do texto. Entretanto, pode-se afirmar que a abrangência empírica do modelo é extensa, apesar de ele ter sido definido a partir de pequenas e simples regras econômicas que governam sua dinâmica. O modelo comprime e conecta uma grande quantidade de dados empíricos dentro de uma única estrutura. A ideia foi mostrar como as relações sociais peculiares do capitalismo possuem um efeito abrangente e determinam muitas das propriedades do capitalismo em nível macroeconômico.
+
+Podemos expandir essa modelagem de diversas formas e explorar muitos aspectos que podem ser medidos e analisados; este é apenas um ponto de partida.
+
+Neste sistema, partimos das relações sociais microeconômicas para o fenômeno macroeconômico emergente. Entretanto, por que um conjunto de regras necessariamente gera dinâmicas observadas como consequência pode ser inicialmente difícil de compreender. É por isso que a modelagem computacional não é uma alternativa à dedução matemática, mas sim algo conectado a ela.
+
+Dentro do espaço de parâmetros explorado, o modelo gera flutuações na renda nacional em torno de médias estáveis de longo prazo. Contudo, um estudo mais aprofundado é necessário para compreender por que isso ocorre. O modelo computacional demonstra que, em princípio, se uma dedução puder ser produzida, suas hipóteses fundamentais corresponderão às do modelo computacional; naturalmente, uma prova dedutiva pode ser mais ou menos difícil de obter.
+
+Assim, o uso de modelagem computacional facilita a identificação de teorias que podem posteriormente ser analisadas para gerar explicações na forma de deduções matemáticas ou explicações em linguagem natural, buscando obter uma compreensão mais profunda da dinâmica do sistema analisado. Uma abordagem puramente dedutiva, na qual o investigador pode explorar apenas teorias candidatas diretamente acessíveis à dedução matemática, é desnecessariamente restritiva, especialmente quando o sistema apresenta desafios analíticos.
+
+Os elementos básicos deste modelo, portanto, diferem daqueles dos modelos econômicos tradicionais. Por exemplo, modelos padrão de equilíbrio competitivo ou neoclássico normalmente partem de uma ontologia de agentes racionais que maximizam o interesse próprio em um mercado de recursos escassos: o foco está em determinar a taxa de troca de equilíbrio das mercadorias, que é uma solução para um conjunto de constantes estáticas. Tipicamente, o dinheiro não é modelado e o tempo está ausente.
+
+Modelos neorricardianos, por outro lado, partem da ontologia das relações entre técnicas de produção de diferentes tipos de mercadorias, que definem as transformações materiais disponíveis para os agentes realizarem. A produção de mercadorias resulta em um excedente que é distribuído entre capitalistas e trabalhadores. Apesar das diferenças entre os modelos, existem algumas semelhanças. Os preços nesses modelos também são taxas de troca determinadas por soluções condicionadas por constantes, e o tempo também está ausente. Além disso, não há explicação de por que ou como uma determinada configuração da economia produz certos efeitos.
+
+Existe uma diferença entre esses modelos e aquele desenvolvido aqui. A mais evidente é que não temos nem tipos de mercadorias nem agentes racionais. Em vez disso, modelamos os elementos da economia que são ignorados nesses outros modelos, especificamente as relações entre agentes mediadas pelo dinheiro que ocorrem ao longo do tempo.
+
+Em um nível abstrato, os modelos neoclássicos teorizam restrições de escassez, enquanto os modelos neorricardianos teorizam restrições técnico-produtivas; este modelo teoriza as consequências dinâmicas das restrições sociais, que são fatos históricos sobre como a produção econômica é socialmente organizada.
+
+Existem razões sociológicas profundas pelas quais a teoria econômica tradicional é resistente a críticas e permaneceu em grande parte inalterada. Além disso, o modelo que descrevemos aqui fornece uma evidência de que a ontologia padrão é redundante para a formação de explicações dos fenômenos que ela pretende explorar.
+
+Isso não nega que outros problemas possam exigir a consideração da intencionalidade da atividade humana para sua explicação e, portanto, a introdução de agentes racionais ou a consideração de restrições técnico-produtivas e, consequentemente, a introdução de tipos de mercadorias. O que o modelo descrito aqui afirma é que, para os agregados empíricos considerados, não há necessidade de reduzir a economia política à psicologia e às condições técnicas de produção, e que os fatores causais dominantes não se encontram no nível do comportamento individual, nem no nível das restrições técnico-produtivas, mas no nível social das relações de produção, que constituem uma arquitetura social abstrata, porém não menos real, que restringe as ações que os indivíduos podem realizar, sejam elas otimizadas ou não.
+
+É por isso que os agentes escolhem entre opções econômicas possíveis restritas por sua classe e pelo dinheiro que possuem. Essa é uma aproximação da concepção da economia política clássica de Smith, Ricardo e Marx, na qual os indivíduos são considerados representantes de classes econômicas que possuem relações definidas entre si no processo produtivo.
+
+A arquitetura social --- particularmente a relação social entre salário e capital --- domina os indivíduos, que, por sua vez, são livres para tomar decisões econômicas locais, mas dentro de um ambiente social que não está sob seu controle.
+
+O método de abstração da racionalidade adotado aqui, em vez de enfatizar a natureza particular dos indivíduos, é válido porque o número de graus de liberdade apresentados pela realidade econômica é muito grande. Isso permite que a racionalidade dos indivíduos seja modelada por uma seleção altamente estocástica a partir de um conjunto de possibilidades definido de acordo com a arquitetura social.
+
+Os motivos quase psicológicos que supostamente orientam as ações individuais podem ser ignorados nessa abordagem porque, dentro de um grande conjunto de indivíduos, eles raramente são relevantes.
+
+\subsubsection*{Considerações finais}
+
+Nosso objetivo foi iniciar a compreensão das consequências econômicas das relações sociais de produção e desenvolver um modelo que incluísse o dinheiro e o tempo entre seus elementos essenciais. A motivação para essa abordagem baseia-se na distinção de Marx entre relações sociais de produção invariantes e forças produtivas variáveis. O capitalismo muda ao longo do tempo, mas a existência dos papéis sociais de trabalhador e capitalista permanece inalterada e constitui uma característica intrínseca desse sistema.
+
+O modelo de produção reproduziu algumas características empíricas importantes do capitalismo moderno:
+\begin{itemize}
+\item A tendência à concentração de capital, resultando em uma distribuição altamente desigual caracterizada por uma distribuição lognormal com uma “cauda de Pareto”.
+\item A distribuição de tamanhos de firmas seguindo uma lei de Zipf ou uma lei de potência.
+\item A distribuição de Laplace dos tamanhos das firmas e do crescimento do PIB.
+\item A distribuição exponencial das durações das recessões.
+\item A distribuição lognormal das saídas de firmas (firm exits).
+\item A distribuição do tipo Gamma das taxas de lucro.
+\end{itemize}
+O modelo também gera naturalmente grupos de capitalistas, empregados e desempregados em proporções realistas, assim como o fenômeno do ciclo econômico, incluindo flutuações nos salários, lucros e na divisão da renda nacional.
+
+A boa concordância qualitativa --- e, em muitos casos, quantitativa --- entre o modelo e os fenômenos empíricos sugere que a teoria apresentada aqui captura algumas características essenciais da economia capitalista, além de demonstrar a importância das relações sociais de produção e servir como base para modelos mais concretos e elaborados.
+
+Uma conclusão final que podemos extrair é que a implicação de que certas características da economia que geram conflitos políticos, como a desigualdade de renda e as recessões, são consequências necessárias das relações sociais de produção e, portanto, propriedades essenciais do capitalismo, não sendo meramente eventos acidentais, transitórios ou exógenos.
+
+\bibliographystyle{plain}
+\bibliography{tese,Artigo1/references,Artigo2/referencias,Artigo3/referencias}
+
+\end{document}
